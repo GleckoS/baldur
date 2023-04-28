@@ -9,7 +9,7 @@ export default function Card({ data }) {
       {/* <Image
         className="image"
       /> */}
-      <img src={data.image.src} />
+      <img src={data.image.src} alt=''/>
       <ButtonFilled href={`/sklep/${data.slug}/`}>
         {data.name}
       </ButtonFilled>

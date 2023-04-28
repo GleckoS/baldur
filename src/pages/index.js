@@ -23,11 +23,9 @@ export default function Home({ hero, aboutShop, materials, categories, baldur, p
   return (
     <Layout>
       <Head>
-        <meta name="robots" content="noindex,nofollow" />
         <title>Baldur - Strona Główna</title>
-        <meta name="description">
-          Sklep internetowy Baldur
-        </meta>
+        <meta name="description" content='Sklep internetowy Baldur' />
+        <meta name="robots" content="noindex,nofollow" />
       </Head>
       <Wrapper>
         <Hero data={hero} />
