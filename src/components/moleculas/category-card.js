@@ -15,7 +15,7 @@ export default function Card({ data }) {
           width={'360'}
           height={'270'}
         />
-        <ButtonFilled as='div'>
+        <ButtonFilled className='button' as='div'>
           <span>
             {data.name}
           </span>
@@ -43,16 +43,16 @@ const Wrapper = styled.div`
       width: 100%;
     }
 
-    a{
+    .button{
       min-width: 312px;
     }
   }
 
   @media (max-width: 760px) {
-    max-width: 480px;
+    max-width: 360px;
     width: 100%;
 
-    a{
+    .button{
       min-width: 100%;
     }
   }
