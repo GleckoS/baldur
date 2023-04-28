@@ -21,6 +21,9 @@ export default styled(Button)`
   text-decoration: none;
 
   span{
+    white-space: nowrap;
+    padding: 0px 40px 4px 20px;
+    font-weight: 500;
     height: 100%;
     clip-path: polygon(0 0, 100% 0%, calc(100% - 36px) 100%, 0% 100%);
     display: flex;

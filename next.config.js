@@ -7,6 +7,16 @@ const nextConfig = {
       ssr: true
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'baldur.headlesshub.com',
+        port: '',
+        pathname: '/wp-content/uploads/**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

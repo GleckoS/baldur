@@ -1,7 +1,23 @@
 import { createGlobalStyle } from 'styled-components'
-import { Uncial_Antiqua } from 'next/font/google'
+import localFont from 'next/font/local'
+import { Lato } from 'next/font/google'
 
-const uncialAntiqua = Uncial_Antiqua({ weight: '400', subsets: ['latin'] })
+const lato = Lato({ weight: '300', subsets: ['latin', 'latin-ext'] })
+const uncialAntiqua = localFont({ weight: '400', src: './../../public/uncial.woff2' })
+const natom = localFont({
+  src: [
+    {
+      path: './../../public/natom-pro.woff2',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: './../../public/natom-pro-medium.woff2',
+      weight: '500',
+      style: 'normal'
+    }
+  ]
+})
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -10,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
 
   *:focus{
@@ -91,7 +108,8 @@ const GlobalStyle = createGlobalStyle`
     --success-900: #1A835D;
 
     --title: ${uncialAntiqua.style.fontFamily};
-    --text: 'Natom Pro';
+    --text: ${natom.style.fontFamily};
+    --lato:  ${lato.style.fontFamily};
 
     --transition: 0.3s ease-out;
   }
@@ -102,14 +120,18 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-size: 20rem;
-    background-color: var(--dark-500);
     color: var(--primary-500);
     font-family: var(--text);
     line-height: 1.5;
   }
 
+  b, strong{
+    font-weight: 500;
+    color: var(--primary-100);
+  }
+
   .container {
-    max-width: 1260px;
+    max-width: 1340px;
     padding: 0 clamp(24px, calc(40vw / 7.68), 40px);
     margin: 0 auto;
   }
@@ -118,36 +140,42 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--title);
     font-size: 60rem;
     line-height: 1.33;
+    font-weight: 400;
   }
 
   h2 {
     font-family: var(--title);
     font-size: 48rem;
     line-height: 1.33;
+    font-weight: 400;
   }
 
   h3 {
     font-family: var(--title);
     font-size: 40rem;
     line-height: 1.33;
+    font-weight: 400;
   }
 
-  h4{
+  h4, .h4{
     font-family: var(--title);
     font-size: 32rem;
     line-height: 1.33;
+    font-weight: 400;
   }
 
   h5 {
     font-family: var(--title);
     font-size: 30rem;
     line-height: 1.33;
+    font-weight: 400;
   }
 
   h6 {
     font-family: var(--title);
     font-size: 24rem;
     line-height: 1.33;
+    font-weight: 400;
   }
 
   .error{

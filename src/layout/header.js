@@ -34,8 +34,9 @@ export default function Header() {
 }
 
 const Wrapper = styled.header`
-  background-color: var(--black-500);
+  background-color: var(--dark-500);
   position: sticky;
+  z-index: 100;
   height: 80px;
   top: 0;
 

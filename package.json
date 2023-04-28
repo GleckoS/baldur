@@ -3,14 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "start": "next dev",
     "build": "next build",
-    "start": "next start",
+    "serve": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.12",
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "graphql": "^16.6.0",
+    "graphql-request": "^6.0.0",
+    "html-react-parser": "^3.0.16",
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

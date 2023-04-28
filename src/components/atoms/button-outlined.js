@@ -22,6 +22,9 @@ export default styled(OutlinedButton)`
   text-decoration: none;
 
   span{
+    white-space: nowrap;
+    padding: 0px 40px 4px 20px;
+    font-weight: 500;
     height: 100%;
     clip-path: polygon(0 0, 100% 0%, calc(100% - 36px) 100%, 0% 100%);
     display: flex;
@@ -38,13 +41,14 @@ export default styled(OutlinedButton)`
     &::after{
       content: '';
       position: absolute;
-      right: -3px;
-      top: -3px;
+      right: -2px;
+      top: -1px;
       transform-origin: 100% 0;
       transform: rotateZ(26.4deg);
-      height: 200%;
+      height: 124%;
       width: 3px;
       background-color: transparent;
+      transition: color var(--transition), background-color var(--transition), border-color var(--transition);
     }
     
   }
