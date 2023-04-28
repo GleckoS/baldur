@@ -47,6 +47,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root {
+    color-scheme: dark;
+
     --primary-100: #F4EDED;
     --primary-200: #F3EAEA;
     --primary-300: #F1E7E7;

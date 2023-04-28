@@ -2,20 +2,25 @@ import Image from "next/image"
 import React from "react"
 import styled from "styled-components"
 import ButtonFilled from "../atoms/button-filled"
+import Link from "next/link"
 
 export default function Card({ data }) {
   return (
     <Wrapper>
-      <Image
-        quality='80'
-        src={data.image.src}
-        alt={`kategoria - ${data.name}`}
-        width={'360'}
-        height={'270'}
-      />
-      <ButtonFilled href={`/sklep/${data.slug}/`}>
-        {data.name}
-      </ButtonFilled>
+      <Link href={`/sklep/${data.slug}/`}>
+        <Image
+          quality='80'
+          src={data.image.src}
+          alt={`kategoria - ${data.name}`}
+          width={'360'}
+          height={'270'}
+        />
+        <ButtonFilled as='div'>
+          <span>
+            {data.name}
+          </span>
+        </ButtonFilled>
+      </Link>
     </Wrapper>
   )
 }
@@ -23,7 +28,11 @@ export default function Card({ data }) {
 const Wrapper = styled.div`
   width: 360px;
 
-  a span{
+  a{
+    display: block;
+  }
+
+  span{
     font-size: clamp(20rem, ${20 / 768 * 100}vw, 28rem);
   }
 

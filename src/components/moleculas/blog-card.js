@@ -78,6 +78,7 @@ const Wrapper = styled.div`
     display: block;
     position: absolute;
     inset: 0;
+    z-index: 2;
   }
 
   .text{

@@ -26,6 +26,7 @@ export default function Home({ hero, aboutShop, materials, categories, baldur, p
         <title>Baldur - Strona Główna</title>
         <meta name="description" content='Sklep internetowy Baldur' />
         <meta name="robots" content="noindex,nofollow" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
         <Hero data={hero} />

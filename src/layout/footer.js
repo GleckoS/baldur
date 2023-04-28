@@ -187,6 +187,16 @@ const Wrapper = styled.footer`
       li{
         list-style: none;
 
+        a{
+          color: #CCC3C3;
+          font-size: 20rem;
+          text-decoration: underline 2px transparent;
+          transition: text-decoration-color 0.2s ease-out;
+          &:hover{
+            text-decoration-color: currentColor;
+          }
+        }
+
         &.main{
           font-weight: 500;
           font-family: var(--text);
@@ -199,11 +209,6 @@ const Wrapper = styled.footer`
 
         &:first-child{
           margin-top: 0;
-        }
-
-        a{
-          color: #CCC3C3;
-          font-size: 20rem;
         }
       }
     }

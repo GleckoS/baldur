@@ -263,8 +263,10 @@ const Navigation = styled.nav`
     color: var(--primary-500);
     transition: color var(--transition);
 
+    text-decoration: underline 2px transparent;
+    transition: text-decoration-color 0.2s ease-out;
     &:hover{
-      text-decoration: underline;
+      text-decoration-color: currentColor;
     }
 
     &:active{
