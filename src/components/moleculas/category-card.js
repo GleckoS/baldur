@@ -9,7 +9,7 @@ export default function Card({ data }) {
       {/* <Image
         className="image"
       /> */}
-      <img src={data.image.src}/>
+      <img src={data.image.src} />
       <ButtonFilled href={`/sklep/${data.slug}/`}>
         {data.name}
       </ButtonFilled>
@@ -19,6 +19,31 @@ export default function Card({ data }) {
 
 const Wrapper = styled.div`
   width: 360px;
+
+  a span{
+    font-size: clamp(20rem, ${20 / 768 * 100}vw, 28rem);
+  }
+
+  @media (max-width: 872px) {
+    width: 312px;
+
+    .image, img{
+      width: 100%;
+    }
+
+    a{
+      min-width: 312px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    max-width: 480px;
+    width: 100%;
+
+    a{
+      min-width: 100%;
+    }
+  }
 
   .image, img{
     margin-bottom: 20px;

@@ -33,13 +33,16 @@ export default function Home({ hero, aboutShop, materials, categories, baldur, p
 }
 
 const Wrapper = styled.main`
+  overflow: hidden;
+  margin-bottom: -11px;
+  padding-bottom: 11px;
 `
 
 export async function getStaticProps() {
   const { data: { posts, page: { homepage: page } } } = await client.query({
     query: gql`
       query Homepage {
-        posts {
+        posts(first: 3) {
           nodes {
             uri
             excerpt

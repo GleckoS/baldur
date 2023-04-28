@@ -34,13 +34,22 @@ export default function About({ data: { image, title, firstTitle, firstText, sec
 }
 
 const Wrapper = styled.section`
-  margin-top: 270px;
+  margin-top: clamp(70px, ${85/768*100}vw, 250px);
   overflow: hidden;
   .container{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 608px;
     gap: 80px;
     align-items: center;
+
+    @media (max-width: 1240px) {
+        gap: 0;
+    }
+
+    @media (max-width: 864px){
+      display: flex;
+      flex-direction: column-reverse;
+    }
   }
 `
 
@@ -48,11 +57,39 @@ const ImageWrapper = styled.div`
   position: relative;
   height: 100%;
   min-height: ${props => props.minHeight}px;
+
+  @media (max-width: 864px){
+    min-height: unset;
+    width: 100%;
+  }
+
   .image{
     position: absolute;
     right:   0;
     top: 50%;
     transform: translateY(-50%);
+
+    @media (max-width: 1240px) {
+      right: -100px;
+      z-index: -1;
+    }
+    @media (max-width: 1024px) {
+      right: -200px;
+    }
+    @media (max-width: 864px){
+      position: relative;
+      left: unset;
+      top: unset;
+      transform: unset;
+
+      height: fit-content;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 520px;
+
+      max-width: 768px;
+      width: 100%;
+    }
   }
 `
 
@@ -66,7 +103,11 @@ const Content = styled.div`
     margin-top: 45px;
     margin-bottom: 15px;
     font-family: var(--text);
-    font-size: 30rem;
     font-weight: 500;
+    font-size: clamp(24rem, ${30 / 768 * 100}vw, 30rem);
+
+    @media (max-width: 360px) {
+      font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+    }
   }
 `

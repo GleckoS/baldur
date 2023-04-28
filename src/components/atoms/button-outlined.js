@@ -4,7 +4,6 @@ import styled from "styled-components"
 
 const OutlinedButton = ({ children, href, className, as, mode = 'primary' }) => (
   <Link mode={mode} className={className} href={href} as={as} >
-    <div />
     <span>
       {children}
     </span>
@@ -20,6 +19,12 @@ export default styled(OutlinedButton)`
   display: block;
   width: fit-content;
   text-decoration: none;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 64px;
+    min-width: unset;
+  }
 
   span{
     white-space: nowrap;
@@ -38,6 +43,10 @@ export default styled(OutlinedButton)`
     border: 3px solid transparent; 
     position: relative;
 
+    @media (max-width: 360px){
+      font-size: clamp(0rem, ${28 / 360 * 100}vw, 28rem);
+    }
+
     &::after{
       content: '';
       position: absolute;
@@ -49,6 +58,10 @@ export default styled(OutlinedButton)`
       width: 3px;
       background-color: transparent;
       transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+
+      @media (max-width: 480px) {
+        transform: rotateZ(29deg);
+      }
     }
     
   }

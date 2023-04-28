@@ -16,6 +16,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 60px 45px;
-  margin-top: 110px;
+  gap: clamp(45px, ${60 / 768 * 100}vw, 60px) 45px;
+  margin-top: clamp(70px, ${70 / 768 * 100}vw, 110px);
 `

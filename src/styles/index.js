@@ -119,10 +119,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-size: 20rem;
+    font-size: clamp(18rem, ${20 / 768 * 100}vw , 20rem);
     color: var(--primary-500);
     font-family: var(--text);
     line-height: 1.5;
+
+    @media (max-width: 360px){
+      font-size: clamp(0rem, ${18 / 360 * 100}vw, 18rem);
+    }
   }
 
   b, strong{
@@ -138,16 +142,24 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-family: var(--title);
-    font-size: 60rem;
+    font-size: clamp(32rem, ${40 / 768 * 100}vw, 60rem);
     line-height: 1.33;
     font-weight: 400;
+
+    @media (max-width: 360px){
+      font-size: clamp(0rem, ${32 / 360 * 100}vw, 32rem);
+    }
   }
 
   h2 {
     font-family: var(--title);
-    font-size: 48rem;
+    font-size: clamp(32rem, ${40 / 768 * 100}vw, 48rem);
     line-height: 1.33;
     font-weight: 400;
+
+    @media (max-width: 360px){
+      font-size: clamp(0rem, ${32 / 360 * 100}vw, 32rem);
+    }
   }
 
   h3 {
@@ -162,6 +174,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 32rem;
     line-height: 1.33;
     font-weight: 400;
+
+  @media (max-width: 360px){
+    font-size: clamp(0rem, ${32 / 360 * 100}vw, 32rem);
+  }
   }
 
   h5 {

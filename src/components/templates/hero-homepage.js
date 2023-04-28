@@ -28,7 +28,9 @@ export default function Hero({ data: { title, link, background } }) {
 
 const Wrapper = styled.section`
   position: relative;
-  min-height: 800px;
+  height: 60vw;
+  max-height: 850px;
+  min-height: 360px;
   h1{
     max-width: 768px;
     margin: 0 auto;
@@ -60,5 +62,12 @@ const Background = styled.div`
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    max-width: 100%;  
+    height: fit-content;
+    min-width: 640px;
+
+    @media (max-width: 360px) {
+      min-width: 500px;
+    }
 }
 `

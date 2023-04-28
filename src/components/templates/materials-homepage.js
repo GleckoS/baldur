@@ -25,11 +25,20 @@ export default function Materials({ categories, data: { title, leftTitle, leftTe
 }
 
 const Wrapper = styled.section`
-  margin-top: 270px;
+  margin-top: clamp(0px, ${270 / 1440 * 100}vw, 270px);
+
+  @media (max-width: 864px) {
+    margin-top: 0;
+  }
+
   .flex{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+
+    @media (max-width: 864px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   h2{
@@ -39,8 +48,12 @@ const Wrapper = styled.section`
 
   h3{
     font-family: var(--text);
-    font-size: 30rem;
+    font-size: clamp(24rem, ${30 / 768 * 100}vw, 30rem);
     margin-bottom: 15px;
     font-weight: 500;
+
+    @media (max-width: 360px) {
+      font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+    }
   }
 `

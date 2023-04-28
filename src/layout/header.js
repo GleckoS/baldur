@@ -1,26 +1,40 @@
 import Logo from "@/components/atoms/logo"
 import Link from "next/link"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
   return (
     <Wrapper>
+      <Overlay onClick={() => { setIsMobileMenuOpen(false) }} className={isMobileMenuOpen ? 'active' : ''} />
       <div className="container">
-        <div className="placeholder"/>
-        <button className="burger">
+        <div className="placeholder" />
+        <button onClick={() => { setIsMobileMenuOpen(true) }} className="burger">
           <div />
           <div />
           <div />
         </button>
+        <MobileMenu className={isMobileMenuOpen ? 'active' : ''}>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/sklep/'>Sklep</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/o-nas/'>O baldur</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/blog/'>Blog</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/kontakt/'>Kontakt</Link>
+          <button tabIndex={isMobileMenuOpen ? '0' : '-1'} className="close" onClick={() => { setIsMobileMenuOpen(false) }}>
+            <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M15.4998 12.0688L27.5686 0L31 3.47012L18.9703 15.4998L31 27.5686L27.5686 31L15.4998 18.9703L3.47012 31L0 27.5686L12.0688 15.4998L0 3.47012L3.47012 0L15.4998 12.0688Z" fill="#EDE2E2" />
+            </svg>
+          </button>
+        </MobileMenu>
         <Navigation>
-          <Link href='/sklep/'>Sklep</Link>
-          <Link href='/o-nas/'>O baldur</Link>
+          <Link className="desctop" href='/sklep/'>Sklep</Link>
+          <Link className="desctop" href='/o-nas/'>O baldur</Link>
           <Link className="logo" href='/'>
             <Logo />
           </Link>
-          <Link href='/blog/'>Blog</Link>
-          <Link href='/kontakt/'>Kontakt</Link>
+          <Link className="desctop" href='/blog/'>Blog</Link>
+          <Link className="desctop" href='/kontakt/'>Kontakt</Link>
         </Navigation>
         <button className="cart">
           <svg width="34" height="39" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,15 +47,105 @@ export default function Header() {
   )
 }
 
+const MobileMenu = styled.div`
+  position: fixed;
+  z-index: 102;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 360px;
+  max-width: 100%;
+  background-color: #0A0A0AF5;
+  padding: 135px 0;
+  display: none;
+  transition: transform .3s ease-out;
+  transform: translateX(-100%);
+
+  .close{
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    background-color: transparent;
+    border: none;
+  }
+
+  &.active{
+    transform: translateX(0);
+  }
+
+  @media (max-width: 996px) {
+    display: block;
+  }
+
+  a{
+    display: block;
+    margin-top: 15px;
+    height: fit-content;
+    padding: 10px 0 10px 40px;
+    margin-right: 20px;
+
+    font-weight: 500;
+    color: #FFFFFF;
+    position: relative;
+    transition: color .3s ease-out;
+
+    &::before{
+      content: '';
+      background: linear-gradient(90deg, #EDE2E2 26.56%, #0A0A0AEE 100%);
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      opacity: 1;
+      transform: translateX(-100%);
+      transition: transform .3s ease-out;
+    }
+
+    &:hover{
+      color: #000;
+
+      &::before{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+`
+
+const Overlay = styled.div`
+  position: fixed;
+  z-index: 101;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+
+  @media (max-width: 996px) {
+    display: block;
+  }
+
+  &.active{
+    pointer-events: all;
+  }
+
+`
+
 const Wrapper = styled.header`
   background-color: var(--dark-500);
   position: sticky;
   z-index: 100;
   height: 80px;
   top: 0;
+  overflow-x: hidden;
 
   .placeholder{
-    
+    @media (max-width: 996px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo{
+      width: 150px;
+    }
   }
 
   .container{
@@ -52,6 +156,10 @@ const Wrapper = styled.header`
     display: grid;
     align-items: center;
     grid-template-columns: 68px 1fr 68px;
+
+    @media (max-width: 480px) {
+      grid-template-columns: auto 1fr auto;
+    }
   }
 
   svg path{
@@ -66,11 +174,24 @@ const Wrapper = styled.header`
     background-color: transparent;
     border: none;
 
+    @media (max-width: 996px) {
+      display: block;
+    }
+
+    @media (max-width: 480px){
+      width: 38px;
+      height: 26px;
+    }
+
     div{
       width: 100%;
       height: 7px;
       background-color: var(--primary-500);
       position: absolute;
+
+      @media (max-width: 480px){
+        height: 5px;
+      }
     }
     div:nth-child(1){
       top: 0;
@@ -97,6 +218,11 @@ const Wrapper = styled.header`
     justify-content: center;
     border: none;
     background-color: transparent;
+
+    @media (max-width: 480px){
+      width: 30px;
+      height: 34px;
+    }
 
     &:hover{
       svg path{
@@ -143,6 +269,12 @@ const Navigation = styled.nav`
 
     &:active{
       color: var(--primary-800);
+    }
+  }
+
+  @media (max-width: 996px) {
+    .desctop{
+      display: none;
     }
   }
 `

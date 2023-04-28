@@ -103,7 +103,7 @@ export default function Footer() {
         </div>
         <ul className="link">
           {links.map((link, index) => (
-            <>
+            <React.Fragment key={index}>
               <li className="main" key={index}>
                 <Link href={link.url}>{link.name}</Link>
               </li>
@@ -112,7 +112,7 @@ export default function Footer() {
                   <Link href={sub.url}>{sub.name}</Link>
                 </li>
               ))}
-            </>
+            </React.Fragment>
           ))}
         </ul>
         <div className="copy">
@@ -126,7 +126,7 @@ export default function Footer() {
 
 const Wrapper = styled.footer`
   background-color: #141414;
-  margin-top: 220px;
+  margin-top: clamp(80px, ${220 / 1440 * 100}vw, 220px);
   padding: 72px 0 92px 0;
 
   font-family: var(--lato);
@@ -134,20 +134,32 @@ const Wrapper = styled.footer`
   .container{
     display: grid;
     grid-template-columns: 413px 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 120px;
+    grid-template-rows: 1fr auto;
+    gap: clamp(50px, ${120 / 1440 * 100}vw, 120px);
     grid-template-areas: 
     'inform link'
     'copy link';
 
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr 450px;
+    }
+    @media (max-width: 840px) {
+      grid-template-columns: 1fr;
+      grid-template-areas: 
+      'inform'
+      'link'
+      'copy';
+    }
+
 
     .inform {
       grid-area: inform;
+      max-width: 413px;
 
       p{
         margin-top: 36px;
         font-size: 16rem;
-        line-height: 30rem;
+        line-height: 180%;
         color: #CCC3C3;
 
         a{
@@ -168,6 +180,10 @@ const Wrapper = styled.footer`
       grid-area: link;
       columns: 2;
 
+      @media (max-width: 480px) {
+        columns: 1;
+      }
+
       li{
         list-style: none;
 
@@ -187,17 +203,23 @@ const Wrapper = styled.footer`
 
         a{
           color: #CCC3C3;
+          font-size: 20rem;
         }
       }
     }
 
     .copy {
       grid-area: copy;
+      height: fit-content;
 
       *{
         font-size: 20rem;
         color: #CCC3C3;
         font-family: var(--lato);
+
+        @media (max-width: 360px) {
+          font-size: clamp(0rem, ${20 / 360 * 100}vw, 20rem);
+        }
       }
       strong{
         font-family: var(--text);

@@ -20,6 +20,12 @@ export default styled(Button)`
   width: fit-content;
   text-decoration: none;
 
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 64px;
+    min-width: unset;
+  }
+  
   span{
     white-space: nowrap;
     padding: 0px 40px 4px 20px;
@@ -61,7 +67,7 @@ export default styled(Button)`
     }
 
     :hover span{
-      background-color: var(--primary-200);
+      background-color: var(--primary-100);
     }
 
     :active span{
