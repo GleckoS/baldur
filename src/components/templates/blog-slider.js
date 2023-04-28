@@ -17,17 +17,17 @@ export default function Blog({ posts }) {
           ))}
         </Grid>
         <Control>
-          <button onClick={() => { setTransform(transform <= 0 ? 0 : transform - 1) }} className="arrow">
+          <button disabled={transform <= 0} aria-label={`poprzedni artykuł`} onClick={() => { setTransform(transform <= 0 ? 0 : transform - 1) }} className="arrow">
             <svg width="22" height="41" viewBox="0 0 22 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M21.2419 39.7629C22.2527 38.7248 22.2527 37.0416 21.2419 36.0034L6.24855 20.604L21.2419 5.20456C22.2527 4.16642 22.2527 2.48326 21.2419 1.44511C20.2312 0.406967 18.5924 0.406967 17.5816 1.44511L0.758076 18.7243C-0.252693 19.7624 -0.252693 21.4456 0.758075 22.4837L17.5816 39.7629C18.5924 40.801 20.2312 40.801 21.2419 39.7629Z" fill="#EDE2E2" />
             </svg>
           </button>
           <div className="dots">
             {posts.map((post, index) => (
-              <button key={index} onClick={() => { setTransform(index) }} className={index === transform ? 'active' : ''} />
+              <button aria-label={`przeskroluj do ${index + 1} artykuła`} key={index} onClick={() => { setTransform(index) }} className={index === transform ? 'active' : ''} />
             ))}
           </div>
-          <button onClick={() => { setTransform(transform >= 2 ? 2 : transform + 1) }} className="arrow">
+          <button disabled={transform >= 2} aria-label={`następny artykuł`} onClick={() => { setTransform(transform >= 2 ? 2 : transform + 1) }} className="arrow">
             <svg width="22" height="41" viewBox="0 0 22 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M0.75808 1.44511C-0.252689 2.48326 -0.252689 4.16642 0.75808 5.20456L15.7514 20.604L0.758077 36.0034C-0.252692 37.0416 -0.252692 38.7248 0.758077 39.7629C1.76884 40.801 3.40763 40.801 4.41839 39.7629L21.2419 22.4837C22.2527 21.4456 22.2527 19.7624 21.2419 18.7243L4.4184 1.44511C3.40763 0.406968 1.76885 0.406968 0.75808 1.44511Z" fill="#EDE2E2" />
             </svg>

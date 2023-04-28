@@ -11,7 +11,7 @@ export default function Header() {
       <Overlay onClick={() => { setIsMobileMenuOpen(false) }} className={isMobileMenuOpen ? 'active' : ''} />
       <div className="container">
         <div className="placeholder" />
-        <button onClick={() => { setIsMobileMenuOpen(true) }} className="burger">
+        <button aria-label='open mobile menu' onClick={() => { setIsMobileMenuOpen(true) }} className="burger">
           <div />
           <div />
           <div />
@@ -30,7 +30,7 @@ export default function Header() {
         <Navigation>
           <Link className="desctop" href='/sklep/'>Sklep</Link>
           <Link className="desctop" href='/o-nas/'>O baldur</Link>
-          <Link className="logo" href='/'>
+          <Link aria-label='logo' className="logo" href='/'>
             <Logo />
           </Link>
           <Link className="desctop" href='/blog/'>Blog</Link>

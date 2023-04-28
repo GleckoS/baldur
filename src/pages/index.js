@@ -10,6 +10,7 @@ import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
 import Blog from '@/components/templates/blog-slider'
+import Head from 'next/head'
 
 const api = new WooCommerceRestApi({
   url: "https://baldur.headlesshub.com",
@@ -21,12 +22,19 @@ const api = new WooCommerceRestApi({
 export default function Home({ hero, aboutShop, materials, categories, baldur, posts }) {
   return (
     <Layout>
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+        <title>Baldur - Strona Główna</title>
+        <meta name="description">
+          Sklep internetowy Baldur
+        </meta>
+      </Head>
       <Wrapper>
         <Hero data={hero} />
         <AboutShop data={aboutShop} />
         <Materials data={materials} categories={categories} />
         <About data={baldur} />
-        <Blog posts={posts}/>
+        <Blog posts={posts} />
       </Wrapper>
     </Layout>
   )
