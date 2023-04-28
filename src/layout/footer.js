@@ -127,7 +127,7 @@ export default function Footer() {
 const Wrapper = styled.footer`
   background-color: #141414;
   margin-top: clamp(80px, ${220 / 1440 * 100}vw, 220px);
-  padding: 72px 0 92px 0;
+  padding: 40px 0;
 
   font-family: var(--lato);
 
@@ -190,7 +190,7 @@ const Wrapper = styled.footer`
         &.main{
           font-weight: 500;
           font-family: var(--text);
-          margin-top: 40px;
+          margin-top: 20px;
         }
 
         &.sub{

@@ -6,10 +6,13 @@ import ButtonFilled from "../atoms/button-filled"
 export default function Card({ data }) {
   return (
     <Wrapper>
-      {/* <Image
-        className="image"
-      /> */}
-      <img src={data.image.src} alt=''/>
+      <Image
+        quality='80'
+        src={data.image.src}
+        alt={`kategoria - ${data.name}`}
+        width={'360'}
+        height={'270'}
+      />
       <ButtonFilled href={`/sklep/${data.slug}/`}>
         {data.name}
       </ButtonFilled>
