@@ -8,8 +8,9 @@ export default function Hero({ data: { title, link, background } }) {
     <Wrapper>
       <Background>
         <Image
+          loading="eager"
           className="image"
-          quality='100'
+          quality='60'
           src={background.mediaItemUrl}
           alt={background.altText}
           width={background.mediaDetails.width}

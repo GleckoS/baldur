@@ -14,7 +14,7 @@ export default function Card({ className, index, setTransform = () => { }, data:
         <div className="image-wrap">
           <Image
             className="image"
-            quality='100'
+            quality='80'
             src={image.node.mediaItemUrl}
             alt={image.node.altText}
             width={image.node.mediaDetails.width}

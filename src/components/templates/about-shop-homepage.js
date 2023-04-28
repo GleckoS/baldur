@@ -23,7 +23,7 @@ export default function About({ data: { link, image, title, text, linkTitle } })
         <ImageWrapper width={image.mediaDetails.width} minHeight={image.mediaDetails.height}>
           <Image
             className="image"
-            quality='100'
+            quality='80'
             src={image.mediaItemUrl}
             alt={image.altText}
             width={image.mediaDetails.width}
