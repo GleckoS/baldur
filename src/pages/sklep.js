@@ -4,8 +4,9 @@ import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
 import Head from 'next/head'
 import Blog from '@/components/templates/blog-slider'
+import Hero from '@/components/templates/hero-shop'
 
-export default function Sklep({ posts, id }) {
+export default function Sklep({ posts, hero }) {
   return (
     <Layout>
       <Head>
@@ -15,7 +16,8 @@ export default function Sklep({ posts, id }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Blog posts={posts} />
+        <Hero data={hero} />
+        {/* <Blog posts={posts.nodes} /> */}
       </Wrapper>
     </Layout>
   )
@@ -28,7 +30,7 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticProps() {
-  const { data: { posts, page: { id } } } = await client.query({
+  const { data: { posts, page: { shop: page } } } = await client.query({
     query: gql`
       query Sklep {
         posts(first: 3) {
@@ -49,7 +51,20 @@ export async function getStaticProps() {
           }
         }
         page(id: "cG9zdDoxMDU=") {
-          id
+          shop {
+            heroShop {
+              title
+              text
+              background {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
+                }
+              }
+            }
+          }
         }
       }
     `,
@@ -59,11 +74,10 @@ export async function getStaticProps() {
       },
     }
   });
-
   return {
     props: {
-      id,
-      posts
+      hero: page.heroShop,
+      posts: posts
     }
   };
 }
