@@ -28,11 +28,11 @@ export default function About({ data: { image, title, firstTitle, firstText, sec
         </ImageWrapper>
         <Content>
           <h2>{title}</h2>
-          <h3>{firstTitle}</h3>
+          <h3 className="big-text">{firstTitle}</h3>
           <div className="text">
             {HTMLReactParser(firstText)}
           </div>
-          <h3>{secondTitle}</h3>
+          <h3 className="big-text">{secondTitle}</h3>
           <div className="text">
             {HTMLReactParser(secondText)}
           </div>
@@ -170,12 +170,5 @@ const Content = styled.div`
   h3{
     margin-top: 45px;
     margin-bottom: 15px;
-    font-family: var(--text);
-    font-weight: 500;
-    font-size: clamp(24rem, ${30 / 768 * 100}vw, 30rem);
-
-    @media (max-width: 360px) {
-      font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
-    }
   }
 `

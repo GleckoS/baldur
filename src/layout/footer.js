@@ -116,8 +116,11 @@ export default function Footer() {
           ))}
         </ul>
         <div className="copy">
-          <p>Copyright © 2022 — <strong>Baldur.shop</strong></p>
-          <h2>Realizacja: <a href="kryptonum.eu"><strong>Kryptonum</strong></a></h2>
+          <p>Copyright © {(() => {
+            const date = new Date()
+            return date.getFullYear()
+          })()} — <strong>Baldur.shop</strong></p>
+          <h2>Realizacja: <a rel="noopener noreferer" target="__blank" href="https://kryptonum.eu"><strong>Kryptonum</strong></a></h2>
         </div>
       </div>
     </Wrapper>

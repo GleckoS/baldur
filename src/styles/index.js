@@ -195,11 +195,21 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.33;
     font-weight: 400;
   }
-
+  
   .error{
     color: var(--error-500);
     font-size: 14rem;
     line-height: 16rem;
+  }
+
+  .big-text{
+    font-family: var(--text);
+    font-weight: 500;
+    font-size: clamp(24rem, ${30 / 768 * 100}vw, 30rem);
+
+    @media (max-width: 360px) {
+      font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+    }
   }
 `
 

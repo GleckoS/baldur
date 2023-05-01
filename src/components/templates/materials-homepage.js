@@ -24,11 +24,11 @@ export default function Materials({ categories, data: { title, leftTitle, leftTe
         <h2>{title}</h2>
         <div className="flex">
           <div>
-            <h3>{leftTitle}</h3>
+            <h3 className="big-text">{leftTitle}</h3>
             <div>{HTMLReactParser(leftText)}</div>
           </div>
           <div>
-            <h3>{rightTitle}</h3>
+            <h3 className="big-text">{rightTitle}</h3>
             <div>{HTMLReactParser(rightText)}</div>
           </div>
         </div>
@@ -91,13 +91,6 @@ const Wrapper = styled.section`
   }
 
   h3{
-    font-family: var(--text);
-    font-size: clamp(24rem, ${30 / 768 * 100}vw, 30rem);
     margin-bottom: 15px;
-    font-weight: 500;
-
-    @media (max-width: 360px) {
-      font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
-    }
   }
 `

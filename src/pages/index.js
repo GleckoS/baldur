@@ -1,16 +1,16 @@
 import styled from 'styled-components'
+import Head from 'next/head'
 import Layout from '../layout'
 
 import Hero from '@/components/templates/hero-homepage'
 import AboutShop from '@/components/templates/about-shop-homepage'
 import Materials from '@/components/templates/materials-homepage'
 import About from '@/components/templates/about-baldur-homepage'
+import Blog from '@/components/templates/blog-slider'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
-import Blog from '@/components/templates/blog-slider'
-import Head from 'next/head'
 
 const api = new WooCommerceRestApi({
   url: "https://baldur.headlesshub.com",

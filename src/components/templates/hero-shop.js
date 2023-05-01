@@ -28,7 +28,7 @@ export default function Hero({ data: { title, text, background } }) {
 
 const Wrapper = styled.section`
   position: relative;
-  height: clamp(300px, ${450 / 768 * 100}vw, 600px);
+  min-height: clamp(300px, ${450 / 768 * 100}vw, 600px);
   h1{
     max-width: 820px;
     margin: 0 auto;

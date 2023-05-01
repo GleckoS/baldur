@@ -29,6 +29,9 @@ const Wrapper = styled.div`
 
   a{
     display: block;
+    span{
+      text-transform: uppercase;
+    }
   }
 
   span{

@@ -1,12 +1,23 @@
 import styled from 'styled-components'
 import Layout from '../layout'
+import Head from 'next/head'
+
+import Hero from '@/components/templates/hero-shop'
+import Categories from '@/components/templates/categories-shop'
+import Blog from '@/components/templates/blog-slider'
+
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
-import Head from 'next/head'
-import Blog from '@/components/templates/blog-slider'
-import Hero from '@/components/templates/hero-shop'
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
 
-export default function Sklep({ posts, hero }) {
+const api = new WooCommerceRestApi({
+  url: "https://baldur.headlesshub.com",
+  consumerKey: process.env.WC_KEY,
+  consumerSecret: process.env.WC_SECRET,
+  version: "wc/v3"
+})
+
+export default function Sklep({ categories, posts, hero }) {
   return (
     <Layout>
       <Head>
@@ -17,6 +28,7 @@ export default function Sklep({ posts, hero }) {
       </Head>
       <Wrapper>
         <Hero data={hero} />
+        <Categories data={categories}/>
         {/* <Blog posts={posts.nodes} /> */}
       </Wrapper>
     </Layout>
@@ -74,10 +86,14 @@ export async function getStaticProps() {
       },
     }
   });
+
+  const categoires = await api.get("products/categories")
+
   return {
     props: {
       hero: page.heroShop,
-      posts: posts
+      posts: posts,
+      categories: categoires.data,
     }
   };
 }
