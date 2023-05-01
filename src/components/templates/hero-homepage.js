@@ -10,7 +10,6 @@ export default function Hero({ data: { title, link, background } }) {
         <Image
           loading="eager"
           className="image"
-          quality='60'
           src={background.mediaItemUrl}
           alt={background.altText}
           width={background.mediaDetails.width}
