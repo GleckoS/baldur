@@ -41,8 +41,8 @@ export default function Home({ hero, aboutShop, materials, categories, baldur, p
 
 const Wrapper = styled.main`
   overflow: hidden;
-  margin-bottom: -11px;
-  padding-bottom: 11px;
+  margin-bottom: calc(-1 * clamp(80px, ${220 / 1440 * 100}vw, 220px));
+  padding-bottom: clamp(80px, ${220 / 1440 * 100}vw, 220px);
 `
 
 export async function getStaticProps() {
