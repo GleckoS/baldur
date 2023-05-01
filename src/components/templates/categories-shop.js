@@ -10,7 +10,7 @@ export default function Categories({ data }) {
         <p className="big-text">Sprawdź dostępne kategorie produktów. </p>
         <Grid>
           {data.map((category, index) => (
-            <ButtonFilled href={`/sklep/${category.slug}`}>
+            <ButtonFilled key={category.slug + index} href={`/sklep/${category.slug}`}>
               {category.name}
             </ButtonFilled>
           ))}
