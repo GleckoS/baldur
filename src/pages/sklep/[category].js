@@ -61,7 +61,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { data: { posts, global } } = await client.query({
     query: gql`
-      query Sklep {
+      query Category {
         posts(first: 3) {
           nodes {
             uri

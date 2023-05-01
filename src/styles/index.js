@@ -3,16 +3,16 @@ import localFont from 'next/font/local'
 import { Lato } from 'next/font/google'
 
 const lato = Lato({ weight: '300', subsets: ['latin', 'latin-ext'] })
-const uncialAntiqua = localFont({ weight: '400', src: './../../public/uncial.woff2' })
+const uncialAntiqua = localFont({ weight: '400', src: './../../public/fonts/uncial.woff2' })
 const natom = localFont({
   src: [
     {
-      path: './../../public/natom-pro.woff2',
+      path: './../../public/fonts/natom-pro.woff2',
       weight: '400',
       style: 'normal'
     },
     {
-      path: './../../public/natom-pro-medium.woff2',
+      path: './../../public/fonts/natom-pro-medium.woff2',
       weight: '500',
       style: 'normal'
     }
@@ -177,9 +177,9 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.33;
     font-weight: 400;
 
-  @media (max-width: 360px){
-    font-size: clamp(0rem, ${32 / 360 * 100}vw, 32rem);
-  }
+    @media (max-width: 360px){
+      font-size: clamp(0rem, ${32 / 360 * 100}vw, 32rem);
+    }
   }
 
   h5 {
