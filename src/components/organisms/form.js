@@ -13,22 +13,22 @@ export default function Form() {
       <label>
         <span className="label-text">Imię</span>
         <input {...register("name")} />
-        <span className="error">To pole jest obowiązkowe do uzupełnienia</span>
+        {errors.name && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label>
         <span className="label-text">Mail</span>
         <input {...register("mail")} />
-        <span className="error">To pole jest obowiązkowe do uzupełnienia</span>
+        {errors.name && <span className="mail">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label>
         <span className="label-text">Temat</span>
         <input {...register("theme")} />
-        <span className="error">To pole jest obowiązkowe do uzupełnienia</span>
+        {errors.name && <span className="theme">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label>
         <span className="label-text">Opis</span>
         <textarea rows='6' {...register("description")} />
-        <span className="error">To pole jest obowiązkowe do uzupełnienia</span>
+        {errors.name && <span className="description">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label className="check">
         <input type='checkbox' {...register("check")} />
@@ -41,7 +41,7 @@ export default function Form() {
           </svg>
         </span>
         <p>Przeczytałem/am <Link href='/regulamin/'>regulamin</Link> i rozumiem <Link href='/polityka-prywatnosci/'>politykę prywatności</Link> i cookies</p>
-        <span className="error">To pole jest obowiązkowe do uzupełnienia</span>
+        {errors.name && <span className="check">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
 
       <ButtonOutlined className='button' as='button'>
