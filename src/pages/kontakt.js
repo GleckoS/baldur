@@ -7,6 +7,7 @@ import Blog from '@/components/templates/blog-slider'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
+import Contact from '@/components/templates/contact'
 
 export default function Kontakt({ posts, faq }) {
   return (
@@ -18,6 +19,7 @@ export default function Kontakt({ posts, faq }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
+        <Contact/>
         <Faq data={faq}/>
         <Blog posts={posts.nodes} />
       </Wrapper>
