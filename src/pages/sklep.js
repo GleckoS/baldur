@@ -35,7 +35,7 @@ export default function Sklep({ cta, categories, posts, hero, reviews }) {
         <ProductGrid data='TODO'/>
         <CallToAction data={cta} />
         <Reviews data={reviews} />
-        <Blog posts={posts.nodes} />
+        <Blog posts={posts} />
       </Wrapper>
     </Layout>
   )
@@ -116,7 +116,7 @@ export async function getStaticProps() {
   return {
     props: {
       hero: page.heroShop,
-      posts: posts,
+      posts: posts.nodes,
       categories: categoires.data,
       reviews: global.reviews,
       cta: global.callToAction
