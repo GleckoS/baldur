@@ -4,7 +4,7 @@ import Card from "../moleculas/category-card"
 
 export default function Grid({ categories }) {
   return (
-    <Wrapper>
+    <Wrapper className="grid">
       {categories.map((category, index) => (
         <Card key={index} data={category} />
       ))}

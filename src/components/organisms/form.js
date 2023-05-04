@@ -1,37 +1,60 @@
 import React from "react"
 import styled from "styled-components"
-import { useForm } from "react-hook-form";
-import ButtonOutlined from "../atoms/button-outlined";
-import Link from "next/link";
+import { useForm } from "react-hook-form"
+import ButtonOutlined from "../atoms/button-outlined"
+import Link from "next/link"
+import axios from "axios"
 
-export default function Form() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+export default function Form({ subject }) {
+  const { register, reset, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = data => {
+    setIsSended(true)
+
+    let url = `https://baldur.headlesshub.com/wp-json/contact-form-7/v1/contact-forms/34241/feedback`
+
+    let body = new FormData()
+
+    body.append('mail', data.mail)
+    body.append('fullname', data.name)
+    body.append('theme', data.theme)
+    body.append('description', data.description)
+    body.append('subject', subject)
+
+    axios.post(url, body)
+      .then((res) => {
+        if (res.status === 200) {
+          setIsSended(true)
+          reset()
+        } else {
+          // toast('There was some problem with contact form, try later')
+        }
+      })
+  };
 
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
       <label>
         <span className="label-text">Imię</span>
-        <input {...register("name")} />
+        <input {...register("name", { required: true, minLength: 3 })} />
         {errors.name && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label>
         <span className="label-text">Mail</span>
-        <input {...register("mail")} />
-        {errors.name && <span className="mail">To pole jest obowiązkowe do uzupełnienia</span>}
+        <input {...register("mail", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
+        {errors.mail && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label>
         <span className="label-text">Temat</span>
-        <input {...register("theme")} />
-        {errors.name && <span className="theme">To pole jest obowiązkowe do uzupełnienia</span>}
+        <input {...register("theme", { required: true, minLength: 3 })} />
+        {errors.theme && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label>
         <span className="label-text">Opis</span>
         <textarea rows='6' {...register("description")} />
-        {errors.name && <span className="description">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label className="check">
-        <input type='checkbox' {...register("check")} />
+        <input type='checkbox' {...register("check", {required: true})} />
         <span className="box">
           <svg className="left" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.58417 9.83269e-06C3.7807 -0.0127349 14.0398 12.3682 14.0398 12.3682L35 34.9994C35 34.9994 24.9609 35.376 9.90287 16.9355L11.8313 14.8534C11.8313 14.8534 8.77502 13.4608 6.16089 9.8853C3.54676 6.30982 3.64012 6.48593 2.48974 5.42001C1.33935 4.35408 0.282323 3.78984 0.0269199 3.21169C-0.228483 2.6347 1.38764 0.0127546 2.58417 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
@@ -41,7 +64,7 @@ export default function Form() {
           </svg>
         </span>
         <p>Przeczytałem/am <Link href='/regulamin/'>regulamin</Link> i rozumiem <Link href='/polityka-prywatnosci/'>politykę prywatności</Link> i cookies</p>
-        {errors.name && <span className="check">To pole jest obowiązkowe do uzupełnienia</span>}
+        {errors.check && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
 
       <ButtonOutlined className='button' as='button'>
@@ -70,7 +93,7 @@ const Wrapper = styled.form`
     position: relative;
 
     .label-text{
-      font-size: clamp(20rem, ${26/768*100}vw, 26rem);
+      font-size: clamp(20rem, ${26 / 768 * 100}vw, 26rem);
 
       @media (max-width: 360px) {
         font-size: clamp(0rem, ${20 / 360 * 100}vw, 20rem);
@@ -90,7 +113,7 @@ const Wrapper = styled.form`
       }
 
       &:focus-visible{
-        outline-offset: 6px;
+        outline-offset: 2px;
       }
     }
     
@@ -139,6 +162,11 @@ const Wrapper = styled.form`
           transform: translate(50%, -50%);
           transition: all .2s ease-out;
         }
+      }
+
+      input:focus-visible ~ .box{
+        outline: 2px solid var(--primary-500) ;
+        outline-offset: 2px; 
       }
 
       input:checked ~ .box{

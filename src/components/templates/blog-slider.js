@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import Card from "../moleculas/blog-card"
+import Card from "../moleculas/blog-slider-card"
 
 export default function Blog({ posts }) {
   const [transform, setTransform] = useState(1)
@@ -42,6 +42,44 @@ export default function Blog({ posts }) {
   )
 }
 
+const Wrapper = styled.section`
+  margin-top: clamp(80px, ${200 / 1440 * 100}vw, 200px);
+  position: relative;
+
+  .rune{
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+
+    @media (max-width: 1260px) {
+      bottom: -40px;
+      right: 10%;
+      left: unset;
+    }
+
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  h2{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .annotation{
+    text-align: center;
+    margin: 0 auto;
+    max-width: 610px;
+  }
+
+  .title{
+    text-align: center;
+    margin: 100px auto 40px auto;
+  }
+`
+
 const Control = styled.div`
   margin-top: 32px;
   display: none;
@@ -81,44 +119,6 @@ const Control = styled.div`
         background-color: var(--primary-500);
       }
     }
-  }
-`
-
-const Wrapper = styled.section`
-  margin-top: clamp(80px, ${200 / 1440 * 100}vw, 200px);
-  position: relative;
-
-  .rune{
-    position: absolute;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100%);
-
-    @media (max-width: 1260px) {
-      bottom: -40px;
-      right: 10%;
-      left: unset;
-    }
-
-    @media (max-width: 640px) {
-      display: none;
-    }
-  }
-
-  h2{
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .annotation{
-    text-align: center;
-    margin: 0 auto;
-    max-width: 610px;
-  }
-
-  .title{
-    text-align: center;
-    margin: 100px auto 40px auto;
   }
 `
 

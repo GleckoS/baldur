@@ -40,17 +40,19 @@ const Wrapper = styled.div`
   background-color: #141414;
   position: relative;
   padding-bottom: 60px;
+  width: 396px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
+  @media (max-width: 480px){
+    padding-bottom: 80px;
+    width: 80vw;
+  }
+
   a{
     user-select: none;
     -webkit-user-drag: none;
-  }
-
-  @media (max-width: 480px){
-    padding-bottom: 80px;
   }
 
   .image-wrap{

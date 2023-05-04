@@ -14,6 +14,7 @@ export default function Hero({ data: { title, link, background } }) {
           alt={background.altText}
           width={background.mediaDetails.width}
           height={background.mediaDetails.height}
+          priority={true}
         />
       </Background>
       <div className="container">

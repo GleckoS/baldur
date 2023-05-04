@@ -4,7 +4,7 @@ import Form from "../organisms/form"
 
 export default function Contact({ data }) {
 
-  const [chosenMethod, setChosenMethod] = useState("Customowy nóż")
+  const [chosenMethod, setChosenMethod] = useState("Konsultacje")
 
   return (
     <Wrapper>
@@ -31,7 +31,7 @@ export default function Contact({ data }) {
         </div>
         <div className="form">
           <p>Chętnie doradzę Ci w doborze odpowiednich materiałów lub pomogę w zaprojektowaniu idealnego noża. Wypełnij formularz, aby umówić się na konsultację.</p>
-          <Form />
+          <Form subject={chosenMethod} />
         </div>
       </div>
     </Wrapper>

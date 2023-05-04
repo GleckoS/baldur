@@ -39,10 +39,6 @@ const links = [
     url: '/o-nas/',
     subArr: [
       {
-        name: 'Opinie i rekomendacje',
-        url: '/o-nas/',
-      },
-      {
         name: 'Jak wybieramy materiały',
         url: '/o-nas/',
       },
