@@ -29,13 +29,13 @@ export default function Kontakt({ posts, categories }) {
           <Link href='/'>Strona główna</Link>
           <Link href='/'>Sklep</Link>
           {categories.map(({ name, slug }) => (
-            <Link className='sub' href={`/sklep/${slug}`}>{name}</Link>
+            <Link key={slug} className='sub' href={`/sklep/${slug}`}>{name}</Link>
           ))}
           <Link href='/'>O Baldur</Link>
           <Link href='/'>Jak wybieramy materiały</Link>
           <Link href='/'>Blog</Link>
           {posts.map(({ uri, title }) => (
-            <Link className='sub' href={`${uri}`}>{title}</Link>
+            <Link key={title} className='sub' href={`${uri}`}>{title}</Link>
           ))}
           <Link href='/kontakt'>Kontakt</Link>
           <Link href='/koszyk'>Koszyk</Link>

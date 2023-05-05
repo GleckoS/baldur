@@ -1,8 +1,8 @@
-import Layout from "../../layout"
+import Layout from "../../../layout"
 import styled from "styled-components"
 import Head from "next/head"
 
-import client from "../../apollo/apollo-client"
+import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
 import Archive from "@/components/templates/blog-category-archive"
 
@@ -60,7 +60,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params)
   const { data: { categories, posts, page } } = await client.query({
     query: gql`
       query Category($category: String, $cat: [String]) {
