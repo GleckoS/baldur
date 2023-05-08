@@ -48,7 +48,6 @@ export default function Kontakt({ posts, categories }) {
 }
 
 const Wrapper = styled.main`
-  overflow: hidden;
   margin-top: 125px;
 
   *{

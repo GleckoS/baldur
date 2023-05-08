@@ -39,6 +39,7 @@ const Wrapper = styled.section`
     span{
       font-size: 20rem;
       text-transform: uppercase;
+      clip-path: polygon(0 0,100% 0%,calc(100% - 24px) 100%,0% 100%);
 
       @media (max-width: 360px) {
         font-size: clamp(0rem , ${20 / 360 * 100}vw,20rem);

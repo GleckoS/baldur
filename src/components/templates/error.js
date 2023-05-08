@@ -61,10 +61,7 @@ const Wrapper = styled.section`
     margin-top: 50px;
     text-align: center;
     text-transform: capitalize;
-
-    @media (max-width: 420px) {
-      font-size: 28rem;
-    }
+    font-size: clamp(28rem, ${64 / 768 * 100}vw, 64rem);
 
     @media (max-width: 360px) {
       font-size: clamp(0rem , ${28 / 360 * 100}vw, 28rem);
@@ -93,6 +90,14 @@ const Wrapper = styled.section`
 
       @media (max-width: 360px) {
         font-size: clamp(0rem , ${18 / 360 * 100}vw, 18rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      height: 51px;
+
+      span{
+        clip-path: polygon(0 0,100% 0%,calc(100% - 24px) 100%,0% 100%);
       }
     }
   }

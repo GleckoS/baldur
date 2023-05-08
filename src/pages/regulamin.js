@@ -131,10 +131,6 @@ const Background = styled.div`
   max-width: 1440px;
   width: 100vw;
 
-  @media (max-width: 480px) {
-    bottom: unset;
-    height: 300px;
-  }
 
   .image{
     position: relative;
