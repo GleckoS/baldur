@@ -28,6 +28,15 @@ export default function Hero({ data: { title, text, background } }) {
 const Wrapper = styled.section`
   position: relative;
   height: clamp(300px, ${500 / 768 * 100}vw, 600px);
+
+  @media (max-width: 420px){
+    height: auto;
+  }
+
+  .container{
+    max-width: 1094px;
+    box-sizing: content-box;
+  }
   
   h1{
     margin-bottom: 20px;
@@ -40,7 +49,7 @@ const Wrapper = styled.section`
 
   .text{
     max-width: 607px;
-    margin-bottom: 80px;
+    margin-bottom: clamp(40px, ${60 / 768 * 100}vw, 80px);
 
     *{
       font-size: 20rem;
@@ -48,10 +57,6 @@ const Wrapper = styled.section`
       @media (max-width: 360px) {
         font-size: clamp(0rem, ${20 / 360 * 100}vw, 20rem);
       }
-    }
-
-    @media (max-width: 480px) {
-      margin-bottom: unset;
     }
   }
 
@@ -73,7 +78,7 @@ const Background = styled.div`
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
-  max-width: 1440px;
+  max-width: fit-content;
   width: 100vw;
 
   @media (max-width: 480px) {
@@ -81,21 +86,26 @@ const Background = styled.div`
     height: 300px;
   }
 
+  @media (max-width: 420px) {
+    position: relative;
+  }
+
   .image{
-    position: absolute;
+    position: relative;
     top: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    max-height: fit-content;
+    width: fit-content;
+    max-width: 1440px;
   }
 
   &::after{
     content: '';
-    inset: 0;
+    inset: -2px;
     position: absolute;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0.57) 0%, #0A0A0A 89.06%);
-
+    background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0.27) 0%, #0A0A0A 89.06%);
   }
 `

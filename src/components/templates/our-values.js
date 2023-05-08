@@ -1,9 +1,8 @@
 import HTMLReactParser from "html-react-parser"
-import Image from "next/image"
 import React from "react"
 import styled from "styled-components"
 
-export default function OurValues({ data: { title, text, image } }) {
+export default function OurValues({ data: { title, text } }) {
   return (
     <Wrapper>
       <div className="container">
@@ -16,15 +15,6 @@ export default function OurValues({ data: { title, text, image } }) {
         <VideoWrap>
           <video src="/fire.mp4" type="video/mp4" autoPlay loop muted playsInline />
         </VideoWrap>
-        {/*  <ImageWrapper width={image.mediaDetails.width} minHeight={image.mediaDetails.height}>
-         <Image
-            className="image"
-            src={image.mediaItemUrl}
-            alt={image.altText}
-            width={image.mediaDetails.width}
-            height={image.mediaDetails.height}
-          />
-        </ImageWrapper> */}
       </div>
     </Wrapper>
   )
@@ -112,45 +102,7 @@ const VideoWrap = styled.div`
   &::after{
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -2px;
     background: radial-gradient(47.65% 50.84% at 50% 50%,rgba(0,0,0,0) 0%,#0A0A0A 100%);
-  }
-`
-
-const ImageWrapper = styled.div`
-  position: relative;
-  height: 100%;
-  min-height: ${props => props.minHeight}px;
-  @media (max-width: 864px){
-    min-height: unset;
-    width: calc(100% + clamp(48px,calc(80vw / 7.68),80px));
-    transform: translateX(calc(-1 * clamp(24px,calc(40vw / 7.68),40px)));
-    overflow: hidden;
-  }
-
-  .image{
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    @media (max-width: 1240px) {
-      left: -100px;
-    }
-    @media (max-width: 1024px) {
-      left: -200px;
-    }
-    @media (max-width: 864px){
-      position: relative;
-      left: unset;
-      top: unset;
-      transform: unset;
-      width: 100%;
-      height: fit-content;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 520px;
-    }
   }
 `

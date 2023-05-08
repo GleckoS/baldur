@@ -18,13 +18,15 @@ export default function About({ data: { image, title, firstTitle, firstText, sec
           <path d="M-2.9649 11.8981C-0.450688 12.3743 1.21562 14.071 3.07522 15.4201C4.58332 16.5138 5.92816 17.8279 7.40358 18.9699C8.98677 20.1918 10.6303 21.335 12.2601 22.4934C12.6156 22.7479 13.0308 22.9196 13.5607 23.2076C13.651 22.7833 13.8035 22.4854 13.7602 22.2169C13.0742 17.9608 12.3194 13.718 11.6787 9.45746C11.4031 7.6353 10.871 5.83319 11.2501 3.9226C11.3884 3.22469 11.0036 2.42624 10.8594 1.67791C11.5037 0.773398 12.3966 0.395743 13.458 0.631656C14.3524 0.828452 15.2743 0.579456 16.1425 1.38121C17.2453 2.39787 18.837 2.77073 19.817 4.10891C20.8203 5.48038 21.1579 6.77458 20.6061 8.4206C20.226 9.56365 19.9656 10.8263 20.0145 12.0167C20.1377 15.0303 21.2601 17.8472 22.1487 20.7804C22.5163 19.7908 22.9065 18.8094 23.2419 17.805C24.5364 13.935 26.6036 10.4363 28.7654 7.03673C29.7221 5.53082 31.3965 4.39421 32.9311 3.36006C34.7248 2.1459 37.8307 4.12317 38.2754 6.49589C38.5923 8.20522 38.3342 9.58906 37.0966 10.9226C35.793 12.3275 34.5468 13.8557 33.6165 15.5201C32.6829 17.1894 32.1455 19.0843 31.4882 20.9017C30.1809 24.5309 28.9502 28.1873 27.6026 31.8032C26.855 33.8058 27.1038 35.8807 26.9178 37.9219C26.8759 38.3579 26.955 38.9426 26.7066 39.2002C25.5172 40.4573 25.8776 41.8478 26.3054 43.1959C26.9845 45.3472 27.825 47.4423 28.5195 49.5865C29.0709 51.2926 29.4958 53.0398 30.0002 54.7633C30.7058 57.1613 31.5225 59.5252 32.1278 61.9467C32.5287 63.5475 32.8386 65.2205 32.8277 66.8629C32.8151 69.1937 31.0256 70.0379 28.8997 68.9625C26.3927 67.6963 24.8225 65.6705 24.0708 63.034C23.3145 60.3731 22.7574 57.6571 22.0245 54.9875C20.8306 50.6447 19.8449 46.2493 18.1715 42.0325C17.2502 39.7139 16.8761 37.185 16.1875 34.7669C15.9832 34.0554 15.6708 33.3059 15.2059 32.7452C11.8946 28.7435 8.06835 25.2941 3.78251 22.357C2.14283 21.234 0.830759 19.6326 -1.14712 18.9986C-1.36169 18.9309 -1.56277 18.6718 -1.68008 18.4552C-2.64873 16.6534 -4.18715 15.1627 -4.48156 13.0253C-3.99635 12.6675 -3.51192 12.3056 -2.9649 11.8981ZM35.6732 6.91355C35.7583 6.76708 35.8635 6.63773 35.9099 6.48615C35.9231 6.44585 35.685 6.27778 35.663 6.2946C35.5362 6.39876 35.4373 6.53947 35.3281 6.66961C35.4206 6.73569 35.5179 6.80503 35.6732 6.91355Z" fill="#9AACB8" fillOpacity="0.3" />
         </svg>
         <ImageWrapper minHeight={image.mediaDetails.height}>
-          <Image
-            className="image"
-            src={image.mediaItemUrl}
-            alt={image.altText}
-            width={image.mediaDetails.width}
-            height={image.mediaDetails.height}
-          />
+          <ImageBox>
+            <Image
+              className="image"
+              src={image.mediaItemUrl}
+              alt={image.altText}
+              width={image.mediaDetails.width}
+              height={image.mediaDetails.height}
+            />
+          </ImageBox>
         </ImageWrapper>
         <Content>
           <h2>{title}</h2>
@@ -130,35 +132,6 @@ const ImageWrapper = styled.div`
     min-height: unset;
     width: 100%;
   }
-
-  .image{
-    position: absolute;
-    right:   0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    @media (max-width: 1240px) {
-      right: -100px;
-      z-index: -1;
-    }
-    @media (max-width: 1024px) {
-      right: -200px;
-    }
-    @media (max-width: 864px){
-      position: relative;
-      left: unset;
-      top: unset;
-      transform: unset;
-
-      height: fit-content;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 520px;
-
-      max-width: 768px;
-      width: 100%;
-    }
-  }
 `
 
 const Content = styled.div`
@@ -170,5 +143,50 @@ const Content = styled.div`
   h3{
     margin-top: 45px;
     margin-bottom: 15px;
+  }
+`
+
+const ImageBox = styled.div`
+  position: absolute;
+  right:   0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media (max-width: 1240px) {
+    right: -100px;
+    z-index: -1;
+  }
+  @media (max-width: 1024px) {
+    right: -200px;
+  }
+  @media (max-width: 864px){
+    position: relative;
+    left: unset;
+    top: unset;
+    transform: unset;
+
+    height: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 520px;
+
+    max-width: 768px;
+    width: 100%;
+  }
+
+  img{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+    height: fit-content;
+
+  }
+
+  &::after{
+    content: '';
+    inset: -2px;
+    position: absolute;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0) 20.77%, #0A0A0A 100%);;
   }
 `

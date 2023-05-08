@@ -8,7 +8,6 @@ import Hero from "@/components/templates/post-hero"
 import Content from "@/components/templates/post-content"
 
 export default function Post({ page: { title, excerpt, featuredImage, content } }) {
-  debugger
   return (
     <Layout>
       <Head>
@@ -19,7 +18,7 @@ export default function Post({ page: { title, excerpt, featuredImage, content } 
       </Head>
       <Wrapper>
         <Hero data={{ title: title, text: excerpt, background: featuredImage.node }} />
-        <Content data={content}/>
+        {content && <Content data={content} />}
       </Wrapper>
     </Layout>
   )

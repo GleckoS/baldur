@@ -118,7 +118,7 @@ const Background = styled.div`
 
   &::after{
     content: '';
-    inset: 0;
+    inset: -2px;
     position: absolute;
     background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0.57) 0%, #0A0A0A 89.06%);
 

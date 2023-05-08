@@ -54,10 +54,10 @@ const Background = styled.div`
   position: absolute;
   overflow: hidden;
   z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 1440px;
+  width: 100%;
 
   .image{
     position: relative;
@@ -66,9 +66,17 @@ const Background = styled.div`
     max-width: 100%;  
     height: fit-content;
     min-width: 640px;
+    z-index: -1;
 
     @media (max-width: 360px) {
       min-width: 500px;
     }
-}
+  }
+
+  &::after{
+    content: '';
+    inset: -2px;
+    position: absolute;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0.57) 0%, #0A0A0A 89.06%);
+  }
 `

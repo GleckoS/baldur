@@ -1,25 +1,7 @@
 import styled from 'styled-components'
 import Layout from '../layout'
 import Head from 'next/head'
-
-import Hero from '@/components/templates/hero-shop'
-import Categories from '@/components/templates/categories-shop'
-import CallToAction from '@/components/templates/call-to-action'
-import Reviews from '@/components/templates/reviews'
-import Blog from '@/components/templates/blog-slider'
-
-import { gql } from "@apollo/client"
-import client from "../apollo/apollo-client"
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
-import ProductGrid from '@/components/templates/product-grid-shop'
 import ButtonFilled from '@/components/atoms/button-filled'
-
-const api = new WooCommerceRestApi({
-  url: "https://baldur.headlesshub.com",
-  consumerKey: process.env.WC_KEY,
-  consumerSecret: process.env.WC_SECRET,
-  version: "wc/v3"
-})
 
 export default function Sklep({ cta, categories, posts, hero, reviews }) {
   return (
