@@ -40,7 +40,7 @@ const links = [
     subArr: [
       {
         name: 'Jak wybieramy materiały',
-        url: '/o-nas/',
+        url: '/jak-wybieramy-materialy/',
       },
       {
         name: 'O naszych nożach',

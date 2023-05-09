@@ -4,6 +4,7 @@ import Head from 'next/head'
 
 import Hero from '@/components/templates/hero-shop'
 import Categories from '@/components/templates/categories-shop'
+import ProductGrid from '@/components/templates/product-grid-shop'
 import CallToAction from '@/components/templates/call-to-action'
 import Reviews from '@/components/templates/reviews'
 import Blog from '@/components/templates/blog-slider'
@@ -11,7 +12,6 @@ import Blog from '@/components/templates/blog-slider'
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
-import ProductGrid from '@/components/templates/product-grid-shop'
 
 const api = new WooCommerceRestApi({
   url: "https://baldur.headlesshub.com",

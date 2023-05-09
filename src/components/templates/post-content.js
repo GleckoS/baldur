@@ -4,7 +4,7 @@ import { Gutenberg } from "../organisms/gutenberg-wrapper"
 import Navigation from "../organisms/post-navigation"
 import HTMLReactParser from "html-react-parser"
 import useHeadings from "../../hooks/create-headings"
-import { slugTransform } from "../../helpers/slug-transform"
+import { slugTransform } from "../../utils/slug-transform"
 
 export default function Content({ data }) {
   const headings = useHeadings(data)

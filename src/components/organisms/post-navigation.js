@@ -2,8 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import styled from "styled-components"
-import { htmlDelete } from "../../helpers/html-delete"
-import { slugTransform } from "../../helpers/slug-transform"
+import { htmlDelete } from "../../utils/html-delete"
+import { slugTransform } from "../../utils/slug-transform"
 
 export default function Navigation({ headings }) {
 

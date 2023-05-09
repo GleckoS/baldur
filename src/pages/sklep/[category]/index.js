@@ -1,4 +1,4 @@
-import Layout from "../../layout"
+import Layout from "../../../layout"
 import styled from "styled-components"
 import Head from "next/head"
 
@@ -7,7 +7,7 @@ import Reviews from "@/components/templates/reviews"
 import Blog from "@/components/templates/blog-slider"
 
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
-import client from "../../apollo/apollo-client"
+import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
 import ProductGrid from "@/components/templates/product-grid-category"
 
