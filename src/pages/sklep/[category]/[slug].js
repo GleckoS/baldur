@@ -11,9 +11,9 @@ import CallToAction from "@/components/templates/call-to-action"
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
 
-export default function Post({ cta, data, reviews }) {
+export default function Post({ category, cta, data, reviews }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep/' }, { page: category.name, url: `/sklep/${category.slug}` }, { page: data.name, url: `/sklep/${data.slug}` }]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />
@@ -74,11 +74,15 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps({params}) {
 
-  const { data: { product, global } } = await client.query({
+  const { data: { productCategory, product, global } } = await client.query({
     query: gql`
-      query Product($slug: ID!) {
+      query Product($slug: ID!, $catID: ID!) {
+        productCategory(id: $catID, idType: SLUG) {
+          slug
+          name
+        }
         product(idType: SLUG, id: $slug){
           attributes {
             nodes {
@@ -94,6 +98,7 @@ export async function getStaticProps(context) {
             }
           }
           description
+          slug
           name
           ... on SimpleProduct {
             stockQuantity
@@ -140,7 +145,8 @@ export async function getStaticProps(context) {
       }
     `,
     variables: {
-      slug: context.params.slug,
+      catID: params.category,
+      slug: params.slug
     },
     context: {
       fetchOptions: {
@@ -154,6 +160,7 @@ export async function getStaticProps(context) {
       data: product,
       cta: global.callToAction,
       reviews: global.reviews,
+      category: productCategory
     }
   }
 }

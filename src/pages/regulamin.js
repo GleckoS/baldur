@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 export default function Kontakt({ posts, hero: { background, title }, content }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{page: 'Regulamin', url: '/regulamin/'}]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />

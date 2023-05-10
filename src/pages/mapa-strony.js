@@ -8,7 +8,7 @@ import client from "../apollo/apollo-client"
 
 export default function Kontakt({ posts, categories }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{page: 'Mapa strony', url: '/mapa-strony/'}]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />

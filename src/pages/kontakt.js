@@ -11,7 +11,7 @@ import Contact from '@/components/templates/contact'
 
 export default function Kontakt({ posts, faq }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{page: 'Kontakt', url: '/kontakt/'}]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />

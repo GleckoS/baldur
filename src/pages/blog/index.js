@@ -11,7 +11,7 @@ import { PAGE_ITEM_COUNT } from '../../constants/blog-item-counts'
 
 export default function Kontakt({ categories, posts, hero }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ page: 'Blog', url: '/blog/' }]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />

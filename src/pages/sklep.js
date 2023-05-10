@@ -14,7 +14,7 @@ import client from "../apollo/apollo-client"
 
 export default function Sklep({ cta, categories, posts, hero, reviews }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep/' }]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />
@@ -24,7 +24,7 @@ export default function Sklep({ cta, categories, posts, hero, reviews }) {
       <Wrapper>
         <Hero data={hero} />
         <Categories data={categories} />
-        <ProductGrid data='TODO'/>
+        <ProductGrid data='TODO' />
         <CallToAction data={cta} />
         <Reviews data={reviews} />
         <Blog posts={posts} />

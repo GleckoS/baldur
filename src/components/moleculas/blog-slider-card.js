@@ -22,7 +22,9 @@ export default function Card({ className, index, setTransform = () => { }, data:
         </div>
         <div className="text">
           <h3>{title}</h3>
-          {HTMLReactParser(excerpt)}
+          <div className="text-content">
+            {HTMLReactParser(excerpt)}
+          </div>
         </div>
       </div>
       <ButtonFilled className='button' as='div'>
@@ -44,6 +46,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .text-content{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4; 
+    -webkit-box-orient: vertical;
+  }
 
   @media (max-width: 480px){
     padding-bottom: 80px;

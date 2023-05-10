@@ -32,6 +32,12 @@ const Wrapper = styled.section`
   height: 60vw;
   max-height: 850px;
   min-height: 360px;
+  padding-top: 50px;
+
+  @media (max-width: 1280px) {
+    padding-top: 0;
+  }
+
   h1{
     max-width: 768px;
     margin: 0 auto;

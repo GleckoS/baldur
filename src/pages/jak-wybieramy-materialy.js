@@ -16,7 +16,7 @@ import client from "../apollo/apollo-client"
 
 export default function Home({ hero, posts, reviews, categories, proces, results, categoiresData, cooperation, knifes }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{page: 'Jak wybieramy materiały', url: '/jak-wybieramy-materialy/'}]}>
       <Head>
         <title>Baldur - Strona Główna</title>
         <meta name="description" content='Sklep internetowy Baldur' />

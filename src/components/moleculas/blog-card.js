@@ -12,17 +12,21 @@ export default function Card({ className, index, setTransform = () => { }, data:
       <Link onFocus={() => { setTransform(index) }} href={uri} aria-label={`link do artykułu - ${title}`} />
       <div>
         <div className="image-wrap">
-          {/* <Image
-            className="image"
-            src={image.node.mediaItemUrl}
-            alt={image.node.altText}
-            width={image.node.mediaDetails.width}
-            height={image.node.mediaDetails.height}
-          /> */}
-        </div>
+          {image && (
+            <Image
+              className="image"
+              src={image.node.mediaItemUrl}
+              alt={image.node.altText}
+              width={image.node.mediaDetails.width}
+              height={image.node.mediaDetails.height}
+            />
+          )}
+          </div>
         <div className="text">
           <h3>{title}</h3>
-          {HTMLReactParser(excerpt)}
+          <div className="text-content">
+            {HTMLReactParser(excerpt)}
+          </div>
         </div>
       </div>
       <ButtonFilled className='button' as='div'>
@@ -43,6 +47,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .text-content{
+    overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 4;
+    line-clamp: 4; 
+   -webkit-box-orient: vertical;
+  }
 
   a{
     user-select: none;

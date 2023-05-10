@@ -7,9 +7,9 @@ import { gql } from "@apollo/client"
 import Hero from "@/components/templates/post-hero"
 import Content from "@/components/templates/post-content"
 
-export default function Post({ page: { title, excerpt, featuredImage, content } }) {
+export default function Post({ page: { categories, slug, title, excerpt, featuredImage, content } }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ page: 'Blog', url: '/blog/' }, { page: categories.nodes[0].name, url: `/blog/${categories.nodes[0].slug}` }, { page: title, url: `/blog/${categories.nodes[0].slug}/${slug}` }]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />
@@ -69,9 +69,16 @@ export async function getStaticProps({ params }) {
     query: gql`
       query Post($slug: String) {
         page : postBy(slug: $slug) {
+          slug
           title
           excerpt
           content
+          categories {
+            nodes{
+              slug
+              name
+            }
+          }
           featuredImage {
             node {
               altText
@@ -98,6 +105,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       page: page
+
     }
   }
 }

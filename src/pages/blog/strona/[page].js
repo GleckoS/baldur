@@ -11,7 +11,7 @@ import client from "../../../apollo/apollo-client"
 
 export default function Kontakt({ categories, posts, hero, currPage }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ page: 'Blog', url: '/blog/' }, { page: `Strona ${currPage}`, url: `/blog/strona/${currPage}` }]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />
@@ -69,7 +69,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  if (params.page < 2) {  
+  if (params.page < 2) {
     return {
       redirect: {
         permanent: false,

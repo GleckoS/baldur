@@ -9,7 +9,7 @@ import { PAGE_ITEM_COUNT } from "../../../constants/blog-item-counts"
 
 export default function Category({ background, category, catSlug, posts }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ page: 'Blog', url: '/blog/' }, { page: category.name, url: `/blog/${catSlug}` }]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />
@@ -24,9 +24,6 @@ export default function Category({ background, category, catSlug, posts }) {
 }
 
 const Wrapper = styled.main`
-  overflow: hidden;
-  margin-bottom: -11px;
-  padding-bottom: 11px;
 `
 
 export async function getStaticPaths() {
@@ -67,6 +64,7 @@ export async function getStaticProps({ params }) {
         categories(where: {name: $cat}) {
           nodes {
             name
+            count
           }
         }
         posts(where: {offsetPagination: {offset: 0, size: $count}, categoryName: $category}) {
@@ -122,7 +120,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       posts: posts,
-      category: categories.nodes[0].name,
+      category: categories.nodes[0],
       catSlug: params.category,
       background: page.blog.heroBlog.background
     }

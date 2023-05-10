@@ -15,7 +15,7 @@ import client from "../apollo/apollo-client"
 
 export default function Kontakt({ posts, cta, hero, howItStarted, ourMission, ourValues, portfolio }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{page: 'O Baldur', url: '/o-nas/'}]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />

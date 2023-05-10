@@ -5,11 +5,10 @@ import Head from 'next/head'
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
 import HTMLReactParser from 'html-react-parser'
-import Image from 'next/image'
 
 export default function Kontakt({ title, content }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{page: 'Polityka prywatności', url: '/polityka-prywatnosci/'}]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />
@@ -19,7 +18,7 @@ export default function Kontakt({ title, content }) {
       <Wrapper>
         <div className='container'>
           <h1>{title}</h1>
-          <div> {HTMLReactParser(content)} </div>
+          <div>{HTMLReactParser(content)} </div>
         </div>
       </Wrapper>
     </Layout>

@@ -10,9 +10,9 @@ import Blog from "@/components/templates/blog-slider"
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
 
-export default function Category({ posts, reviews, cta }) {
+export default function Category({ category, posts, reviews, cta }) {
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep/' }, { page: category.name, url: `/sklep/${category.slug}` }]}>
       <Head>
         <title>Baldur - Strona Sklepu</title>
         <meta name="description" content='Sklep internetowy Baldur' />
@@ -66,9 +66,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { data: { posts, global } } = await client.query({
+  const { data: { productCategory, posts, global } } = await client.query({
     query: gql`
-      query Category {
+      query Category($catID: ID!) {
+        productCategory(id: $catID, idType: SLUG) {
+          slug
+          name
+        }
         posts(first: 3) {
           nodes {
             uri
@@ -106,6 +110,9 @@ export async function getStaticProps({ params }) {
         }
       }
     `,
+    variables: {
+      catID: params.category
+    },
     context: {
       fetchOptions: {
         next: { revalidate: .1 },
@@ -117,7 +124,8 @@ export async function getStaticProps({ params }) {
     props: {
       reviews: global.reviews,
       cta: global.callToAction,
-      posts: posts
+      posts: posts,
+      category: productCategory
     }
   }
 }
