@@ -46,6 +46,11 @@ export const Gutenberg = styled.div`
     }
   }
 
+  img{
+    max-width: 100%;
+    height: fit-content;
+  }
+
   > * + *{
     margin-top: 24px;
   }

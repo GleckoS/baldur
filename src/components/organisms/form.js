@@ -40,7 +40,7 @@ export default function Form({ subject }) {
         {errors.name && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
       <label>
-        <span className="label-text">Mail</span>
+        <span className="label-text">E-mail</span>
         <input {...register("mail", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
         {errors.mail && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
@@ -54,7 +54,7 @@ export default function Form({ subject }) {
         <textarea rows='6' {...register("description")} />
       </label>
       <label className="check">
-        <input type='checkbox' {...register("check", {required: true})} />
+        <input type='checkbox' {...register("check", { required: true })} />
         <span className="box">
           <svg className="left" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.58417 9.83269e-06C3.7807 -0.0127349 14.0398 12.3682 14.0398 12.3682L35 34.9994C35 34.9994 24.9609 35.376 9.90287 16.9355L11.8313 14.8534C11.8313 14.8534 8.77502 13.4608 6.16089 9.8853C3.54676 6.30982 3.64012 6.48593 2.48974 5.42001C1.33935 4.35408 0.282323 3.78984 0.0269199 3.21169C-0.228483 2.6347 1.38764 0.0127546 2.58417 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
@@ -63,7 +63,7 @@ export default function Form({ subject }) {
             <path d="M32.4158 9.83269e-06C31.2193 -0.0127349 20.9602 12.3682 20.9602 12.3682L0 34.9994C0 34.9994 10.0391 35.376 25.0971 16.9355L23.1687 14.8534C23.1687 14.8534 26.225 13.4608 28.8391 9.8853C31.4532 6.30982 31.3599 6.48593 32.5103 5.42001C33.6607 4.35408 34.7177 3.78984 34.9731 3.21169C35.2285 2.6347 33.6124 0.0127546 32.4158 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
           </svg>
         </span>
-        <p>Przeczytałem/am <Link href='/regulamin/'>regulamin</Link> i rozumiem <Link href='/polityka-prywatnosci/'>politykę prywatności</Link> i cookies</p>
+        <p>Przeczytałem/am <Link target="__blank" rel="noreferer noopener" href='/regulamin/'>regulamin</Link> i rozumiem <Link target="__blank" rel="noreferer noopener" href='/polityka-prywatnosci/'>politykę prywatności</Link> i cookies</p>
         {errors.check && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
 
@@ -128,6 +128,7 @@ const Wrapper = styled.form`
     &.check{
       grid-template-columns: 40px auto;
       gap: 8px;
+      cursor: pointer;
 
       input{
         height: 0;

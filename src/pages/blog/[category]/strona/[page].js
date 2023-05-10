@@ -1,13 +1,13 @@
-import Layout from "../../../layout"
+import Layout from "../../../../layout"
 import styled from "styled-components"
 import Head from "next/head"
 
-import client from "../../../apollo/apollo-client"
+import client from "../../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
 import Archive from "@/components/templates/blog-category-archive"
-import { PAGE_ITEM_COUNT } from "../../../constants/blog-item-counts"
+import { PAGE_ITEM_COUNT } from "../../../../constants/blog-item-counts"
 
-export default function Category({ background, category, catSlug, posts }) {
+export default function Category({ currPage, background, category, catSlug, posts }) {
   return (
     <Layout>
       <Head>
@@ -17,7 +17,7 @@ export default function Category({ background, category, catSlug, posts }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Archive currPage='1' urlBasis={`/blog/${catSlug}`} background={background} category={category} posts={posts} />
+        <Archive currPage={currPage} urlBasis={`/blog/${catSlug}`} background={background} category={category} posts={posts} />
       </Wrapper>
     </Layout>
   )
@@ -37,6 +37,13 @@ export async function getStaticPaths() {
           nodes {
             name
             slug
+            posts {
+              pageInfo {
+                offsetPagination {
+                  total
+                }
+              }
+            }
           }
         }
       }
@@ -48,19 +55,42 @@ export async function getStaticPaths() {
     }
   });
 
-  return {
-    paths: categories.nodes.map(el => {
-      return {
+  const paths = []
+
+  categories.nodes.forEach(el => {
+    for (let i = 2; i <= Math.ceil(el.posts.pageInfo.offsetPagination.total / PAGE_ITEM_COUNT); i++) {
+      paths.push({
         params: {
           category: el.slug,
+          page: i.toString()
         }
-      }
-    }),
-    fallback: false
+      })
+    }
+  })
+
+  return {
+    paths: paths,
+    fallback: 'blocking'
   }
 }
 
 export async function getStaticProps({ params }) {
+  if (params.page < 2) {  
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/blog/${params.category}`,
+      },
+      props: {}
+    }
+  }
+  if (isNaN(params.page)) {
+    return {
+      props: {},
+      notFound: true
+    };
+  }
+
   const { data: { categories, posts, page } } = await client.query({
     query: gql`
       query Category($category: String, $cat: [String], $count: Int) {
@@ -124,7 +154,8 @@ export async function getStaticProps({ params }) {
       posts: posts,
       category: categories.nodes[0].name,
       catSlug: params.category,
-      background: page.blog.heroBlog.background
+      background: page.blog.heroBlog.background,
+      currPage: params.page
     }
   }
 }

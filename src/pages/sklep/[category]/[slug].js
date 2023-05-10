@@ -3,20 +3,15 @@ import styled from "styled-components"
 import Head from "next/head"
 
 import Hero from "@/components/templates/hero-product"
+import Reviews from "@/components/templates/reviews"
+import Characteristics from "@/components/templates/product-characteristics"
+import SimilarProducts from "@/components/templates/similar-products"
+import CallToAction from "@/components/templates/call-to-action"
 
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
 
-const api = new WooCommerceRestApi({
-  url: "https://baldur.headlesshub.com",
-  consumerKey: process.env.WC_KEY,
-  consumerSecret: process.env.WC_SECRET,
-  version: "wc/v3"
-})
-
-export default function Post({ cta, data }) {
-  debugger
+export default function Post({ cta, data, reviews }) {
   return (
     <Layout>
       <Head>
@@ -27,6 +22,10 @@ export default function Post({ cta, data }) {
       </Head>
       <Wrapper>
         <Hero data={data} />
+        <Reviews data={reviews} />
+        <Characteristics data={data.attributes} />
+        <SimilarProducts />
+        <CallToAction data={cta} />
       </Wrapper>
     </Layout>
   )
@@ -38,12 +37,32 @@ const Wrapper = styled.main`
 
 export async function getStaticPaths() {
 
-  const products = await api.get("products")
+  const { data: { products } } = await client.query({
+    query: gql`
+      query Homepage {
+        products {
+          nodes {
+            slug
+            productCategories {
+              nodes {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `,
+    context: {
+      fetchOptions: {
+        next: { revalidate: .1 },
+      },
+    }
+  });
 
-  const paths = products.data.map(el => {
+  const paths = products.nodes.map(el => {
     return {
       params: {
-        category: el.categories[0].slug,
+        category: el.productCategories.nodes[0].slug,
         slug: el.slug,
       }
     }
@@ -57,9 +76,49 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
 
-  const { data: { global } } = await client.query({
+  const { data: { product, global } } = await client.query({
     query: gql`
-      query Product {
+      query Product($slug: ID!) {
+        product(idType: SLUG, id: $slug){
+          attributes {
+            nodes {
+              ... on GlobalProductAttribute {
+                name
+                slug
+                terms {
+                  nodes {
+                    name
+                  }
+                }
+              }
+            }
+          }
+          description
+          name
+          ... on SimpleProduct {
+            stockQuantity
+            regularPrice(format: RAW)
+            salePrice(format: RAW)
+          }
+          image {
+            altText
+            mediaItemUrl
+            mediaDetails {
+              height
+              width
+            }
+          }
+          galleryImages {
+            nodes {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+          }
+        }
         global : page(id: "cG9zdDoyOQ==") {
           callToAction{
             ctaText
@@ -68,9 +127,21 @@ export async function getStaticProps(context) {
               url
             }
           }
+          reviews {
+            title
+            text
+            reviews {
+              author
+              content
+              mark
+            }
+          }
         }
       }
     `,
+    variables: {
+      slug: context.params.slug,
+    },
     context: {
       fetchOptions: {
         next: { revalidate: .1 },
@@ -78,36 +149,11 @@ export async function getStaticProps(context) {
     }
   });
 
-  const products = await api.get("products", { slug: context.params.slug })
-  const attributes = await api.get("products/attributes")
-
-  const data = {
-    ...products.data[0],
-    attributes: products.data[0].attributes.map(el => {
-      let attribute = el
-
-      attributes.data.every(attr => {
-        if (attr.id === el.id) {
-          attribute = {
-            options: attribute.options,
-            ...attr
-          }
-          return false
-        }
-        return true
-      })
-
-      return {
-        ...attribute,
-        slug: attribute.slug.replace(/pa_/, '') + '.'
-      }
-    })
-  }
-
   return {
     props: {
-      data: data,
-      cta: global.callToAction
+      data: product,
+      cta: global.callToAction,
+      reviews: global.reviews,
     }
   }
 }

@@ -12,7 +12,7 @@ export default function Slider({ data }) {
     <Wrapper>
       <Slides chosen={chosenReview} count={data.length}>
         {data.map((item, index) => (
-          <div className="slide" key={index}>
+          <div className={index === chosenReview ? "slide active" : "slide"} key={index}>
             <p className="text">{item.author}</p>
             <div className="marks">
               {fires.map((fire, index) => (
@@ -35,7 +35,7 @@ export default function Slider({ data }) {
         </button>
         <div className="dots">
           {data.map((item, index) => (
-            <button key={index} className={chosenReview === index ? "dot active" : "dot"} />
+            <button onClick={() => {setChosenReview(index)}} key={index} className={chosenReview === index ? "dot active" : "dot"} />
           ))}
         </div>
         <button disabled={chosenReview >= data.length - 1} aria-label={`następna opinia`} onClick={() => { setChosenReview(chosenReview >= data.length - 1 ? data.length - 1 : chosenReview + 1) }} className="right">
@@ -173,6 +173,15 @@ const Slides = styled.div`
     background: #0A0A0A;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+    .text,.marks,.content{
+      transition: opacity .3s ease-out;
+      opacity: 0;
+    }
+    &.active{
+      .text,.marks,.content{
+        opacity: 1;
+      }
+    }
 
     @media (max-width: 1024px) {
       padding-bottom: 48px;

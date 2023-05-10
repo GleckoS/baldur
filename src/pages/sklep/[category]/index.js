@@ -2,21 +2,13 @@ import Layout from "../../../layout"
 import styled from "styled-components"
 import Head from "next/head"
 
+import ProductGrid from "@/components/templates/product-grid-category"
 import CallToAction from "@/components/templates/call-to-action"
 import Reviews from "@/components/templates/reviews"
 import Blog from "@/components/templates/blog-slider"
 
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
-import ProductGrid from "@/components/templates/product-grid-category"
-
-const api = new WooCommerceRestApi({
-  url: "https://baldur.headlesshub.com",
-  consumerKey: process.env.WC_KEY,
-  consumerSecret: process.env.WC_SECRET,
-  version: "wc/v3"
-})
 
 export default function Category({ posts, reviews, cta }) {
   return (
@@ -28,7 +20,7 @@ export default function Category({ posts, reviews, cta }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <ProductGrid data='TODO'/>
+        <ProductGrid data='TODO' />
         <CallToAction data={cta} />
         <Reviews data={reviews} />
         <Blog posts={posts.nodes} />
@@ -44,10 +36,25 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticPaths() {
-  const categoires = await api.get("products/categories")
+  const { data: { productCategories } } = await client.query({
+    query: gql`
+      query Homepage {
+        productCategories {
+          nodes {
+            slug
+          }
+        }
+      }
+    `,
+    context: {
+      fetchOptions: {
+        next: { revalidate: .1 },
+      },
+    }
+  });
 
   return {
-    paths: categoires.data.map(el => {
+    paths: productCategories.nodes.map(el => {
       return {
         params: {
           category: el.slug

@@ -61,6 +61,7 @@ const Grid = styled.div`
     gap: 10px;
     font-family: var(--text);
     list-style: none;
+    cursor: pointer;
 
     font-size: clamp(20rem, ${32 / 768 * 100}vw, 32rem);
 

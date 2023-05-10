@@ -36,5 +36,9 @@ const Wrapper = styled.section`
 
   a{
     margin: 0 auto;
+
+    &:focus-visible{
+      outline-color: var(--dark-500);
+    }
   }
 `

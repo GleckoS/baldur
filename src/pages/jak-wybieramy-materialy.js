@@ -4,23 +4,15 @@ import Layout from '../layout'
 
 import Hero from '@/components/templates/hero-with-image'
 import TwoColumnFlex from '@/components/templates/how-it-started'
-
+import TwoColumnText from '@/components/templates/two-column-text'
+import Cooperation from '@/components/templates/two-column-text-image-under'
+import OurKnifes from '@/components/templates/our-knifes'
 import Materials from '@/components/templates/materials-about'
 import Reviews from '@/components/templates/reviews'
 import Blog from '@/components/templates/blog-slider'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
-import TwoColumnText from '@/components/templates/two-column-text'
-import Cooperation from '@/components/templates/two-column-text-image-under'
-import OurKnifes from '@/components/templates/our-knifes'
-const api = new WooCommerceRestApi({
-  url: "https://baldur.headlesshub.com",
-  consumerKey: process.env.WC_KEY,
-  consumerSecret: process.env.WC_SECRET,
-  version: "wc/v3"
-})
 
 export default function Home({ hero, posts, reviews, categories, proces, results, categoiresData, cooperation, knifes }) {
   return (
@@ -47,12 +39,28 @@ export default function Home({ hero, posts, reviews, categories, proces, results
 
 const Wrapper = styled.main`
   overflow: hidden;
+  padding-bottom: 30px;
+  margin-bottom: -30px;
 `
 
 export async function getStaticProps() {
-  const { data: { posts, global, page: { howWeChoiseMaterials: page } } } = await client.query({
+  const { data: { productCategories, posts, global, page: { howWeChoiseMaterials: page } } } = await client.query({
     query: gql`
       query Homepage {
+        productCategories {
+          nodes {
+            image {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+            slug
+            name
+          }
+        }
         posts(first: 3) {
           nodes {
             uri
@@ -155,11 +163,9 @@ export async function getStaticProps() {
     }
   });
 
-  const categoires = await api.get("products/categories")
-
   return {
     props: {
-      categories: categoires.data,
+      categories: productCategories.nodes,
       categoiresData: page.categoriesHow,
       posts: posts.nodes,
       reviews: global.reviews,

@@ -6,10 +6,10 @@ export default function Grid({ posts }) {
   return (
     <Wrapper>
       {posts.map((el, index) => (
-        <>
+        <React.Fragment key={index} >
           <Card data={el} />
           <span className={`line ${(index + 1) % 3 === 0 ? "fourth" : ""} ${(index - 1) % 2 === 0 ? "third" : ""}`} />
-        </>
+        </React.Fragment>
       ))}
     </Wrapper>
   )

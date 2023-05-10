@@ -2,8 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import Grid from "../organisms/blog-grid"
 import Image from "next/image"
+import Pagination from "../organisms/pagination"
 
-export default function Archive({ background, category, posts }) {
+export default function Archive({ currPage, urlBasis, background, category, posts }) {
   return (
     <Wrapper>
       <Background width={background.mediaDetails.width}>
@@ -18,7 +19,8 @@ export default function Archive({ background, category, posts }) {
       </Background>
       <div className="container">
         <h1>{category}</h1>
-        <Grid posts={posts} />
+        <Grid posts={posts.nodes} />
+        <Pagination currentPage={Number(currPage)} itemCount={posts.pageInfo.offsetPagination.total} urlBasis={urlBasis} />
       </div>
     </Wrapper>
   )

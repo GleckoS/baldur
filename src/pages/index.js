@@ -10,14 +10,6 @@ import Blog from '@/components/templates/blog-slider'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
-
-const api = new WooCommerceRestApi({
-  url: "https://baldur.headlesshub.com",
-  consumerKey: process.env.WC_KEY,
-  consumerSecret: process.env.WC_SECRET,
-  version: "wc/v3"
-})
 
 export default function Home({ hero, aboutShop, materials, categories, baldur, posts }) {
   return (
@@ -46,9 +38,23 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticProps() {
-  const { data: { posts, page: { homepage: page } } } = await client.query({
+  const { data: { productCategories, posts, page: { homepage: page } } } = await client.query({
     query: gql`
       query Homepage {
+        productCategories {
+          nodes {
+            image {
+              altText
+              mediaItemUrl
+              mediaDetails {
+                height
+                width
+              }
+            }
+            slug
+            name
+          }
+        }
         posts(first: 3) {
           nodes {
             uri
@@ -133,14 +139,12 @@ export async function getStaticProps() {
     }
   });
 
-  const categoires = await api.get("products/categories")
-
   return {
     props: {
       hero: page.hero,
       aboutShop: page.aboutShop,
       materials: page.materials,
-      categories: categoires.data,
+      categories: productCategories.nodes,
       baldur: page.baldur,
       posts: posts.nodes
     }

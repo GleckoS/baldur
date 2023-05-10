@@ -1,12 +1,13 @@
 import styled from 'styled-components'
-import Layout from '../layout'
+import Layout from '../../layout'
 import Head from 'next/head'
 
 import Hero from '@/components/templates/hero-blog'
 
 import { gql } from "@apollo/client"
-import client from "../apollo/apollo-client"
+import client from "../../apollo/apollo-client"
 import Archive from '@/components/templates/blog-archive'
+import { PAGE_ITEM_COUNT } from '../../constants/blog-item-counts'
 
 export default function Kontakt({ categories, posts, hero }) {
   return (
@@ -19,22 +20,19 @@ export default function Kontakt({ categories, posts, hero }) {
       </Head>
       <Wrapper>
         <Hero data={hero} />
-        <Archive categories={categories} posts={posts} />
+        <Archive currPage='1' urlBasis='/blog' categories={categories} posts={posts} />
       </Wrapper>
     </Layout>
   )
 }
 
 const Wrapper = styled.main`
-  overflow: hidden;
-  margin-bottom: -11px;
-  padding-bottom: 11px;
 `
 
 export async function getStaticProps() {
   const { data: { categories, posts, page: { blog: page } } } = await client.query({
     query: gql`
-      query Kontakt {
+      query Kontakt($count: Int) {
         categories {
           nodes {
             name
@@ -42,7 +40,7 @@ export async function getStaticProps() {
             count
           }
         }
-        posts {
+        posts(where: {offsetPagination: {offset: 0, size: $count}}) {
           nodes {
             uri
             excerpt
@@ -56,6 +54,11 @@ export async function getStaticProps() {
                   width
                 }
               }
+            }
+          }
+          pageInfo {
+            offsetPagination {
+              total
             }
           }
         }
@@ -77,6 +80,9 @@ export async function getStaticProps() {
         }
       }
     `,
+    variables: {
+      count: PAGE_ITEM_COUNT
+    },
     context: {
       fetchOptions: {
         next: { revalidate: .1 },
@@ -86,7 +92,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: posts.nodes,
+      posts: posts,
       hero: page.heroBlog,
       categories: categories.nodes
     }

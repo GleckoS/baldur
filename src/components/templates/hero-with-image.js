@@ -98,7 +98,6 @@ const Background = styled.div`
     content: '';
     inset: -2px;
     position: absolute;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0.57) 0%, #0A0A0A 89.06%);
-
+    background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0.37) 0%, #0A0A0A 89.06%);
   }
 `

@@ -9,7 +9,7 @@ export default function Card({ data }) {
     <Wrapper>
       <Link href={`/sklep/${data.slug}/`}>
         <Image
-          src={data.image.src}
+          src={data.image.mediaItemUrl}
           alt={`kategoria - ${data.name}`}
           width={'360'}
           height={'270'}

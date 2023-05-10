@@ -36,10 +36,10 @@ export default function Contact({ data }) {
       </div>
     </Wrapper>
   )
-}
+} 
 
 const Wrapper = styled.section`
-  margin-top: 100px;
+  margin-top: clamp(20px, ${60 / 864 * 100}vw , 100px);
 
   .container{
     display: grid;

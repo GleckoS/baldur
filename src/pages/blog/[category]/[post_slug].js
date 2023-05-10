@@ -55,8 +55,8 @@ export async function getStaticPaths() {
     paths: posts.nodes.map(el => {
       return {
         params: {
-          category: el.categories.nodes[0].slug,
-          slug: el.slug,
+          category: el.categories.nodes[0]?.slug || 'brak',
+          post_slug: el.slug,
         }
       }
     }),
@@ -86,7 +86,7 @@ export async function getStaticProps({ params }) {
       }
     `,
     variables: {
-      slug: params.slug,
+      slug: params.post_slug,
     },
     context: {
       fetchOptions: {

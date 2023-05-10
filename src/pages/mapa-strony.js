@@ -5,14 +5,6 @@ import Link from 'next/link'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"
-
-const api = new WooCommerceRestApi({
-  url: "https://baldur.headlesshub.com",
-  consumerKey: process.env.WC_KEY,
-  consumerSecret: process.env.WC_SECRET,
-  version: "wc/v3"
-})
 
 export default function Kontakt({ posts, categories }) {
   return (
@@ -97,9 +89,15 @@ const Wrapper = styled.main`
 `
 
 export async function getServerSideProps() {
-  const { data: { posts } } = await client.query({
+  const { data: { productCategories, posts } } = await client.query({
     query: gql`
       query Kontakt {
+        productCategories {
+          nodes {
+            slug
+            name
+          }
+        }
         posts(first: 3) {
           nodes {
             uri
@@ -115,12 +113,10 @@ export async function getServerSideProps() {
     }
   });
 
-  const categories = await api.get("products/categories")
-
   return {
     props: {
       posts: posts.nodes,
-      categories: categories.data
+      categories: productCategories.nodes,
     }
   };
 }

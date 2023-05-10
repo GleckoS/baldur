@@ -15,7 +15,7 @@ export default function Navigation({ headings }) {
     <Wrapper>
       <p className="title">Spis treści</p>
       <ul>
-        {headings.map((heading, index) => (
+        {headings?.map((heading, index) => (
           <li key={index}>
             <button onClick={e => { scroll(e) }}>
               {htmlDelete(heading)}
