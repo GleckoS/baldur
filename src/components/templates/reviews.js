@@ -21,6 +21,10 @@ const Wrapper = styled.section`
   padding: 70px 0;
   margin-top: clamp(80px, ${120 / 768 * 100}vw, 150px);
 
+  @media (max-width: 1024px) {
+    overflow: hidden;
+  }
+
   .container{
     display: grid;
     grid-template-columns: 1fr 1fr;

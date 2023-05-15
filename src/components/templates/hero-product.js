@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import ButtonFilled from "../atoms/button-filled"
 
-export default function Hero({ data: { stockQuantity = '1', image, galleryImages, name, regularPrice, salePrice, description, attributes } }) {
+export default function Hero({ data: { stockQuantity = '1', image, galleryImages, name, regularPrice, salePrice, description = ' ', attributes } }) {
 
   const [quantity, setQuantity] = useState(1)
 
@@ -36,7 +36,7 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
             height={image.mediaDetails.height}
           />
 
-          {galleryImages.nodes.map((el, index) => {
+          {galleryImages?.nodes?.map((el, index) => {
             return (
               <Image
                 key={el.mediaItemUrl + index}
@@ -52,9 +52,12 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
           {name}
         </h1>
         <div className="content">
+          <p className="sub-title">{name}</p>
           <p className="price">{regularPrice}zł</p>
           <p className="small">Najniższa cena z ostatnich 30 dni: {regularPrice}zł</p>
-          {HTMLReactParser(description)}
+          <div className="text">
+            {HTMLReactParser(description)}
+          </div>
           <div className="attributes">
             {attributes.nodes.map(el => {
               if (el.slug === 'pa_mdl') return null
@@ -92,20 +95,48 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
 
 const Wrapper = styled.section`
   padding-top: clamp(100px, ${120 / 768 * 100}vw, 140px);
+
+  @media (max-width: 864px){
+    padding-top: 20px;
+  }
+
   .container{
     display: grid;
     grid-template-columns: 714fr 503fr;
     grid-template-rows: auto 1fr;
-    grid-gap: 0px 24px;
+    gap: 0px 24px;
     grid-template-areas: 
     'images title'
     'images content';
+
+    @media (max-width: 864px) {
+      grid-template-columns: auto;
+      grid-template-rows: auto auto auto;
+      gap: 40px;
+      grid-template-areas: 
+      'title'
+      'images'
+      'content';
+    }
 
     .counter{
       display: flex;
       gap: 16px;
       margin-top: 80px;
       position: relative;
+
+      @media (max-width: 864px) {
+        width: fit-content;
+        margin: 80px auto 0 auto;
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+        width: 100%;
+      }
+
       .up{
         position: absolute;
         left: 22px;
@@ -115,6 +146,14 @@ const Wrapper = styled.section`
         border: none;
         width: fit-content;
         height: fit-content;
+
+        @media (max-width: 480px){
+          right: calc(50% - 55px);
+          left: unset;
+          top: 32px;
+          transform: translateY(-50%) translateX(50%) rotateZ(90deg);
+          transform-origin: 50% 50%;
+        }
       }
       .down{
         position: absolute;
@@ -125,6 +164,13 @@ const Wrapper = styled.section`
         border: none;
         width: fit-content;
         height: fit-content;
+
+        @media (max-width: 480px){
+          left: calc(50% - 55px);
+          top: 32px;
+          transform: translateY(-50%) translateX(-50%) rotateZ(90deg);
+          transform-origin: 50% 50%;
+        }
       }
       input{
         width: 72px;
@@ -136,6 +182,12 @@ const Wrapper = styled.section`
         color: var(--dark-500);
         font-size: 40rem;
         font-weight: 500;
+
+        @media (max-width: 480px){
+          width: 63px;
+          height: 63px;
+          font-size: 32rem;
+        }
 
         &::-webkit-inner-spin-button {
           -webkit-appearance: none;
@@ -154,6 +206,7 @@ const Wrapper = styled.section`
       display: grid;
       gap: 20px;
       grid-template-columns: 1fr 1fr;
+      height: fit-content;
 
       img{
         max-width: 100%;
@@ -163,27 +216,79 @@ const Wrapper = styled.section`
           grid-column: 1 / 3;
         }
       }
+
+      @media (max-width: 420px) {
+        grid-template-columns: 1fr;
+
+        img{
+          &:first-child{
+            grid-column: unset;
+          }
+        }
+      }
     }
 
     .title{
       grid-area: title;
-      font-size: 48rem;
+      font-size: clamp(30rem, ${40 / 768 * 100}vw, 42rem);
       font-weight: 500;
       font-family: var(--text);
+
+      @media (max-width: 360px) {
+        font-size: clamp(0rem, ${30 / 360 * 100}vw, 30rem);
+      }
+    }
+
+    .sub-title{
+      font-size: clamp(30rem, ${40 / 768 * 100}vw, 42rem);
+      font-weight: 500;
+      font-family: var(--text);
+
+      @media (max-width: 360px) {
+        font-size: clamp(0rem, ${30 / 360 * 100}vw, 30rem);
+      }
     }
 
     .content{
       grid-area: content;
 
+      button{
+        min-width: unset;
+
+        @media (max-width: 480px) {
+          width: 100%;
+          span{
+            font-size: 20rem;
+          }
+        }
+      }
+
+      .text{
+        max-width: 505px;
+        font-size: clamp(18rem, ${24 / 768 * 100}vw, 24rem);
+
+        @media (max-width: 360px) {
+          font-size: clamp(0rem, ${18 / 360 * 100}vw, 18rem);
+        }
+      }
+
       .price{
         font-size: 40rem;
         font-weight: 500;
         margin: 20px 0 10px 0;
+
+        @media (max-width: 360px) {
+          font-size: clamp(0rem, ${40 / 360 * 100}vw, 40rem);
+        }
       }
 
       .small{
         font-size: 16rem;
         margin-bottom: 36px;
+
+        @media (max-width: 360px) {
+          font-size: clamp(0rem, ${16 / 360 * 100}vw, 16rem);
+        }
       }
 
       .attributes{
@@ -200,6 +305,10 @@ const Wrapper = styled.section`
             text-transform: uppercase;
             font-size: 24rem;
             min-width: 75px;
+
+            @media (max-width: 360px) {
+              font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+            }
           }
         }
       }

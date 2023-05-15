@@ -10,6 +10,7 @@ import CallToAction from "@/components/templates/call-to-action"
 
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
+import Description from "@/components/templates/product-description"
 
 export default function Post({ category, cta, data, reviews }) {
   return (
@@ -22,10 +23,11 @@ export default function Post({ category, cta, data, reviews }) {
       </Head>
       <Wrapper>
         <Hero data={data} />
+        <Description data={data.acf} />
         <Reviews data={reviews} />
         <Characteristics data={data.attributes} />
-        <SimilarProducts />
-        <CallToAction data={cta} />
+        {/* <SimilarProducts />
+        <CallToAction data={cta} /> */}
       </Wrapper>
     </Layout>
   )
@@ -74,7 +76,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
 
   const { data: { productCategory, product, global } } = await client.query({
     query: gql`
@@ -97,6 +99,7 @@ export async function getStaticProps({params}) {
               }
             }
           }
+          excerpt
           description
           slug
           name
@@ -104,6 +107,19 @@ export async function getStaticProps({params}) {
             stockQuantity
             regularPrice(format: RAW)
             salePrice(format: RAW)
+            acf : product {
+              repeater {
+                text
+                image {
+                  altText
+                  mediaItemUrl
+                  mediaDetails {
+                    height
+                    width
+                  }
+                }
+              }
+            }
           }
           image {
             altText

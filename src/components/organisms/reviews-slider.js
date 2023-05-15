@@ -186,6 +186,9 @@ const Slides = styled.div`
     @media (max-width: 1024px) {
       padding-bottom: 48px;
       margin: 0 16px;
+      .text,.marks,.content{
+        opacity: 1;
+      }
     }
 
     @media (max-width: 640px) {

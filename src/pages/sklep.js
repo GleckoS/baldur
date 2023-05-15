@@ -11,6 +11,7 @@ import Blog from '@/components/templates/blog-slider'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
+import Search from '@/components/templates/product-search'
 
 export default function Sklep({ cta, categories, posts, hero, reviews }) {
   return (
@@ -24,7 +25,8 @@ export default function Sklep({ cta, categories, posts, hero, reviews }) {
       <Wrapper>
         <Hero data={hero} />
         <Categories data={categories} />
-        <ProductGrid data='TODO' />
+        <Search/>
+        <ProductGrid data={categories} />
         <CallToAction data={cta} />
         <Reviews data={reviews} />
         <Blog posts={posts} />
@@ -45,16 +47,33 @@ export async function getStaticProps() {
       query Sklep {
         productCategories {
           nodes {
-            image {
-              altText
-              mediaItemUrl
-              mediaDetails {
-                height
-                width
-              }
-            }
             slug
             name
+            count
+            products(first: 4) {
+              nodes {
+                uri
+                ... on SimpleProduct {
+                  acf : product{
+                    description{
+                      line
+                    }
+                  }
+                  id
+                  name
+                  regularPrice(format: RAW)
+                  salePrice(format: RAW)
+                  image {
+                    altText
+                    mediaItemUrl
+                    mediaDetails {
+                      height
+                      width
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         posts(first: 3) {

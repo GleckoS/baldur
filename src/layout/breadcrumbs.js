@@ -29,7 +29,7 @@ const Wrapper = styled.nav`
   margin-top: 30px !important;
   position: relative;
 
-  @media (max-width: 820px) {
+  @media (max-width: 864px) {
     display: none;
   }
 

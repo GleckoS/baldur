@@ -9,6 +9,7 @@ import Blog from "@/components/templates/blog-slider"
 
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
+import Hero from "@/components/templates/hero-product-category"
 
 export default function Category({ category, posts, reviews, cta }) {
   return (
@@ -20,7 +21,8 @@ export default function Category({ category, posts, reviews, cta }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <ProductGrid data='TODO' />
+        <Hero data={category.description} />
+        <ProductGrid data={category.products.nodes} />
         <CallToAction data={cta} />
         <Reviews data={reviews} />
         <Blog posts={posts.nodes} />
@@ -72,6 +74,31 @@ export async function getStaticProps({ params }) {
         productCategory(id: $catID, idType: SLUG) {
           slug
           name
+          description
+          products(first: 100000) {
+            nodes {
+              uri
+              ... on SimpleProduct {
+                acf : product{
+                  description{
+                    line
+                  }
+                }
+                id
+                name
+                regularPrice(format: RAW)
+                salePrice(format: RAW)
+                image {
+                  altText
+                  mediaItemUrl
+                  mediaDetails {
+                    height
+                    width
+                  }
+                }
+              }
+            }
+          }
         }
         posts(first: 3) {
           nodes {
