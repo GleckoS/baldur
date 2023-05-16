@@ -80,6 +80,8 @@ export async function getStaticProps({ params }) {
             nodes {
               uri
               ... on SimpleProduct {
+                dateGmt
+                price(format: RAW)
                 acf : product{
                   description{
                     line

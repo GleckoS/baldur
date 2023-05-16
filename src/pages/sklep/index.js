@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Layout from '../layout'
+import Layout from '../../layout'
 import Head from 'next/head'
 
 import Hero from '@/components/templates/hero-shop'
@@ -10,7 +10,7 @@ import Reviews from '@/components/templates/reviews'
 import Blog from '@/components/templates/blog-slider'
 
 import { gql } from "@apollo/client"
-import client from "../apollo/apollo-client"
+import client from "../../apollo/apollo-client"
 import Search from '@/components/templates/product-search'
 
 export default function Sklep({ cta, categories, posts, hero, reviews }) {

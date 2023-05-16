@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Card from "../moleculas/product-card"
 import { Input } from "../atoms/input"
@@ -13,7 +13,27 @@ const options = [
 
 export default function ProductGrid({ data }) {
 
+  const [items, setItems] = useState(data)
   const [isLoaded, setIsLoaded] = useState(true)
+  const [currentFilter, setCurrentFilter] = useState(options[0].value)
+  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    const preSorted = [...data]
+    if (currentFilter === '1') {
+      setItems(preSorted.sort((a, b) => new Date(b.dateGmt) - new Date(a.dateGmt)))
+    } else if (currentFilter === '2') {
+      setItems(preSorted.sort((a, b) => new Date(a.dateGmt) - new Date(b.dateGmt)))
+    } else if (currentFilter === '3') {
+      setItems(preSorted.sort((a, b) => b.price - a.price))
+    } else if (currentFilter === '4') {
+      setItems(preSorted.sort((a, b) => a.price - b.price))
+    }
+  }, [currentFilter])
+
+  useEffect(() => {
+    setItems(data.filter(el => el.name.toLowerCase().includes(search.toLowerCase())))
+  }, [search])
 
   return (
     <Wrapper>
@@ -22,6 +42,7 @@ export default function ProductGrid({ data }) {
           <div className="flex">
             <span>Sortuj:</span>
             <Select
+              onChange={(e) => { setCurrentFilter(e.value) }}
               isSearchable={false}
               hideSelectedOptions={true}
               className="select"
@@ -63,17 +84,15 @@ export default function ProductGrid({ data }) {
             </div>
           </Label>
         </Filters>
-        {data.length > 0 ? (
+        {items.length > 0 ? (
           <div className="grid">
-            {data.map((product, index) => (
-              <div className="row" key={index}>
-                <Card key={index} data={product} />
-              </div>
+            {items.map((product, index) => (
+              <Card key={index} data={product} />
             ))}
           </div>
         ) : (
-          <p>
-            Niestety nie znaleziono tego, czego szukasz
+          <p className="not-found">
+            Niestety <b>nie znaleziono</b> tego, czego szukasz
           </p>
         )}
       </div>
@@ -84,14 +103,41 @@ export default function ProductGrid({ data }) {
 const Wrapper = styled.section`
   margin-top: clamp(60px, ${80 / 768 * 100}vw, 110px);
 
+  .not-found{
+    text-align: center;
+    font-size: clamp(24rem, ${32 / 768 * 100}vw, 32rem);
+    text-align: center;
+    margin-top: 65px;
+
+    @media (max-width: 360px) {
+      font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+    }
+
+    b{
+      color: var(--secondary-500);
+    }
+  }
+
   .grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px 25px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .select{
     width: 250px;
+
+    @media (max-width: 390px) {
+      width: calc(100vw - 48px);
+    }
   }
 
   .select__control{
@@ -160,25 +206,39 @@ const Filters = styled.div`
   .flex{
     display: flex;
     align-items: center;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
 
     span{
       font-weight: 500;
-      font-size: 32rem;
       text-align: center;
       letter-spacing: 0.03em;
+      font-size: clamp(24rem, ${32 / 768 * 100}vw, 32rem);
+      
+      @media (max-width: 360px) {
+        font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+      }
     }
   }
 
   input{
     height: 53px;
   }
+
+  @media (max-width: 1024px) {
+    flex-direction: column-reverse;
+    gap: 30px;
+    max-width: 520px;
+    width: 100%;
+    align-items: flex-start;
+    margin: 0 auto 50px auto;
+  }
 `
 
 const Label = styled.label`
   font-style: normal;
   font-weight: 500;
-  font-size: 32rem;
+  font-size: clamp(24rem, ${32 / 768 * 100}vw, 32rem);
   text-align: center;
   letter-spacing: 0.03em;
   color: var(--primary-500);
@@ -189,10 +249,22 @@ const Label = styled.label`
   width: fit-content;
   position: relative;
 
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
+
+  @media (max-width: 360px) {
+    font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+  }
+
   .input-wrap{
     position: relative;
     display: flex;
-    gap: 8px;
+    gap: 12px;
+
+    @media (max-width: 390px) {
+      flex-wrap: wrap;
+    }
 
     > svg{
       transition: opacity .2s ease-out;
@@ -213,6 +285,7 @@ const Label = styled.label`
 
   input{
     max-width: 450px;
+    min-width: 250px;
     width: 100%;
     padding: 4px 10px;
     height: 53px;

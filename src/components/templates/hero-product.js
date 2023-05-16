@@ -35,12 +35,19 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
     <Wrapper>
       <div className="container">
         <LightGallery mode="lg-fade" plugins={[lgZoom]}>
-          <Image
-            src={image.mediaItemUrl}
-            alt={image.altText}
-            width={image.mediaDetails.width}
-            height={image.mediaDetails.height}
-          />
+          {image?.mediaItemUrl ? (
+            <Image
+              src={image.mediaItemUrl}
+              alt={image.altText}
+              width={image.mediaDetails.width}
+              height={image.mediaDetails.height}
+            />
+          ) : (
+            <img
+              src='/placeholder.jpg'
+              alt='placeholder image'
+            />
+          )}
           {galleryImages?.nodes?.map((el, index) => (
             <Image
               key={el.mediaItemUrl + index}

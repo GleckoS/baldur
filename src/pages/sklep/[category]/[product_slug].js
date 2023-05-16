@@ -149,7 +149,7 @@ export async function getServerSideProps({ params }) {
     `,
       variables: {
         catID: params.category,
-        slug: params.slug,
+        slug: params.product_slug,
         catSlug: params.category
       },
       context: {

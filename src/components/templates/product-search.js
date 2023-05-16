@@ -170,12 +170,18 @@ const Results = styled.div`
     span{
       text-align: left;
       font-size: 20rem;
+      line-height: 100%;
 
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 1;
+      -webkit-line-clamp: 2;
+      padding: 5px 0;
       -webkit-box-orient: vertical;
+
+      @media (max-width: 360px) {
+        font-size: clamp(0rem, ${20 / 360 * 100}vw, 20rem);
+      }
     }
 
     svg{
@@ -193,7 +199,7 @@ const Results = styled.div`
 const Label = styled.label`
   font-style: normal;
   font-weight: 500;
-  font-size: 32rem;
+  font-size: clamp(24rem, ${32 / 768 * 100}vw, 32rem);
   text-align: center;
   letter-spacing: 0.03em;
   color: var(--primary-500);
@@ -203,6 +209,10 @@ const Label = styled.label`
   gap: 6px;
   width: fit-content;
   position: relative;
+
+  @media (max-width: 360px) {
+    font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+  }
 
   &:focus-within{
     ${Results}{
@@ -220,6 +230,7 @@ const Label = styled.label`
   .input-wrap{
     position: relative;
     display: flex;
+    align-items: center;
     gap: 8px;
 
     > svg{
