@@ -44,7 +44,6 @@ const Wrapper = styled.section`
 
     @media (max-width: 1024px) {
       grid-template-columns: 1fr 1fr;
-      width: fit-content;
 
       .card{
 
@@ -64,6 +63,7 @@ const Wrapper = styled.section`
     margin-top: 20px;
     color: var(--primary-500);
     text-decoration: underline;
+    width: fit-content;
   }
   
 `

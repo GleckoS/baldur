@@ -87,6 +87,7 @@ const Grid = styled.table`
   }
 
   .right{
+    white-space: nowrap;
     padding: 15px 21px;
     font-size: clamp(20rem, ${36 / 768 * 100}vw, 36rem);
     line-height: 125%;

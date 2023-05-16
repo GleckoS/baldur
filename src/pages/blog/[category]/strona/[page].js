@@ -82,8 +82,9 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const { data: { categories, posts, page } } = await client.query({
-    query: gql`
+  try {
+    const { data: { categories, posts, page } } = await client.query({
+      query: gql`
       query Category($category: String, $cat: [String], $count: Int) {
         categories(where: {name: $cat}) {
           nodes {
@@ -129,25 +130,32 @@ export async function getStaticProps({ params }) {
         }
       }
     `,
-    variables: {
-      category: params.category,
-      cat: params.category,
-      count: PAGE_ITEM_COUNT
-    },
-    context: {
-      fetchOptions: {
-        next: { revalidate: .1 },
+      variables: {
+        category: params.category,
+        cat: params.category,
+        count: PAGE_ITEM_COUNT
       },
-    }
-  });
+      context: {
+        fetchOptions: {
+          next: { revalidate: .1 },
+        },
+      }
+    });
 
-  return {
-    props: {
-      posts: posts,
-      category: categories.nodes[0],
-      catSlug: params.category,
-      background: page.blog.heroBlog.background,
-      currPage: params.page
+    return {
+      props: {
+        posts: posts,
+        category: categories.nodes[0],
+        catSlug: params.category,
+        background: page.blog.heroBlog.background,
+        currPage: params.page
+      }
+    }
+  }
+  catch (err) {
+    console.log(err)
+    return {
+      notFound: true
     }
   }
 }

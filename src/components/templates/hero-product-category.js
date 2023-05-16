@@ -2,12 +2,12 @@ import HTMLReactParser from "html-react-parser"
 import React from "react"
 import styled from "styled-components"
 
-export default function Hero({ data }) {
+export default function Hero({ data = ' ' }) {
   return (
     <Wrapper>
       <div className="container">
         <div className="text">
-          {HTMLReactParser(data)}
+          {data && HTMLReactParser(data)}
         </div>
       </div>
     </Wrapper>

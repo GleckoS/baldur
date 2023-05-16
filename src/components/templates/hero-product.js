@@ -4,6 +4,12 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import ButtonFilled from "../atoms/button-filled"
 
+import LightGallery from "lightgallery/react"
+import lgZoom from 'lightgallery/plugins/zoom'
+import 'lightgallery/css/lightgallery.css'
+import 'lightgallery/css/lg-zoom.css'
+
+
 export default function Hero({ data: { stockQuantity = '1', image, galleryImages, name, regularPrice, salePrice, description = ' ', attributes } }) {
 
   const [quantity, setQuantity] = useState(1)
@@ -28,26 +34,23 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
   return (
     <Wrapper>
       <div className="container">
-        <div className="images">
+        <LightGallery mode="lg-fade" plugins={[lgZoom]}>
           <Image
             src={image.mediaItemUrl}
             alt={image.altText}
             width={image.mediaDetails.width}
             height={image.mediaDetails.height}
           />
-
-          {galleryImages?.nodes?.map((el, index) => {
-            return (
-              <Image
-                key={el.mediaItemUrl + index}
-                src={el.mediaItemUrl}
-                alt={el.altText}
-                width={el.mediaDetails.width}
-                height={el.mediaDetails.height}
-              />
-            )
-          })}
-        </div>
+          {galleryImages?.nodes?.map((el, index) => (
+            <Image
+              key={el.mediaItemUrl + index}
+              src={el.mediaItemUrl}
+              alt={el.altText}
+              width={el.mediaDetails.width}
+              height={el.mediaDetails.height}
+            />
+          ))}
+        </LightGallery>
         <h1 className="title">
           {name}
         </h1>
@@ -98,6 +101,14 @@ const Wrapper = styled.section`
 
   @media (max-width: 864px){
     padding-top: 20px;
+  }
+
+  .sub-title{
+    display: none;
+
+    @media (max-width: 864px) {
+      display: block;
+    }
   }
 
   .container{
@@ -201,7 +212,7 @@ const Wrapper = styled.section`
       }
     }
 
-    .images{
+    .lg-react-element {
       grid-area: images;
       display: grid;
       gap: 20px;

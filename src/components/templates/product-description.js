@@ -7,8 +7,8 @@ export default function Description({ data: { repeater } }) {
   return (
     <Wrapper>
       <div className="container">
-        {repeater?.map(el => (
-          <div className="flex" key={el.id}>
+        {repeater?.map((el, image) => (
+          <div className="flex" key={image}>
             <div className="text">
               {HTMLReactParser(el.text)}
             </div>
@@ -22,7 +22,6 @@ export default function Description({ data: { repeater } }) {
             )}
           </div>
         ))}
-        {/* {HTMLReactParser(data)} */}
       </div>
     </Wrapper>
   )
@@ -70,7 +69,7 @@ const Wrapper = styled.section`
       margin-bottom: 20px;
 
       @media (max-width: 360px) {
-        font-size: clamp(0rem, ${24/360*100}vw, 24rem);
+        font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
       }
     }
   }

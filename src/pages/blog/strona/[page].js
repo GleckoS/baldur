@@ -75,18 +75,17 @@ export async function getStaticProps({ params }) {
         permanent: false,
         destination: "/blog",
       },
-      props: {}
     }
   }
   if (isNaN(params.page)) {
     return {
-      props: {},
       notFound: true
     };
   }
 
-  const { data: { categories, posts, page: { blog: page } } } = await client.query({
-    query: gql`
+  try {
+    const { data: { categories, posts, page: { blog: page } } } = await client.query({
+      query: gql`
       query Kontakt($count: Int, $offset: Int) {
         categories {
           nodes {
@@ -135,26 +134,30 @@ export async function getStaticProps({ params }) {
         }
       }
     `,
-    variables: {
-      count: PAGE_ITEM_COUNT,
-      offset: PAGE_ITEM_COUNT * (params.page - 1)
-    },
-    context: {
-      fetchOptions: {
-        next: { revalidate: .1 },
+      variables: {
+        count: PAGE_ITEM_COUNT,
+        offset: PAGE_ITEM_COUNT * (params.page - 1)
       },
-    }
-  });
+      context: {
+        fetchOptions: {
+          next: { revalidate: .1 },
+        },
+      }
+    });
 
-  const notFound = posts.nodes.length <= 0;
-
-  return {
-    props: {
-      posts: posts,
-      hero: page.heroBlog,
-      categories: categories.nodes,
-      currPage: params.page
-    },
-    notFound
-  };
+    return {
+      props: {
+        posts: posts,
+        hero: page.heroBlog,
+        categories: categories.nodes,
+        currPage: params.page
+      },
+      notFound: posts.nodes.length <= 0
+    };
+  }
+  catch (err) {
+    return {
+      notFound: true
+    };
+  }
 }

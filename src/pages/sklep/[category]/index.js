@@ -68,8 +68,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { data: { productCategory, posts, global } } = await client.query({
-    query: gql`
+  try {
+    const { data: { productCategory, posts, global } } = await client.query({
+      query: gql`
       query Category($catID: ID!) {
         productCategory(id: $catID, idType: SLUG) {
           slug
@@ -137,22 +138,28 @@ export async function getStaticProps({ params }) {
         }
       }
     `,
-    variables: {
-      catID: params.category
-    },
-    context: {
-      fetchOptions: {
-        next: { revalidate: .1 },
+      variables: {
+        catID: params.category
       },
-    }
-  });
+      context: {
+        fetchOptions: {
+          next: { revalidate: .1 },
+        },
+      }
+    });
 
-  return {
-    props: {
-      reviews: global.reviews,
-      cta: global.callToAction,
-      posts: posts,
-      category: productCategory
+    return {
+      props: {
+        reviews: global.reviews,
+        cta: global.callToAction,
+        posts: posts,
+        category: productCategory
+      }
+    }
+  } catch (error) {
+    console.log(err)
+    return {
+      notFound: true,
     }
   }
 }

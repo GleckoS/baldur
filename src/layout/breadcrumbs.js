@@ -12,13 +12,13 @@ export default function Breadcrumbs({ data }) {
         </li>
         <span>{'>'}</span>
         {data.map((item, index) => (
-          <>
+          <React.Fragment key={index}>
             <li className="item" key={index}>
               <Link href={item.url}>{item.page}</Link>
 
             </li>
             <span>{'>'}</span>
-          </>
+          </React.Fragment>
         ))}
       </ul>
     </Wrapper>

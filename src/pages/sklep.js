@@ -41,7 +41,7 @@ const Wrapper = styled.main`
   padding-bottom: 11px;
 `
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { data: { productCategories, posts, global, page: { shop: page } } } = await client.query({
     query: gql`
       query Sklep {

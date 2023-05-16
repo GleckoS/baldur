@@ -28,45 +28,10 @@ const Wrapper = styled.main`
 
 `
 
-export async function getStaticPaths() {
-  const { data: { posts } } = await client.query({
-    query: gql`
-      query paths {
-        posts {
-          nodes {
-            slug
-            categories {
-              nodes{
-                slug
-              }
-            }
-          }
-        }
-      }
-    `,
-    context: {
-      fetchOptions: {
-        next: { revalidate: .1 },
-      },
-    }
-  });
-
-  return {
-    paths: posts.nodes.map(el => {
-      return {
-        params: {
-          category: el.categories.nodes[0]?.slug || 'brak',
-          post_slug: el.slug,
-        }
-      }
-    }),
-    fallback: false
-  }
-}
-
-export async function getStaticProps({ params }) {
-  const { data: { page } } = await client.query({
-    query: gql`
+export async function getServerSideProps({ params }) {
+  try {
+    const { data: { page } } = await client.query({
+      query: gql`
       query Post($slug: String) {
         page : postBy(slug: $slug) {
           slug
@@ -92,20 +57,26 @@ export async function getStaticProps({ params }) {
         }
       }
     `,
-    variables: {
-      slug: params.post_slug,
-    },
-    context: {
-      fetchOptions: {
-        next: { revalidate: .1 },
+      variables: {
+        slug: params.post_slug,
       },
+      context: {
+        fetchOptions: {
+          next: { revalidate: .1 },
+        },
+      }
+    });
+
+    return {
+      props: {
+        page: page
+      }
     }
-  });
-
-  return {
-    props: {
-      page: page
-
+  }
+  catch (err) {
+    console.log(err)
+    return {
+      notFound: true
     }
   }
 }
