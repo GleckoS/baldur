@@ -103,7 +103,7 @@ export default function Process({ data }) {
                   <path d="M32.4158 9.83269e-06C31.2193 -0.0127349 20.9602 12.3682 20.9602 12.3682L0 34.9994C0 34.9994 10.0391 35.376 25.0971 16.9355L23.1687 14.8534C23.1687 14.8534 26.225 13.4608 28.8391 9.8853C31.4532 6.30982 31.3599 6.48593 32.5103 5.42001C33.6607 4.35408 34.7177 3.78984 34.9731 3.21169C35.2285 2.6347 33.6124 0.0127546 32.4158 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
                 </svg>
               </span>
-              <Image src='/blik.png' width={212} height={133} alt='ikona blik'/>
+              <Image src='/blik.png' width={212} height={133} alt='ikona blik' />
             </label>
             <label className="radio box-wrap">
               <input type="radio" name="payment" value='przelewy24' />
@@ -115,7 +115,34 @@ export default function Process({ data }) {
                   <path d="M32.4158 9.83269e-06C31.2193 -0.0127349 20.9602 12.3682 20.9602 12.3682L0 34.9994C0 34.9994 10.0391 35.376 25.0971 16.9355L23.1687 14.8534C23.1687 14.8534 26.225 13.4608 28.8391 9.8853C31.4532 6.30982 31.3599 6.48593 32.5103 5.42001C33.6607 4.35408 34.7177 3.78984 34.9731 3.21169C35.2285 2.6347 33.6124 0.0127546 32.4158 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
                 </svg>
               </span>
-              <Image src='/p24.png' width={183} height={72} alt='ikona przelewy 24'/>
+              <Image src='/p24.png' width={183} height={72} alt='ikona przelewy 24' />
+            </label>
+          </fieldset>
+          <fieldset className="payment">
+            <legend>Wybierz sposób dostawy</legend>
+            <label className="radio box-wrap">
+              <input defaultChecked type="radio" name="delivery" value='inpost' />
+              <span className="box">
+                <svg className="left" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.58417 9.83269e-06C3.7807 -0.0127349 14.0398 12.3682 14.0398 12.3682L35 34.9994C35 34.9994 24.9609 35.376 9.90287 16.9355L11.8313 14.8534C11.8313 14.8534 8.77502 13.4608 6.16089 9.8853C3.54676 6.30982 3.64012 6.48593 2.48974 5.42001C1.33935 4.35408 0.282323 3.78984 0.0269199 3.21169C-0.228483 2.6347 1.38764 0.0127546 2.58417 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
+                </svg>
+                <svg className="right" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M32.4158 9.83269e-06C31.2193 -0.0127349 20.9602 12.3682 20.9602 12.3682L0 34.9994C0 34.9994 10.0391 35.376 25.0971 16.9355L23.1687 14.8534C23.1687 14.8534 26.225 13.4608 28.8391 9.8853C31.4532 6.30982 31.3599 6.48593 32.5103 5.42001C33.6607 4.35408 34.7177 3.78984 34.9731 3.21169C35.2285 2.6347 33.6124 0.0127546 32.4158 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
+                </svg>
+              </span>
+              <Image src='/inpost.png' width={152} height={113} alt='ikona blik' />
+            </label>
+            <label className="radio box-wrap">
+              <input type="radio" name="delivery" value='osobisty' />
+              <span className="box">
+                <svg className="left" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.58417 9.83269e-06C3.7807 -0.0127349 14.0398 12.3682 14.0398 12.3682L35 34.9994C35 34.9994 24.9609 35.376 9.90287 16.9355L11.8313 14.8534C11.8313 14.8534 8.77502 13.4608 6.16089 9.8853C3.54676 6.30982 3.64012 6.48593 2.48974 5.42001C1.33935 4.35408 0.282323 3.78984 0.0269199 3.21169C-0.228483 2.6347 1.38764 0.0127546 2.58417 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
+                </svg>
+                <svg className="right" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M32.4158 9.83269e-06C31.2193 -0.0127349 20.9602 12.3682 20.9602 12.3682L0 34.9994C0 34.9994 10.0391 35.376 25.0971 16.9355L23.1687 14.8534C23.1687 14.8534 26.225 13.4608 28.8391 9.8853C31.4532 6.30982 31.3599 6.48593 32.5103 5.42001C33.6607 4.35408 34.7177 3.78984 34.9731 3.21169C35.2285 2.6347 33.6124 0.0127546 32.4158 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
+                </svg>
+              </span>
+              <Image src='/odbior.png' width={226} height={133} alt='ikona odbioru osobistego' />
             </label>
           </fieldset>
           <div className="summary">
@@ -152,7 +179,7 @@ export default function Process({ data }) {
         </Form>
         <Link className="back-link" href='/koszyk'>
           <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1232 18.629C10.6048 18.1343 10.6048 17.3323 10.1232 16.8377L2.97898 9.5L10.1232 2.16233C10.6048 1.66767 10.6048 0.865662 10.1232 0.370998C9.64154 -0.123667 8.86068 -0.123667 8.37906 0.370998L0.362831 8.60433C-0.118789 9.09899 -0.118789 9.901 0.362831 10.3957L8.37906 18.629C8.86068 19.1237 9.64154 19.1237 10.1232 18.629Z" fill="#EDE2E2" />
+            <path fillRule="evenodd" clipRule="evenodd" d="M10.1232 18.629C10.6048 18.1343 10.6048 17.3323 10.1232 16.8377L2.97898 9.5L10.1232 2.16233C10.6048 1.66767 10.6048 0.865662 10.1232 0.370998C9.64154 -0.123667 8.86068 -0.123667 8.37906 0.370998L0.362831 8.60433C-0.118789 9.09899 -0.118789 9.901 0.362831 10.3957L8.37906 18.629C8.86068 19.1237 9.64154 19.1237 10.1232 18.629Z" fill="#EDE2E2" />
           </svg>
           Wróć do koszyku
         </Link>
@@ -247,7 +274,7 @@ const Form = styled.form`
     justify-content: center;
     grid-template-columns: 46px auto;
     gap: 12px;
-    width: 309px;
+    padding: 0 26px;
     height: 133px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

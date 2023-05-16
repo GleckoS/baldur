@@ -6,67 +6,59 @@ import styled from "styled-components"
 const links = [
   {
     name: 'Sklep',
-    url: '/sklep/',
+    url: '/sklep',
     subArr: [
       {
-        name: 'Stal węglowa',
-        url: '/sklep/',
+        name: 'Noże',
+        url: '/noze',
       },
       {
-        name: 'Stal nierdzewna',
-        url: '/sklep/',
+        name: 'Drewno',
+        url: '/drewno',
       },
       {
-        name: 'Drewno egzotyczne',
-        url: '/sklep/',
+        name: 'Mat. ekskluzywne',
+        url: '/mat-ekskluzywne',
       },
       {
-        name: 'Produkty naturalne',
-        url: '/sklep/',
+        name: 'Art. metalowe',
+        url: '/art-metalowe',
       },
       {
-        name: 'Piny ozdobne',
-        url: '/sklep/',
+        name: 'Ostrza',
+        url: '/ostrza',
       }
     ]
   },
   {
     name: 'Koszyk',
-    url: '/koszyk/'
+    url: '/koszyk'
   },
   {
     name: 'O Baldur',
-    url: '/o-nas/',
+    url: '/o-nas',
     subArr: [
       {
         name: 'Jak wybieramy materiały',
-        url: '/jak-wybieramy-materialy/',
+        url: '/jak-wybieramy-materialy',
       },
-      {
-        name: 'O naszych nożach',
-        url: '/o-nas/',
-      }
     ]
   },
   {
     name: 'Polityka prywatności',
-    url: '/koszyk/'
+    url: '/polity-prywatnosci'
   },
   {
     name: 'Regulamin',
-    url: '/regulamin/'
-  },
-  {
-    name: 'Reklamacje',
-    url: '/reklamacje/'
+    url: '/regulamin'
   },
   {
     name: 'Kontakt',
-    url: '/kontakt/'
+    url: '/kontakt'
   },
   {
     name: 'Mapa strony',
-    url: '/mapa-strony/'
+    url: '/mapa-strony'
   },
 ]
 
@@ -78,7 +70,7 @@ export default function Footer() {
           <Logo />
           <p>
             Jarasz się nożami tak samo jak my? Sprawdź, jakie <Link href='/sklep/'>produkty</Link> mamy dla Ciebie.
-            Chcesz pogadać? <Link href='/kontakt/'>Skontaktuj się</Link> z nami.
+            Chcesz pogadać? <Link href='/kontakt'>Skontaktuj się</Link> z nami.
           </p>
           <div className="social">
             <a href="#TODO" aria-label='instagram'>

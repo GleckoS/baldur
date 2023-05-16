@@ -39,12 +39,12 @@ export default function Header() {
           <Link className="desctop" href='/blog/'>Blog</Link>
           <Link className="desctop" href='/kontakt/'>Kontakt</Link>
         </Navigation>
-        <button aria-label='koszyk' className="cart">
+        <Link href='/koszyk' aria-label='koszyk' className="cart">
           <svg width="34" height="39" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M33.0942 6.65414C32.1324 5.91801 30.8073 6.1741 30.1349 7.22505L24.8528 15.4847L23.2289 18.0238L20.907 16.2449L22.5312 13.7048L21.3706 12.8152L26.653 4.55779C27.3253 3.50521 27.0911 2.05404 26.1312 1.31662C25.1695 0.580495 23.8443 0.836586 23.1719 1.88624L17.8914 10.1469L16.2671 12.6869V12.6879L13.9458 10.9089L0.00177877 32.7117L0 38.1216L25.5004 38.1203V30.6958L30.1904 23.3615L27.8691 21.5815H27.8703L29.4943 19.0415L28.334 18.1528L33.616 9.89544C34.2884 8.84286 34.0548 7.39012 33.0946 6.65394L33.0942 6.65414ZM22.6671 29.7174V35.0186L2.83521 35.0205V33.6908L14.642 15.2299L26.2455 24.1246L22.6671 29.7174Z" fill="var(--primary-500)" />
             <path d="M9.91687 28.8151H18.417V31.9229H9.91687V28.8151Z" fill="var(--primary-500)" />
           </svg>
-        </button>
+        </Link>
       </div>
     </Wrapper>
   )
@@ -78,6 +78,7 @@ const MobileMenu = styled.div`
 
   @media (max-width: 996px) {
     display: block;
+    backdrop-filter: blur(4px);
   }
 
   a{
@@ -132,17 +133,22 @@ const Overlay = styled.div`
 `
 
 const Wrapper = styled.header`
-  background-color: var(--dark-500);
   position: sticky;
   z-index: 100;
   height: 80px;
   top: 0;
   overflow-x: hidden;
+  background-color: #0A0A0ACC;
+  backdrop-filter: blur(10px);
 
   .placeholder{
     @media (max-width: 996px) {
       display: none;
     }
+  }
+  @media (max-width: 996px) {
+    background-color: var(--dark-500);
+    backdrop-filter: unset;
   }
 
   @media (max-width: 480px) {

@@ -14,13 +14,15 @@ export default function TwoColumnFlex({ data: { image, title, text } }) {
           </div>
         </Content>
         <ImageWrapper width={image.mediaDetails.width} minHeight={image.mediaDetails.height}>
-          <Image
-            className="image"
-            src={image.mediaItemUrl}
-            alt={image.altText}
-            width={image.mediaDetails.width}
-            height={image.mediaDetails.height}
-          />
+          <ImageBox>
+            <Image
+              className="image"
+              src={image.mediaItemUrl}
+              alt={image.altText}
+              width={image.mediaDetails.width}
+              height={image.mediaDetails.height}
+            />
+          </ImageBox>
         </ImageWrapper>
       </div>
     </Wrapper>
@@ -107,30 +109,47 @@ const ImageWrapper = styled.div`
     transform: translateX(calc(-1 * clamp(24px,calc(40vw / 7.68),40px)));
     overflow: hidden;
   }
+`
 
-  .image{
+const ImageBox = styled.div`
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media (max-width: 1240px) {
+    left: -100px;
+  }
+  @media (max-width: 1024px) {
+    left: -200px;
+  }
+  @media (max-width: 864px){
+    position: relative;
+    left: unset;
+    top: unset;
+    transform: unset;
+    width: 100%;
+    height: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 520px;
+  }
+
+  img{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (max-width: 480px) {
+      left: 60%;
+    }
+  }
+
+  &::after{
+    content: '';
+    inset: -2px;
     position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    @media (max-width: 1240px) {
-      left: -100px;
-    }
-    @media (max-width: 1024px) {
-      left: -200px;
-    }
-    @media (max-width: 864px){
-      position: relative;
-      left: unset;
-      top: unset;
-      transform: unset;
-      width: 100%;
-      height: fit-content;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 520px;
-    }
+    background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0) 20.77%, #0A0A0A 100%);
   }
 `

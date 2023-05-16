@@ -5,6 +5,7 @@ import ButtonFilled from "../atoms/button-filled"
 import Link from "next/link"
 
 export default function Card({ data: { name, image, regularPrice, salePrice, acf, uri } }) {
+
   return (
     <Wrapper className="card">
       <Link href={uri} className="shop-link" />

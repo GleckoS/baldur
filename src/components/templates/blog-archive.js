@@ -12,10 +12,10 @@ export default function Archive({ currPage, urlBasis, categories, posts }) {
         <h2>Kategorie</h2>
         <div className="flex">
           {categories.map(({ name, slug, count }) => (
-            <>
+            <React.Fragment key={slug + count}>
               <Link key={slug} href={`/blog/${slug}`}>{name} ({count ? count : 0})</Link>
               <span className="line" />
-            </>
+            </React.Fragment>
           ))}
         </div>
         <Grid currentPage={Number(currPage)} posts={posts.nodes} />

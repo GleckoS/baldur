@@ -18,7 +18,7 @@ export default function Sklep({ cta, categories, posts, hero, reviews }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Hero />
+        <Hero step='2'/>
         <Process />
       </Wrapper>
     </Layout>

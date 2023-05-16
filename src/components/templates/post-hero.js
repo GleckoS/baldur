@@ -107,5 +107,9 @@ const Background = styled.div`
     inset: -2px;
     position: absolute;
     background: radial-gradient(50% 50% at 50% 50%, rgba(10, 10, 10, 0.27) 0%, #0A0A0A 89.06%);
+
+    @media (max-width: 420px) {
+      background: radial-gradient(60% 45% at 50% 50%, rgba(10, 10, 10, 0.27) 0%, #0A0A0A 100%);
+    }
   }
 `
