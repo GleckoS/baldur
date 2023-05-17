@@ -11,7 +11,7 @@ export default function Header() {
       <Overlay onClick={() => { setIsMobileMenuOpen(false) }} className={isMobileMenuOpen ? 'active' : ''} />
       <div className="container">
         <div className="placeholder" />
-        <button aria-label='otwórz mobile meni' onClick={() => { setIsMobileMenuOpen(true) }} className="burger">
+        <button aria-label='otwórz mobile menu' onClick={() => { setIsMobileMenuOpen(true) }} className="burger">
           <div />
           <div />
           <div />
@@ -39,11 +39,13 @@ export default function Header() {
           <Link className="desctop" href='/blog/'>Blog</Link>
           <Link className="desctop" href='/kontakt/'>Kontakt</Link>
         </Navigation>
-        <Link href='/koszyk' aria-label='koszyk' className="cart">
-          <svg width="34" height="39" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M33.0942 6.65414C32.1324 5.91801 30.8073 6.1741 30.1349 7.22505L24.8528 15.4847L23.2289 18.0238L20.907 16.2449L22.5312 13.7048L21.3706 12.8152L26.653 4.55779C27.3253 3.50521 27.0911 2.05404 26.1312 1.31662C25.1695 0.580495 23.8443 0.836586 23.1719 1.88624L17.8914 10.1469L16.2671 12.6869V12.6879L13.9458 10.9089L0.00177877 32.7117L0 38.1216L25.5004 38.1203V30.6958L30.1904 23.3615L27.8691 21.5815H27.8703L29.4943 19.0415L28.334 18.1528L33.616 9.89544C34.2884 8.84286 34.0548 7.39012 33.0946 6.65394L33.0942 6.65414ZM22.6671 29.7174V35.0186L2.83521 35.0205V33.6908L14.642 15.2299L26.2455 24.1246L22.6671 29.7174Z" fill="var(--primary-500)" />
-            <path d="M9.91687 28.8151H18.417V31.9229H9.91687V28.8151Z" fill="var(--primary-500)" />
-          </svg>
+        <Link href='/koszyk' aria-label='Koszyk' className="cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="39" viewBox="0 0 38.2 43.7">
+            <path d="M23.5 16.6 21.4 15s2.5-1.8 4.3-5.4 1.7-3.5 2.6-4.6c.9-1.2 1.7-1.8 1.9-2.4.1-.6-1.8-2.7-2.8-2.5-1.1.1-8.4 13-8.4 13L3.7 37s9.1-1.3 19.8-20.4z" fill="#fff" className="knife1" />
+            <path d="M35.3 4.5c-1.1.2-8.3 13.1-8.3 13.1l-4.2 6.6-1.6 2.5-9 14-.5.8s.8-.1 2.2-.8c2-.9 5.1-2.9 8.9-7.1 1.5-1.6 3-3.6 4.6-5.9 1.3-1.9 2.7-4.2 4.1-6.7l-2.1-1.6s2.5-1.8 4.3-5.4c1.8-3.7 1.7-3.5 2.6-4.7.9-1.1 1.7-1.8 1.9-2.3.1-.6-1.8-2.7-2.9-2.5z" fill="#fff" className="knife2" />
+            <path d="m28 27.2-.1-.1-4.4-3.4-.2-.2-1.9-1.4-.5-.4-4.1-3.1-.6-.5-2.3-1.8L0 38.2v5.4h25.5v-7.4l4.7-7.3-2.2-1.7zm-5.3 8.1v5.3H2.8v-1.3l11.8-18.5.6.5 4.6 3.5 2 1.5 4.4 3.4-3.5 5.6z" fill="#fff" />
+            <path d="m21.8 26.3-2-1.5-4.6-3.5-.6-.5L2.8 39.2v1.3h19.8v-5.3l3.6-5.6-4.4-3.3zm-3.4 11.2H9.9v-3.1h8.5v3.1z"/>
+            <path d="M9.9 34.4h8.5v3.1H9.9z" fill="#fff" /></svg>
         </Link>
       </div>
     </Wrapper>
@@ -171,10 +173,6 @@ const Wrapper = styled.header`
     }
   }
 
-  svg path{
-    transition: fill var(--transition);
-  }
-
   .burger{
     display: none;
     position: relative;
@@ -227,23 +225,29 @@ const Wrapper = styled.header`
     justify-content: center;
     border: none;
     background-color: transparent;
+    svg {
+      overflow: visible;
+      path {
+        transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+        &.knife2 {
+          transition-delay: 100ms;
+        }
+      }
+    }
+    &:hover {
+      .knife1 {
+        transform: translate(3px,-5px);
+      }
+      .knife2 {
+        transform: translate(3px,-5px);
+      }
+    }
 
     @media (max-width: 480px){
       width: 30px;
       height: 34px;
     }
 
-    &:hover{
-      svg path{
-        fill: var(--primary-200);
-      }
-    }
-
-    &:active{
-      svg path{
-        fill: var(--primary-800);
-      }
-    }
   }
 
   .logo{
