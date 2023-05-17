@@ -67,7 +67,7 @@ export default function Footer() {
     <Wrapper>
       <div className="container">
         <div className="inform">
-          <Link href="/">
+          <Link href="/" aria-label="Strona główna">
             <Logo />
           </Link>
           <p>
