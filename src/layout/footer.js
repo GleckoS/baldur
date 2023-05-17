@@ -10,23 +10,23 @@ const links = [
     subArr: [
       {
         name: 'Noże',
-        url: '/noze',
+        url: '/sklep/noze',
       },
       {
         name: 'Drewno',
-        url: '/drewno',
+        url: '/sklep/drewno',
       },
       {
         name: 'Mat. ekskluzywne',
-        url: '/mat-ekskluzywne',
+        url: '/sklep/mat-ekskluzywne',
       },
       {
         name: 'Art. metalowe',
-        url: '/art-metalowe',
+        url: '/sklep/art-metalowe',
       },
       {
         name: 'Ostrza',
-        url: '/ostrza',
+        url: '/sklep/ostrza',
       }
     ]
   },
