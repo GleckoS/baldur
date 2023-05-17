@@ -7,8 +7,8 @@ export default function Reviews({ data: { title, text, reviews } }) {
     <Wrapper>
       <div className="container">
         <div>
-          <h2>{title}</h2>
-          <p className="text">{text}</p>
+          <h2 className="anim">{title}</h2>
+          <p className="text anim">{text}</p>
         </div>
         <Slider data={reviews} />
       </div>

@@ -18,8 +18,8 @@ export default function Hero({ data: { title, text, background } }) {
         />
       </Background>
       <div className="container">
-        <h1>{title}</h1>
-        <div className="text">
+        <h1 className="anim">{title}</h1>
+        <div className="text anim">
           {HTMLReactParser(text)}
         </div>
       </div>

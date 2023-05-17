@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export default function Card({ data }) {
   return (
-    <Wrapper>
+    <Wrapper className="anim">
       <Link href={`/sklep/${data.slug}/`}>
         <Image
           src={data.image.mediaItemUrl}

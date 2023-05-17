@@ -181,7 +181,7 @@ export default function Process({ data }) {
           <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M10.1232 18.629C10.6048 18.1343 10.6048 17.3323 10.1232 16.8377L2.97898 9.5L10.1232 2.16233C10.6048 1.66767 10.6048 0.865662 10.1232 0.370998C9.64154 -0.123667 8.86068 -0.123667 8.37906 0.370998L0.362831 8.60433C-0.118789 9.09899 -0.118789 9.901 0.362831 10.3957L8.37906 18.629C8.86068 19.1237 9.64154 19.1237 10.1232 18.629Z" fill="#EDE2E2" />
           </svg>
-          Wróć do koszyku
+          Wróć do koszyka
         </Link>
       </div>
     </Wrapper>

@@ -5,7 +5,7 @@ import styled from "styled-components"
 export default function Breadcrumbs({ data }) {
   if (!data) return null
   return (
-    <Wrapper className="container">
+    <Wrapper className="container anim">
       <ul>
         <li className="item">
           <Link href="/">Strona główna</Link>

@@ -242,6 +242,28 @@ const GlobalStyle = createGlobalStyle`
       font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
     }
   }
+
+
+  @media not all and (prefers-reduced-motion: reduce) {
+    body.animate {
+      .anim {
+        opacity: 0;
+        transform-origin: left;
+        &.anim-active {
+          opacity: 1;
+          transition: transform .8s, opacity .8s;
+          transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        &:not(.animNotTransform) {
+          transform: translateX(-5px);
+          &.anim-active {
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+  }
+
 `
 
 export default GlobalStyle

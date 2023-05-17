@@ -18,8 +18,8 @@ export default function Hero({ data: { title, link, background } }) {
         />
       </Background>
       <div className="container">
-        <h1>{title}</h1>
-        <ButtonOutlined href={link.url}>
+        <h1 className="anim">{title}</h1>
+        <ButtonOutlined href={link.url} className="anim">
           {link.title}
         </ButtonOutlined>
       </div>

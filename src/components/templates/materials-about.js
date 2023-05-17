@@ -7,8 +7,8 @@ export default function Materials({ categories, data: { title, text } }) {
   return (
     <Wrapper>
       <div className="container">
-        <h2>{title}</h2>
-        <div className="text">
+        <h2 className="anim">{title}</h2>
+        <div className="text anim">
           {HTMLReactParser(text)}
         </div>
         <Grid categories={categories} />

@@ -6,10 +6,10 @@ export default function Faq({ data: { title, questions } }) {
   return (
     <Wrapper>
       <div className="container">
-        <h2>{title}</h2>
+        <h2 className="anim">{title}</h2>
         <Grid>
           {questions.map((el, index) => (
-            <details open={!index} key={index}>
+            <details open={!index} className="anim" key={index}>
               <summary className="h4">
                 <svg width="54" height="55" viewBox="0 0 54 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" clipRule="evenodd" d="M10.6639 36.1123C11.5491 36.9741 12.9843 36.9741 13.8694 36.1123L27 23.328L40.1306 36.1123C41.0157 36.9741 42.4509 36.9741 43.3361 36.1123C44.2213 35.2504 44.2213 33.8531 43.3361 32.9913L28.6028 18.6464C27.7176 17.7846 26.2824 17.7846 25.3972 18.6464L10.6639 32.9913C9.7787 33.8531 9.7787 35.2504 10.6639 36.1123Z" fill="#EDE2E2" />

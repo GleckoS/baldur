@@ -9,8 +9,8 @@ export default function OurKnifes({ data: { title, link, gallery } }) {
     <Slider items={gallery} />
       <div className="container">
         <div>
-          <h2>{title}</h2>
-          <ButtonFilled mode="secondary" href={link.url}>
+          <h2 className="anim">{title}</h2>
+          <ButtonFilled mode="secondary" href={link.url} className="anim">
             {link.title}
           </ButtonFilled>
         </div>

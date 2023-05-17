@@ -11,26 +11,26 @@ export default function Contact({ data }) {
       <div className="container">
         <div className="methods">
           <button onClick={() => { setChosenMethod('Customowy nóż') }} className={chosenMethod === 'Customowy nóż' ? 'active' : ''}>
-            <span>Customowy nóż</span>
+            <span className="anim">Customowy nóż</span>
             <svg width="93" height="107" viewBox="0 0 93 107" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M35.327 32.8396C34.2243 33.9591 34.2243 35.7742 35.327 36.8937L51.6834 53.5L35.327 70.1063C34.2243 71.2258 34.2243 73.0409 35.327 74.1604C36.4296 75.2799 38.2174 75.2799 39.3201 74.1604L57.673 55.527C58.7757 54.4075 58.7757 52.5925 57.673 51.473L39.3201 32.8396C38.2174 31.7201 36.4297 31.7201 35.327 32.8396Z" fill="#0A0A0A" />
             </svg>
           </button>
           <button onClick={() => { setChosenMethod('Konsultacje') }} className={chosenMethod === 'Konsultacje' ? 'active' : ''}>
-            <span>Konsultacje</span>
+            <span className="anim">Konsultacje</span>
             <svg width="93" height="107" viewBox="0 0 93 107" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M35.327 32.8396C34.2243 33.9591 34.2243 35.7742 35.327 36.8937L51.6834 53.5L35.327 70.1063C34.2243 71.2258 34.2243 73.0409 35.327 74.1604C36.4296 75.2799 38.2174 75.2799 39.3201 74.1604L57.673 55.527C58.7757 54.4075 58.7757 52.5925 57.673 51.473L39.3201 32.8396C38.2174 31.7201 36.4297 31.7201 35.327 32.8396Z" fill="#0A0A0A" />
             </svg>
           </button>
           <button onClick={() => { setChosenMethod('Pytanie o materiał') }} className={chosenMethod === 'Pytanie o materiał' ? 'active' : ''}>
-            <span>Pytanie o materiał</span>
+            <span className="anim">Pytanie o materiał</span>
             <svg width="93" height="107" viewBox="0 0 93 107" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M35.327 32.8396C34.2243 33.9591 34.2243 35.7742 35.327 36.8937L51.6834 53.5L35.327 70.1063C34.2243 71.2258 34.2243 73.0409 35.327 74.1604C36.4296 75.2799 38.2174 75.2799 39.3201 74.1604L57.673 55.527C58.7757 54.4075 58.7757 52.5925 57.673 51.473L39.3201 32.8396C38.2174 31.7201 36.4297 31.7201 35.327 32.8396Z" fill="#0A0A0A" />
             </svg>
           </button>
         </div>
         <div className="form">
-          <p>Chętnie doradzę Ci w doborze odpowiednich materiałów lub pomogę w zaprojektowaniu idealnego noża. Wypełnij formularz, aby umówić się na konsultację.</p>
+          <p className="anim">Chętnie doradzę Ci w doborze odpowiednich materiałów lub pomogę w zaprojektowaniu idealnego noża. Wypełnij formularz, aby umówić się na konsultację.</p>
           <Form subject={chosenMethod} />
         </div>
       </div>

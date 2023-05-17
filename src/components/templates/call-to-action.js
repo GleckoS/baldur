@@ -7,8 +7,8 @@ export default function CallToAction({ data: { ctaText: text, ctaLink: link } })
   return (
     <Wrapper>
       <div className="container">
-        <div>{HTMLReactParser(text)}</div>
-        <ButtonFilled href={link.url}>
+        <div className="anim">{HTMLReactParser(text)}</div>
+        <ButtonFilled href={link.url} className="anim">
           {link.title}
         </ButtonFilled>
       </div>

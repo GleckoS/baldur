@@ -7,7 +7,7 @@ import Link from "next/link"
 export default function Card({ data: { name, image, regularPrice, salePrice, acf, uri } }) {
 
   return (
-    <Wrapper className="card">
+    <Wrapper className="card anim">
       <Link href={uri} className="shop-link" />
       <div className="mobile-wrap">
         <div className="images">

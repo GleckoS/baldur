@@ -19,7 +19,34 @@ export default function Layout({ breadcrumbs, children }) {
         }
       });
     });
+
+    document.body.classList.add('animate');
+    const animElements = document.querySelectorAll('.anim');
+    let offset = 0;
+    const offsetDelay = 60;
+    function runAnimation(init) {
+      animElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * .95) {
+          if (el.classList.contains('anim-active')) {
+            offset = 0;
+          }
+          setTimeout(() => {
+            el.classList.add('anim-active');
+          }, offset);
+
+          init
+          ? rect.bottom <= 0 ? (offset = 0) : (offset += offsetDelay)
+          : offset += offsetDelay;
+        }
+      });
+    }
+    const handleScroll = (init) => requestAnimationFrame(() => runAnimation(init));
+    window.addEventListener('scroll', () => handleScroll(false));
+    handleScroll(true);
+
   }, [locationPath, orphansRegex]);
+
   return (
     <React.Fragment>
       <Header />

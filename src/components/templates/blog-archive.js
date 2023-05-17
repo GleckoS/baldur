@@ -9,12 +9,12 @@ export default function Archive({ currPage, urlBasis, categories, posts }) {
   return (
     <Wrapper>
       <div className="container">
-        <h2>Kategorie</h2>
+        <h2 className="anim">Kategorie</h2>
         <div className="flex">
           {categories.map(({ name, slug, count }) => (
             <React.Fragment key={slug + count}>
-              <Link key={slug} href={`/blog/${slug}`}>{name} ({count ? count : 0})</Link>
-              <span className="line" />
+              <Link key={slug} href={`/blog/${slug}`} className="anim">{name} ({count ? count : 0})</Link>
+              <span className="line anim" />
             </React.Fragment>
           ))}
         </div>

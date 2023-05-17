@@ -46,7 +46,7 @@ const links = [
   },
   {
     name: 'Polityka prywatności',
-    url: '/polity-prywatnosci'
+    url: '/polityka-prywatnosci'
   },
   {
     name: 'Regulamin',

@@ -6,7 +6,7 @@ export default function Hero({ data = ' ' }) {
   return (
     <Wrapper>
       <div className="container">
-        <div className="text">
+        <div className="text anim">
           {data && HTMLReactParser(data)}
         </div>
       </div>

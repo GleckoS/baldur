@@ -8,7 +8,7 @@ import ButtonFilled from "../atoms/button-filled"
 
 export default function Card({ className, index, setTransform = () => { }, data: { title, uri, excerpt, featuredImage: image } }) {
   return (
-    <Wrapper className={className}>
+    <Wrapper className={`${className} anim`}>
       <Link onFocus={() => { setTransform(index) }} href={uri} aria-label={`link do artykułu - ${title}`} />
       <div>
         <div className="image-wrap">

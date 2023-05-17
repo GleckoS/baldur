@@ -78,12 +78,19 @@ export default styled(Button)`
 
   ${props => props.mode === 'secondary' ? `
     span {
-      background-color: var(--dark-500);
+      border-color: var(--dark-500);
       color: var(--primary-500);
+      &::after{
+        background-color: var(--dark-500);
+      }
+      &::before {
+        background: var(--dark-500);
+      }
     }
-
-    :hover span {
-      background-color: var(--dark-300);
+    &:hover {
+      span {
+        color: var(--dark-500);
+      }
     }
 
     :active span {
