@@ -26,7 +26,7 @@ export default styled(OutlinedButton)`
     min-width: unset;
   }
 
-  span{
+  span {
     white-space: nowrap;
     padding: 0px 40px 4px 20px;
     font-weight: 500;
@@ -38,10 +38,10 @@ export default styled(OutlinedButton)`
     font-size: 28rem;
     letter-spacing: 0.03em;
     text-align: center;
-    transition: color var(--transition), background-color var(--transition), border-color var(--transition);
     background-color: transparent;
     border: 3px solid transparent; 
     position: relative;
+    transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1), color .4s;
 
     @media (max-width: 360px){
       font-size: clamp(0rem, ${28 / 360 * 100}vw, 28rem);
@@ -57,86 +57,82 @@ export default styled(OutlinedButton)`
       height: 124%;
       width: 3px;
       background-color: transparent;
-      transition: color var(--transition), background-color var(--transition), border-color var(--transition);
 
       @media (max-width: 480px) {
         transform: rotateZ(29deg);
       }
     }
-    
+    &::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--primary-500);
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: left top;
+      transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
   }
-
-${props => props.mode === 'secondary' ? `
-  span{
-    border-color: var(--dark-500);
-    color: var(--dark-500);
-
-    &::after{
-      background-color: var(--dark-500);
+  &:hover span {
+    &::before {
+      transform: scaleX(1) skewX(-26.4deg);
     }
   }
 
-  :hover span{
-    background-color: var(--primary-500);
-    color: var(--dark-300);
-
-    &::after{
-      background-color: var(--dark-500);
-    }
-  }
-
-  :active span{
-    background-color: var(--primary-600);
-    color: var(--dark-300);
-
-    &::after{
-      background-color: var(--dark-600);
-    }
-  }
-
-  :disabled span{
-    background-color: var(--light-900);
-    color: var(--light-900);
-
-    &::after{
-      background-color: var(--light-900);
-    }
-  }
-` : `    
-  span{
-    border-color: var(--primary-500);
-    color: var(--primary-500);
-
-    &::after{
+  ${props => props.mode === 'secondary' ? `
+    :hover span{
       background-color: var(--primary-500);
+      color: var(--dark-900);
+
+      &::after{
+        background-color: var(--dark-500);
+      }
     }
-  }
 
-  :hover span{
-    border-color: var(--primary-700);
-    color: var(--primary-700);
+    :active span{
+      background-color: var(--primary-600);
+      color: var(--dark-300);
 
-    &::after{
-      background-color: var(--primary-700);
+      &::after{
+        background-color: var(--dark-600);
+      }
     }
-  }
 
-  :active span{
-    border-color: var(--primary-900);
-    color: var(--primary-900);
-
-    &::after{
-      background-color: var(--primary-900);
-    }
-  }
-
-  :disabled span{
-    background-color: var(--light-900);
-    color: var(--light-900);
-
-    &::after{
+    :disabled span{
       background-color: var(--light-900);
+      color: var(--light-900);
+
+      &::after{
+        background-color: var(--light-900);
+      }
     }
-  }
-`}
+  ` : `    
+    span {
+      border-color: var(--primary-500);
+      color: var(--primary-500);
+      &::after{
+        background-color: var(--primary-500);
+      }
+    }
+    &:hover {
+      span {
+        color: var(--dark-900);
+      }
+    }
+    &:active span {
+      transform: scale(0.97);
+    }
+
+    :disabled span{
+      background-color: var(--light-900);
+      color: var(--light-900);
+
+      &::after{
+        background-color: var(--light-900);
+      }
+    }
+  `}
 `

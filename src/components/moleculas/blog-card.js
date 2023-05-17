@@ -90,6 +90,14 @@ const Wrapper = styled.div`
     position: absolute;
     inset: 0;
     z-index: 2;
+    &:hover ~ .button {
+      span {
+        color: var(--primary-500);
+        &::before {
+          transform: scaleX(0)
+        }
+      }
+    }
   }
 
   .text{
@@ -141,7 +149,12 @@ const Wrapper = styled.div`
     span{
       font-size: 20rem;
       clip-path: polygon(0 0,100% 0%,calc(100% - 24px) 100%,0% 100%);
-
+      &::after {
+        transform: rotateZ(25.2deg);
+      }
+      &::before {
+        transform: scaleX(1) skewX(-25.2deg);
+      }
       @media (max-width: 360px) {
         font-size: clamp(0rem, ${20 / 360 * 100}vw, 20rem);
       }
