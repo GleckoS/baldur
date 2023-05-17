@@ -8,6 +8,7 @@ import CallToAction from '@/components/templates/call-to-action'
 import Hero from '@/components/templates/hero-checkout'
 import { useCart } from 'react-use-cart'
 import Content from '@/components/templates/cart-content'
+import SimilarProducts from '@/components/templates/similar-products'
 
 export default function Cart({ cta }) {
   const {
@@ -28,6 +29,7 @@ export default function Cart({ cta }) {
       <Wrapper>
         <Hero step='1' />
         <Content data={items} />
+        <SimilarProducts data={[]}/>
         <CallToAction data={cta} />
       </Wrapper>
     </Layout>
