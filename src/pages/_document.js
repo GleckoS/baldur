@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="pl">
         <Head />
-        <body>
+        <body className='animate'>
           <Main />
           <NextScript />
         </body>
