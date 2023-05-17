@@ -11,13 +11,6 @@ import Content from '@/components/templates/cart-content'
 import SimilarProducts from '@/components/templates/similar-products'
 
 export default function Cart({ cta }) {
-  const {
-    isEmpty,
-    items,
-    updateItemQuantity,
-    removeItem,
-  } = useCart();
-
   return (
     <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep' }, { page: 'Koszyk', url: '/koszyk' }]}>
       <Head>
@@ -28,7 +21,7 @@ export default function Cart({ cta }) {
       </Head>
       <Wrapper>
         <Hero step='1' />
-        <Content data={items} />
+        <Content />
         <SimilarProducts data={[]}/>
         <CallToAction data={cta} />
       </Wrapper>

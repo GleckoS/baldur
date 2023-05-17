@@ -38,6 +38,10 @@ const GlobalStyle = createGlobalStyle`
     outline-offset: 10px; 
   }
 
+  button{
+    cursor: pointer;
+  }
+
   a{
     text-decoration: none;
   }

@@ -8,15 +8,17 @@ import LightGallery from "lightgallery/react"
 import lgZoom from 'lightgallery/plugins/zoom'
 import 'lightgallery/css/lightgallery.css'
 import 'lightgallery/css/lg-zoom.css'
+import { useCart } from "react-use-cart"
+import { toast } from "react-toastify"
 
 
-export default function Hero({ data: { stockQuantity = '1', image, galleryImages, name, regularPrice, salePrice, description = ' ', attributes } }) {
+export default function Hero({ data: { stockQuantity = '1', image, galleryImages, name, id, price, regularPrice, salePrice, description = ' ', attributes, slug } }) {
+  const { getItem, updateItemQuantity, addItem, inCart } = useCart();
 
   const [quantity, setQuantity] = useState(1)
 
   function enforceMinMax({ currentTarget: el }) {
     if (el.value == '0') {
-      // setQuantity(el.value - 10)
     } else if (el.value != "") {
       if (parseInt(el.value) < parseInt(el.min)) {
         setQuantity(el.min)
@@ -25,9 +27,22 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
       } else {
         setQuantity(el.value)
       }
-
     } else {
       setQuantity(el.value)
+    }
+  }
+
+  const clickHandler = () => {
+    if (inCart(id)) {
+      if (getItem(id).quantity !== quantity) {
+        updateItemQuantity(id, quantity)
+        toast.warn(`${name} ilość w koszyku została zaktualizowana`)
+      } else {
+        toast.warn(`${name} jest już w koszyku!`)
+      }
+    } else {
+      addItem({ id: slug, price }, quantity)
+      toast(`${name} został dodany do koszyka`)
     }
   }
 
@@ -91,7 +106,7 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
               </svg>
             </button>
             <input onBlur={() => { setQuantity(quantity === '' ? '1' : quantity) }} value={quantity} onChange={el => { enforceMinMax(el) }} type="number" min='1' max={stockQuantity} />
-            <ButtonFilled as='button'>
+            <ButtonFilled onClick={clickHandler} as='button'>
               <span>
                 Dodaj do koszyka
               </span>

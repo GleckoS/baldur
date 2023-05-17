@@ -26,7 +26,9 @@ export default function Post({ similarProducts, productCategory, cta, data, revi
         <Description data={data.acf} />
         <Reviews data={reviews} />
         <Characteristics data={data.attributes} />
-        <SimilarProducts data={similarProducts} />
+        {similarProducts.length > 0 && (
+          <SimilarProducts data={similarProducts} />
+        )}
         <CallToAction data={cta} />
       </Wrapper>
     </Layout >
@@ -48,8 +50,6 @@ export async function getServerSideProps({ params }) {
         }
         similarProducts : products(where: {category: $catSlug}, first: 4) {
           nodes {
-            id
-            uri
             ... on SimpleProduct {
               acf : product{
                 description{
@@ -58,6 +58,10 @@ export async function getServerSideProps({ params }) {
               }
               id
               name
+              slug
+              uri
+              stockQuantity
+              price(format: RAW)
               regularPrice(format: RAW)
               salePrice(format: RAW)
               image {
@@ -87,11 +91,12 @@ export async function getServerSideProps({ params }) {
           }
           excerpt
           description
-          slug
-          id
           name
           ... on SimpleProduct {
+            id
+            slug
             stockQuantity
+            price(format: RAW)
             regularPrice(format: RAW)
             salePrice(format: RAW)
             acf : product {

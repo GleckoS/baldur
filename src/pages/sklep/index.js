@@ -61,6 +61,9 @@ export async function getServerSideProps() {
                   }
                   id
                   name
+                  slug
+                  stockQuantity
+                  price(format: RAW)
                   regularPrice(format: RAW)
                   salePrice(format: RAW)
                   image {

@@ -38,6 +38,14 @@ const Wrapper = styled.section`
     justify-content: center;
     align-items: center;
 
+    @media (max-width: 480px) {
+      gap: 4px;
+    }
+
+    @media (max-width: 640px) {
+      align-items: flex-start;
+    }
+
     .step{
       display: flex;
       flex-direction: column;
@@ -45,6 +53,11 @@ const Wrapper = styled.section`
       gap: 8px;
       align-items: center;
       color: var(--primary-500);
+
+      span{
+        text-align: center;
+        font-size: clamp(12rem, ${16 / 768 * 100}vw, 16rem);
+      }
 
       svg{
         path{
@@ -63,9 +76,14 @@ const Wrapper = styled.section`
     }
 
     .line{
-      width: 90px;
+      max-width: 90px;
+      width: 100%;
       height: 0px;
       border: 2px dashed var(--primary-500);
+
+      @media (max-width: 640px) {
+        margin-top: 15px;
+      }
 
       &.active{
         border: 2px dashed var(--secondary-500);

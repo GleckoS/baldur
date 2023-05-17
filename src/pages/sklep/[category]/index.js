@@ -89,6 +89,8 @@ export async function getStaticProps({ params }) {
                 }
                 id
                 name
+                slug
+                stockQuantity
                 regularPrice(format: RAW)
                 salePrice(format: RAW)
                 image {
