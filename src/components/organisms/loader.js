@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components"
 
 export default function Loader() {
   return (
-    <Wrapper>
+    <Wrapper className="loader">
       <div className="wrap">
         <div />
         <div />

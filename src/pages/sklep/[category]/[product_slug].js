@@ -1,6 +1,5 @@
 import Layout from "../../../layout"
 import styled from "styled-components"
-import Head from "next/head"
 
 import Hero from "@/components/templates/hero-product"
 import Description from "@/components/templates/product-description"
@@ -15,12 +14,6 @@ import { gql } from "@apollo/client"
 export default function Post({ similarProducts, productCategory, cta, data, reviews }) {
   return (
     <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep/' }, { page: productCategory.name, url: `/sklep/${productCategory.slug}` }, { page: data.name, url: `/sklep/${data.slug}` }]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={data} />
         <Description data={data.acf} />

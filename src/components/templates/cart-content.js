@@ -11,7 +11,7 @@ import axios from "axios"
 import { toast } from "react-toastify"
 import Loader from "../organisms/loader"
 
-export default function Content({ setCartState }) {
+export default function Content({ }) {
   const {
     items,
     updateItemQuantity,
@@ -207,6 +207,11 @@ export default function Content({ setCartState }) {
 
 const PlaceHolder = styled.div`
   height: 80vh;
+  position: relative;
+  .loader{
+    position: absolute;
+    background-color: transparent;
+  }
 `
 
 const CheckBox = styled.label`

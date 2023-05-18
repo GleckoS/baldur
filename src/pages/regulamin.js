@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Layout from '../layout'
-import Head from 'next/head'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
@@ -10,12 +9,6 @@ import Image from 'next/image'
 export default function Kontakt({ posts, hero: { background, title }, content }) {
   return (
     <Layout breadcrumbs={[{page: 'Regulamin', url: '/regulamin/'}]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero>
           <h1>{title}</h1>

@@ -9,23 +9,6 @@ export default function PopUp({ setIsPaymentPopUpOpen, intent, orderNumber, clie
   const stripe = useStripe()
   const elements = useElements()
 
-  useEffect(() => {
-    const handleTabClose = event => {
-      axios.post("/api/cancel-intent", {
-        intent: intent,
-        orderNumber: orderNumber
-      }, {
-        headers: { "Content-Type": "application/json" },
-      })
-    };
-
-    window.addEventListener('beforeunload', handleTabClose);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleTabClose);
-    };
-  }, [])
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     if (!stripe || !elements) return;

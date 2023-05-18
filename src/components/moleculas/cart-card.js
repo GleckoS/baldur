@@ -26,6 +26,10 @@ export default function Card({ removeItem, updateItemQuantity, data }) {
       <span className="line" />
       <div className="content">
         <p className="title">{data.name}</p>
+        <div className="price">
+          {data.salePrice && <span className="discount">{data.salePrice}zł</span>}
+          <span className={data.salePrice ? 'discounted regular' : 'regular'}>{data.regularPrice}zł</span>
+        </div>
         <div className="flex">
           <span className="counter-title">Ilość sztuk:</span>
           <div className="control">
@@ -42,11 +46,7 @@ export default function Card({ removeItem, updateItemQuantity, data }) {
             </button>
           </div>
         </div>
-        <div className="flex gap">
-          <div>
-            <span className={data.salePrice ? 'discounted regular' : 'regular'}>{data.regularPrice}zł</span>
-            {data.salePrice && <span className="discount">{data.salePrice}zł</span>}
-          </div>
+        <div>
           <button className="remove" onClick={() => { removeItem(data.slug) }}>x usuń</button>
         </div>
       </div>
@@ -91,10 +91,20 @@ const Wrapper = styled.section`
   .title{
     font-size: 40rem;
     font-weight: 500;
+    margin-bottom: 20px;
     @media (max-width: 720px) {
       text-align: center;
       
       font-size: clamp(0rem, ${40 / 360 * 100}vw, 40rem);
+    }
+  }
+
+  .price{
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 720px) {
+      justify-content: center;
     }
   }
 

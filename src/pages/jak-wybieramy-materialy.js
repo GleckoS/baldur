@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Head from 'next/head'
 import Layout from '../layout'
 
 import Hero from '@/components/templates/hero-with-image'
@@ -17,12 +16,6 @@ import client from "../apollo/apollo-client"
 export default function Home({ hero, posts, reviews, categories, proces, results, categoiresData, cooperation, knifes }) {
   return (
     <Layout breadcrumbs={[{page: 'Jak wybieramy materiały', url: '/jak-wybieramy-materialy/'}]}>
-      <Head>
-        <title>Baldur - Strona Główna</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={hero} />
         <TwoColumnFlex data={proces} />

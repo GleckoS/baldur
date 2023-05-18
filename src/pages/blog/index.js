@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Layout from '../../layout'
-import Head from 'next/head'
 
 import Hero from '@/components/templates/hero-blog'
 
@@ -12,12 +11,6 @@ import { PAGE_ITEM_COUNT } from '../../constants/blog-item-counts'
 export default function Kontakt({ categories, posts, hero }) {
   return (
     <Layout breadcrumbs={[{ page: 'Blog', url: '/blog/' }]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={hero} />
         <Archive currPage='1' urlBasis='/blog' categories={categories} posts={posts} />

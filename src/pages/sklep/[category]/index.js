@@ -1,6 +1,5 @@
 import Layout from "../../../layout"
 import styled from "styled-components"
-import Head from "next/head"
 
 import ProductGrid from "@/components/templates/product-grid-category"
 import CallToAction from "@/components/templates/call-to-action"
@@ -14,12 +13,6 @@ import Hero from "@/components/templates/hero-product-category"
 export default function Category({ highlightedProducts, category, posts, reviews, cta }) {
   return (
     <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep/' }, { page: category.name, url: `/sklep/${category.slug}` }]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={category.description} />
         <ProductGrid highlightedProducts={highlightedProducts} data={category.products.nodes} />

@@ -1,6 +1,5 @@
 import Layout from "../../../layout"
 import styled from "styled-components"
-import Head from "next/head"
 
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
@@ -10,12 +9,6 @@ import Content from "@/components/templates/post-content"
 export default function Post({ page: { categories, slug, title, excerpt, featuredImage, content } }) {
   return (
     <Layout breadcrumbs={[{ page: 'Blog', url: '/blog/' }, { page: categories.nodes[0].name, url: `/blog/${categories.nodes[0].slug}` }, { page: title, url: `/blog/${categories.nodes[0].slug}/${slug}` }]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={{ title: title, text: excerpt, background: featuredImage.node }} />
         {content && <Content data={content} />}

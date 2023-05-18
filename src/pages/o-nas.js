@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Layout from '../layout'
-import Head from 'next/head'
 
 import Hero from '@/components/templates/hero-with-image'
 import TwoColumnFlex from '@/components/templates/how-it-started'
@@ -16,12 +15,6 @@ import client from "../apollo/apollo-client"
 export default function Kontakt({ posts, cta, hero, howItStarted, ourMission, ourValues, portfolio }) {
   return (
     <Layout breadcrumbs={[{page: 'O Baldur', url: '/o-nas/'}]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={hero}/> 
         <TwoColumnFlex data={howItStarted} />

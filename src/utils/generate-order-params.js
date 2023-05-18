@@ -24,7 +24,7 @@ export const generateOrderParams = (items, form) => {
       country: 'PL', // form.country
       email: form.email,
       phone: form.phone,
-      company: form.firmName,
+      company: form.forFirm ? form.firmName : '',
     },
     shipping: {
       first_name: form.name,
@@ -40,7 +40,7 @@ export const generateOrderParams = (items, form) => {
     meta_data: [
       {
         key: '_billing_nip',
-        value: form.nip
+        value: form.forFirm ? form.nip : ''
       }
     ],
     shipping_lines: [

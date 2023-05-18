@@ -1,18 +1,11 @@
 import styled from 'styled-components'
 import Layout from '../layout'
-import Head from 'next/head'
 import Success from '@/components/templates/checkout-success'
 import Error from '@/components/templates/checkout-error'
 
 export default function Result({ status, order }) {
   return (
     <Layout>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         {status === 'succeeded' ? <Success order={order}/> : <Error order={order}/>}
       </Wrapper>

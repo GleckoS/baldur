@@ -17,6 +17,10 @@ const nextConfig = {
       },
     ],
   },
+  i18n: {
+    locales: ["pl"],
+    defaultLocale: "pl",
+  },
 }
 
 module.exports = nextConfig

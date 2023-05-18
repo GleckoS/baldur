@@ -1,6 +1,5 @@
 import Layout from "../../../layout"
 import styled from "styled-components"
-import Head from "next/head"
 
 import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
@@ -10,12 +9,6 @@ import { PAGE_ITEM_COUNT } from "../../../constants/blog-item-counts"
 export default function Category({ background, category, catSlug, posts }) {
   return (
     <Layout breadcrumbs={[{ page: 'Blog', url: '/blog/' }, { page: category.name, url: `/blog/${catSlug}` }]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Archive currPage='1' urlBasis={`/blog/${catSlug}`} background={background} category={category} posts={posts} />
       </Wrapper>

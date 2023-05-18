@@ -29,11 +29,11 @@ export default function ProductGrid({ highlightedProducts, data }) {
     } else if (currentFilter === '4') {
       setItems(preSorted.sort((a, b) => a.price - b.price))
     }
-  }, [currentFilter])
+  }, [currentFilter, data])
 
   useEffect(() => {
     setItems(data.filter(el => el.name.toLowerCase().includes(search.toLowerCase())))
-  }, [search])
+  }, [search, data])
 
   return (
     <Wrapper>
@@ -52,7 +52,7 @@ export default function ProductGrid({ highlightedProducts, data }) {
             />
           </div>
           <Label className="flex anim">
-            <div className={isLoaded ? "input-wrap" : "input-wrap loading"}>
+            <div className={"input-wrap"}>
               Szukaj: <Input onChange={(e) => { setSearch(e.currentTarget.value) }} />
               <svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 100 100" enableBackground="new 0 0 0 0" xmlSpace="preserve">

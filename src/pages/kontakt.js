@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Layout from '../layout'
-import Head from 'next/head'
 
 import Faq from '@/components/templates/faq'
 import Blog from '@/components/templates/blog-slider'
@@ -12,12 +11,6 @@ import Contact from '@/components/templates/contact'
 export default function Kontakt({ posts, faq }) {
   return (
     <Layout breadcrumbs={[{page: 'Kontakt', url: '/kontakt/'}]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Contact/>
         <Faq data={faq}/>

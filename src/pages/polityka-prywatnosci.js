@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Layout from '../layout'
-import Head from 'next/head'
 
 import { gql } from "@apollo/client"
 import client from "../apollo/apollo-client"
@@ -9,12 +8,6 @@ import HTMLReactParser from 'html-react-parser'
 export default function Kontakt({ title, content }) {
   return (
     <Layout breadcrumbs={[{page: 'Polityka prywatności', url: '/polityka-prywatnosci/'}]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <div className='container'>
           <h1>{title}</h1>

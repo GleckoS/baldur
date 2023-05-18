@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Layout from '../../layout'
-import Head from 'next/head'
 
 import Hero from '@/components/templates/hero-shop'
 import Categories from '@/components/templates/categories-shop'
@@ -16,12 +15,6 @@ import Search from '@/components/templates/product-search'
 export default function Sklep({ cta, categories, posts, hero, reviews }) {
   return (
     <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep/' }]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={hero} />
         <Categories data={categories} />

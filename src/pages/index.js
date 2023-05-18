@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Head from 'next/head'
 import Layout from '../layout'
 
 import Hero from '@/components/templates/hero-homepage'
@@ -14,12 +13,6 @@ import client from "../apollo/apollo-client"
 export default function Home({ hero, aboutShop, materials, categories, baldur, posts }) {
   return (
     <Layout>
-      <Head>
-        <title>Baldur - Strona Główna</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <Hero data={hero} />
         <AboutShop data={aboutShop} />

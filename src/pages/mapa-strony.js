@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Layout from '../layout'
-import Head from 'next/head'
 import Link from 'next/link'
 
 import { gql } from "@apollo/client"
@@ -9,12 +8,6 @@ import client from "../apollo/apollo-client"
 export default function Kontakt({ posts, categories }) {
   return (
     <Layout breadcrumbs={[{page: 'Mapa strony', url: '/mapa-strony/'}]}>
-      <Head>
-        <title>Baldur - Strona Sklepu</title>
-        <meta name="description" content='Sklep internetowy Baldur' />
-        <meta name="robots" content="noindex,nofollow" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       <Wrapper>
         <div className='container'>
           <h1>Mapa strony</h1>
