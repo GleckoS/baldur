@@ -11,7 +11,7 @@ import client from "../../../apollo/apollo-client"
 import { gql } from "@apollo/client"
 import Hero from "@/components/templates/hero-product-category"
 
-export default function Category({ category, posts, reviews, cta }) {
+export default function Category({ highlightedProducts, category, posts, reviews, cta }) {
   return (
     <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep/' }, { page: category.name, url: `/sklep/${category.slug}` }]}>
       <Head>
@@ -22,7 +22,7 @@ export default function Category({ category, posts, reviews, cta }) {
       </Head>
       <Wrapper>
         <Hero data={category.description} />
-        <ProductGrid data={category.products.nodes} />
+        <ProductGrid highlightedProducts={highlightedProducts} data={category.products.nodes} />
         <CallToAction data={cta} />
         <Reviews data={reviews} />
         <Blog posts={posts.nodes} />
@@ -63,13 +63,13 @@ export async function getStaticPaths() {
         }
       }
     }),
-    fallback: false
+    fallback: 'blocking'
   }
 }
 
 export async function getStaticProps({ params }) {
   try {
-    const { data: { productCategory, posts, global } } = await client.query({
+    const { data: { highlightedProducts, productCategory, posts, global } } = await client.query({
       query: gql`
       query Category($catID: ID!) {
         productCategory(id: $catID, idType: SLUG) {
@@ -87,6 +87,7 @@ export async function getStaticProps({ params }) {
                     line
                   }
                 }
+                databaseId
                 id
                 name
                 slug
@@ -100,6 +101,34 @@ export async function getStaticProps({ params }) {
                     height
                     width
                   }
+                }
+              }
+            }
+          }
+        }
+        highlightedProducts : products(where: {featured: true}, first: 3) {
+          nodes {
+            uri
+            ... on SimpleProduct {
+              acf : product{
+                description{
+                  line
+                }
+              }
+              id
+              databaseId
+              name
+              slug
+              stockQuantity
+              price(format: RAW)
+              regularPrice(format: RAW)
+              salePrice(format: RAW)
+              image {
+                altText
+                mediaItemUrl
+                mediaDetails {
+                  height
+                  width
                 }
               }
             }
@@ -157,7 +186,8 @@ export async function getStaticProps({ params }) {
         reviews: global.reviews,
         cta: global.callToAction,
         posts: posts,
-        category: productCategory
+        category: productCategory,
+        highlightedProducts: highlightedProducts.nodes
       }
     }
   } catch (error) {

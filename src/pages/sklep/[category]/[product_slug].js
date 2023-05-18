@@ -57,6 +57,7 @@ export async function getServerSideProps({ params }) {
                 }
               }
               id
+              databaseId
               name
               slug
               uri
@@ -94,6 +95,7 @@ export async function getServerSideProps({ params }) {
           name
           ... on SimpleProduct {
             id
+            databaseId
             slug
             stockQuantity
             price(format: RAW)

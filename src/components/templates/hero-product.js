@@ -41,7 +41,7 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
         toast.warn(`${name} jest już w koszyku!`)
       }
     } else {
-      addItem({ id: slug, price }, quantity)
+      addItem({ databaseId: databaseId, id: slug, price }, quantity)
       toast(`${name} został dodany do koszyka`)
     }
   }

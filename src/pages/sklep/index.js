@@ -60,6 +60,7 @@ export async function getServerSideProps() {
                     }
                   }
                   id
+                  databaseId
                   name
                   slug
                   stockQuantity

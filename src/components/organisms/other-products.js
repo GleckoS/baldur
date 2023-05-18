@@ -2,23 +2,25 @@ import React from "react"
 import styled from "styled-components"
 import Card from "../moleculas/product-card"
 
-export default function SimilarProducts({ data, title = 'Podobne produkty' }) {
+export default function OtherProducts({ data }) {
   return (
     <Wrapper>
-      <div className="container">
-        <h2>{title}</h2>
-        <Grid>
-          {data.map((product, index) => (
-            <Card data={product} key={index} />
-          ))}
-        </Grid>
-      </div>
+      <h2>Zamiast tego polecamy...</h2>
+      <Grid>
+        {data.map((product, index) => (
+          <Card data={product} key={index} />
+        ))}
+      </Grid>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
-  margin-top: 120px;
+  margin-top: 160px;
+
+  h2{
+    text-align: left !important;
+  }
 `
 
 const Grid = styled.div`

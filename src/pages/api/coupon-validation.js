@@ -1,6 +1,6 @@
-import WooCommerceAPI from "@woocommerce/woocommerce-rest-api";
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
-const wooCommerce = new WooCommerceAPI({
+const wooCommerce = new WooCommerceRestApi({
   url: "https://baldur.headlesshub.com",
   consumerKey: "ck_29847299c7c95fddb6ab84acc604aa3ebc20c573",
   consumerSecret: "cs_e2618792ffcbee46cbd26eec2c06e7f55ea7bbe6",

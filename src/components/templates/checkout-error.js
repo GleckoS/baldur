@@ -1,6 +1,6 @@
 import ButtonFilled from '@/components/atoms/button-filled'
 
-export default function Error({ data }) {
+export default function Error({ order }) {
   return (
     <div className='container'>
       <svg className="background error" width="653" height="709" viewBox="0 0 653 709" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +14,7 @@ export default function Error({ data }) {
       <div className='content'>
         <h1>PŁATNOŚĆ NIEUDANA</h1>
         <p className='text'>
-          ZAMÓWIENIE NR: <strong>{`123123`}</strong><br />
+          ZAMÓWIENIE NR: <strong>{order}</strong><br />
             NIESTETY PŁATNOŚĆ NIEUDANA, prosimy spróbuj ponownie.
         </p>
         <ButtonFilled href='/'>

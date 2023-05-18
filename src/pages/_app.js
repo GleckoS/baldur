@@ -6,6 +6,7 @@ import '@/styles/normalize.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function App({ Component, pageProps }) {
+  debugger
   return (
     <React.Fragment>
       <GlobalStyle />

@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Success from '@/components/templates/checkout-success'
 import Error from '@/components/templates/checkout-error'
 
-export default function Result({ status }) {
+export default function Result({ status, order }) {
   return (
     <Layout>
       <Head>
@@ -14,7 +14,7 @@ export default function Result({ status }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        {status ? <Success /> : <Error />}
+        {status === 'succeeded' ? <Success order={order}/> : <Error order={order}/>}
       </Wrapper>
     </Layout>
   )
@@ -115,6 +115,6 @@ const Wrapper = styled.main`
   }
 `
 
-export async function getServerSideProps() {
-  return { props: {} }
+export async function getServerSideProps({ query: { status, order } }) {
+  return { props: { status, order } }
 }

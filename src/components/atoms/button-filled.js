@@ -39,6 +39,10 @@ export default styled(Button)`
     letter-spacing: 0.03em;
     text-align: center;
     transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+
+    @media (max-width: 360px){
+      font-size: clamp(0rem, ${28 / 360 * 100}vw, 28rem);
+    }
   }
 
   ${props => props.mode === 'secondary' ? `

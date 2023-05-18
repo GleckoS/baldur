@@ -82,7 +82,10 @@ export default function Search() {
               </circle>
             </svg >
           </div>
-          <Results className={arr.length > 0 ? 'active' : ''}>
+          <Results className={isLoaded && search ? 'active' : ''}>
+            {arr.length === 0 && (
+              <p>Niestety <b>nie znaleziono</b> tego, czego szukasz</p>
+            )}
             {arr.map((el, index) => (
               <Link key={el.name + index} className="item" href={el.uri}>
                 <div className="images">
@@ -153,6 +156,10 @@ const Results = styled.div`
   transition: opacity .3s ease-out;
   display: grid;
   gap: 4px;
+
+  b{
+    color: var(--secondary-500);
+  }
 
   .item{
     color: var(--dark-500);

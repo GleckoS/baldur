@@ -9,8 +9,9 @@ import { useCart } from "react-use-cart"
 import { Input } from "../atoms/input"
 import axios from "axios"
 import { toast } from "react-toastify"
+import Loader from "../organisms/loader"
 
-export default function Content() {
+export default function Content({ setCartState }) {
   const {
     items,
     updateItemQuantity,
@@ -26,19 +27,21 @@ export default function Content() {
 
   useEffect(() => {
     const discount = JSON.parse(localStorage.getItem('discount'))
-    axios.put('/api/coupon-validation', { code: discount.code })
-      .then(({ data }) => {
-        if (data.code) {
-          setDiscount(data)
-          setDiscountInputValue(discount.code)
-          setIsDiscountVisible(true)
-        } else {
-          setDiscount(null)
-        }
-      })
+    if (discount) {
+      axios.put('/api/coupon-validation', { code: discount.code })
+        .then(({ data }) => {
+          if (data.code) {
+            setDiscount(data)
+            setDiscountInputValue(discount.code)
+            setIsDiscountVisible(true)
+          } else {
+            setDiscount(null)
+          }
+        })
+    }
   }, [])
 
-  const validateCoupon = async () => {
+  const validateCoupon = async (discountInputValue) => {
     if (!discountInputValue) return toast('Wpisz kod rabatowy')
     axios.put('/api/coupon-validation', { code: discountInputValue })
       .then(({ data }) => {
@@ -114,14 +117,14 @@ export default function Content() {
         setSum(currentSum)
         setLoading(false)
       } else {
-        setRenderedItems([products.nodes])
+        setRenderedItems([])
         setLoading(false)
       }
     })()
   }, [items])
 
   if (loading)
-    return <div className="container">loading...</div>
+    return <PlaceHolder><Loader /> </PlaceHolder>
 
   return (
     <Wrapper>
@@ -169,16 +172,16 @@ export default function Content() {
               <span>PRODUKTY:</span>
               <span>{sum}&nbsp;zł</span>
             </div>
-            <div className="flex">
-              <span>WYSYŁKA:</span>
-              <span>20&nbsp;zł</span>
-            </div>
             {discount && (
               <div className="flex">
                 <span>KOD RABATOWY ({discount.code}):</span>
                 <span>{Math.round(Number(discount.amount))}&nbsp;{discount.discount_type === "percent" ? '%' : 'zł'}</span>
               </div>
             )}
+            <div className="flex">
+              <span>WYSYŁKA:</span>
+              <span>20&nbsp;zł</span>
+            </div>
             <div className="flex">
               <span>RAZEM:</span>
               <span>{(() => {
@@ -201,6 +204,10 @@ export default function Content() {
     </Wrapper>
   )
 }
+
+const PlaceHolder = styled.div`
+  height: 80vh;
+`
 
 const CheckBox = styled.label`
   display: grid;

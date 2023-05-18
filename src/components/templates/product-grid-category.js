@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Card from "../moleculas/product-card"
 import { Input } from "../atoms/input"
 import Select from 'react-select'
+import OtherProducts from "../organisms/other-products"
 
 const options = [
   { value: '1', label: 'Najnowsze' },
@@ -11,10 +12,9 @@ const options = [
   { value: '4', label: 'Cena: on najniższej' }
 ]
 
-export default function ProductGrid({ data }) {
+export default function ProductGrid({ highlightedProducts, data }) {
 
   const [items, setItems] = useState(data)
-  const [isLoaded, setIsLoaded] = useState(true)
   const [currentFilter, setCurrentFilter] = useState(options[0].value)
   const [search, setSearch] = useState('')
 
@@ -91,9 +91,12 @@ export default function ProductGrid({ data }) {
             ))}
           </div>
         ) : (
-          <p className="not-found">
-            Niestety <b>nie znaleziono</b> tego, czego szukasz
-          </p>
+          <div className="not-found">
+            <p>Niestety <b>nie znaleziono</b> tego, czego szukasz</p>
+            {highlightedProducts.length > 0 && (
+              <OtherProducts data={highlightedProducts} />
+            )}
+          </div>
         )}
       </div>
     </Wrapper>
@@ -104,17 +107,19 @@ const Wrapper = styled.section`
   margin-top: clamp(60px, ${80 / 768 * 100}vw, 110px);
 
   .not-found{
-    text-align: center;
-    font-size: clamp(24rem, ${32 / 768 * 100}vw, 32rem);
-    text-align: center;
-    margin-top: 65px;
+    >p{
+      text-align: center;
+      font-size: clamp(24rem, ${32 / 768 * 100}vw, 32rem);
+      text-align: center;
+      margin-top: 65px;
 
-    @media (max-width: 360px) {
-      font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
-    }
+      @media (max-width: 360px) {
+        font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
+      }
 
-    b{
-      color: var(--secondary-500);
+      b{
+        color: var(--secondary-500);
+      }
     }
   }
 

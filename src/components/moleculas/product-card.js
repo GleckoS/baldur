@@ -7,7 +7,7 @@ import { useCart } from "react-use-cart";
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
-export default function Card({ data: { slug, id, name, image, price, regularPrice, salePrice, acf, uri } }) {
+export default function Card({ data: { slug, databaseId, name, image, price, regularPrice, salePrice, acf, uri } }) {
   const { addItem, inCart } = useCart();
   const router = useRouter();
 
@@ -16,7 +16,7 @@ export default function Card({ data: { slug, id, name, image, price, regularPric
   const clickHandler = () => {
     if (!inCart(slug)) {
 
-      addItem({ id: slug, price }, 1)
+      addItem({ databaseId: databaseId, id: slug, price }, 1)
       toast(`Dodano ${name} do koszyka`)
 
     } else if (!isErrorShowed) {
