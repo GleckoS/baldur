@@ -26,7 +26,8 @@ export default styled(Button)`
     min-width: unset;
   }
   
-  span{
+  span {
+    position: relative;
     white-space: nowrap;
     padding: 0px 40px 4px 20px;
     font-weight: 500;
@@ -38,24 +39,64 @@ export default styled(Button)`
     font-size: 28rem;
     letter-spacing: 0.03em;
     text-align: center;
-    transition: color var(--transition), background-color var(--transition), border-color var(--transition);
-
+    border: 3px solid transparent; 
+    transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1), color .4s;
     @media (max-width: 360px){
       font-size: clamp(0rem, ${28 / 360 * 100}vw, 28rem);
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      right: -2px;
+      top: -1px;
+      transform-origin: 100% 0;
+      transform: rotateZ(26.4deg);
+      height: 124%;
+      width: 3px;
+      background-color: transparent;
+      @media (max-width: 480px) {
+        transform: rotateZ(29deg);
+      }
+    }
+    &::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--primary-500);
+      z-index: -1;
+      transform: scaleX(1) skewX(-26.4deg);
+      transform-origin: left top;
+      transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  }
+
+  &:hover span {
+    &::before {
+      transform: scaleX(0)
     }
   }
 
   ${props => props.mode === 'secondary' ? `
-    span{
-      background-color: var(--dark-500);
+    span {
+      border-color: var(--dark-500);
       color: var(--primary-500);
+      &::after{
+        background-color: var(--dark-500);
+      }
+      &::before {
+        background: var(--dark-500);
+      }
+    }
+    &:hover {
+      span {
+        color: var(--dark-500);
+      }
     }
 
-    :hover span{
-      background-color: var(--dark-300);
-    }
-
-    :active span{
+    :active span {
       background-color: var(--primary-500);
       color: var(--primary-700);
     }
@@ -64,22 +105,25 @@ export default styled(Button)`
       background-color: var(--dark-300);
       color: var(--light-900);
     }
-  ` : `    
-    span{
-      background-color: var(--primary-500);
-      color: var(--dark-500);
+  ` : `
+    span {
+      border-color: var(--primary-500);
+      color: var(--dark-900);
+      &::after{
+        background-color: var(--primary-500);
+      }
+    }
+    &:hover {
+      span {
+        color: var(--primary-500);
+      }
     }
 
-    :hover span{
-      background-color: var(--primary-100);
+    :active span {
+      transform: scale(0.97);
     }
 
-    :active span{
-      background-color: var(--primary-600);
-      color: var(--dark-500);
-    }
-
-    :disabled span{
+    :disabled span {
       background-color: var(--light-700);
       color: var(--dark-200);
     }

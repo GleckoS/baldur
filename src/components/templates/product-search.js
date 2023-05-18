@@ -50,7 +50,7 @@ export default function Search() {
 
   return (
     <Wrapper>
-      <div className="container">
+      <div className="container anim">
         <Label>
           <div className={isLoaded ? "input-wrap" : "input-wrap loading"}>
             Szukaj: <Input onChange={(e) => { setSearch(e.currentTarget.value) }} />

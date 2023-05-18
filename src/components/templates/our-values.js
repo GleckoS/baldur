@@ -5,15 +5,15 @@ import styled from "styled-components"
 export default function OurValues({ data: { title, text } }) {
   return (
     <Wrapper>
-      <div className="container">
+      <div className="container anim animNotTransform">
         <div>
-          <h2>{title}</h2>
-          <div>
+          <h2 className="anim">{title}</h2>
+          <div className="anim">
             {HTMLReactParser(text)}
           </div>
         </div>
         <VideoWrap>
-          <video src="/fire.mp4" type="video/mp4" autoPlay loop muted playsInline />
+          <video src="/fire.mp4" type="video/mp4" autoPlay loop muted playsInline className="anim animNotTransform"/>
         </VideoWrap>
       </div>
     </Wrapper>

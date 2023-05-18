@@ -10,7 +10,7 @@ export default function Slider({ items }) {
         {items.map((image, index) => (
           <Image
             key={index}
-            className="image"
+            className="image anim"
             src={image.mediaItemUrl}
             alt={image.altText}
             width={image.mediaDetails.width}
@@ -18,7 +18,7 @@ export default function Slider({ items }) {
           />
         ))}
       </Grid>
-      <Control>
+      <Control className="anim">
         <button disabled={transform <= 0} aria-label={`poprzedni artykuł`} onClick={() => { setTransform(transform <= 0 ? 0 : transform - 1) }} className="arrow">
           <svg width="22" height="41" viewBox="0 0 22 41" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M21.2419 39.7629C22.2527 38.7248 22.2527 37.0416 21.2419 36.0034L6.24855 20.604L21.2419 5.20456C22.2527 4.16642 22.2527 2.48326 21.2419 1.44511C20.2312 0.406967 18.5924 0.406967 17.5816 1.44511L0.758076 18.7243C-0.252693 19.7624 -0.252693 21.4456 0.758075 22.4837L17.5816 39.7629C18.5924 40.801 20.2312 40.801 21.2419 39.7629Z" fill="#000000" />

@@ -41,7 +41,7 @@ export default function Card({ data: { slug, databaseId, name, image, price, reg
   }
 
   return (
-    <Wrapper className="card">
+    <Wrapper className="card anim">
       <Link href={uri} className="shop-link" />
       <div className="mobile-wrap">
         <div className="images">

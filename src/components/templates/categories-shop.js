@@ -6,11 +6,11 @@ export default function Categories({ data }) {
   return (
     <Wrapper>
       <div className="container">
-        <h2>Kategorie</h2>
-        <p className="big-text">Sprawdź dostępne kategorie produktów. </p>
+        <h2 className="anim">Kategorie</h2>
+        <p className="big-text anim">Sprawdź dostępne kategorie produktów. </p>
         <Grid>
           {data.map((category, index) => (
-            <ButtonFilled key={category.slug + index} href={`/sklep/${category.slug}`}>
+            <ButtonFilled key={category.slug + index} href={`/sklep/${category.slug}`} className="anim">
               {category.name}
             </ButtonFilled>
           ))}

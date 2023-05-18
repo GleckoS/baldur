@@ -39,7 +39,7 @@ export default function ProductGrid({ highlightedProducts, data }) {
     <Wrapper>
       <div className="container">
         <Filters>
-          <div className="flex">
+          <div className="flex anim">
             <span>Sortuj:</span>
             <Select
               onChange={(e) => { setCurrentFilter(e.value) }}
@@ -51,7 +51,7 @@ export default function ProductGrid({ highlightedProducts, data }) {
               defaultValue={options[0]}
             />
           </div>
-          <Label className="flex">
+          <Label className="flex anim">
             <div className={isLoaded ? "input-wrap" : "input-wrap loading"}>
               Szukaj: <Input onChange={(e) => { setSearch(e.currentTarget.value) }} />
               <svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

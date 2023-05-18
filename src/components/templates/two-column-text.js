@@ -6,13 +6,13 @@ export default function TwoColumnText({ data: { title, leftText, rightText } }) 
   return (
     <Wrapper>
       <div className="container">
-        <h2>{title}</h2>
+        <h2 className="anim">{title}</h2>
         <div className="flex">
           <div>
-            <div>{HTMLReactParser(leftText)}</div>
+            <div className="anim">{HTMLReactParser(leftText)}</div>
           </div>
           <div>
-            <div>{HTMLReactParser(rightText)}</div>
+            <div className="anim">{HTMLReactParser(rightText)}</div>
           </div>
         </div>
       </div>

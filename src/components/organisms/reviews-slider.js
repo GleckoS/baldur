@@ -9,7 +9,7 @@ export default function Slider({ data }) {
   const [chosenReview, setChosenReview] = useState(1)
 
   return (
-    <Wrapper>
+    <Wrapper className="anim">
       <Slides chosen={chosenReview} count={data.length}>
         {data.map((item, index) => (
           <div className={index === chosenReview ? "slide active" : "slide"} key={index}>

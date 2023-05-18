@@ -8,12 +8,12 @@ export default function TwoColumnFlex({ data: { image, title, text } }) {
     <Wrapper>
       <div className="container">
         <Content>
-          <h2>{title}</h2>
-          <div className="text">
+          <h2 className="anim">{title}</h2>
+          <div className="text anim">
             {HTMLReactParser(text)}
           </div>
         </Content>
-        <ImageWrapper width={image.mediaDetails.width} minHeight={image.mediaDetails.height}>
+        <ImageWrapper width={image.mediaDetails.width} minHeight={image.mediaDetails.height} className="anim animNotTransform">
           <ImageBox>
             <Image
               className="image"

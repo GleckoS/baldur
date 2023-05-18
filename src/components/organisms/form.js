@@ -34,26 +34,26 @@ export default function Form({ subject }) {
 
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
-      <label>
+      <label className="anim">
         <span className="label-text">Imię</span>
         <input {...register("name", { required: true, minLength: 3 })} />
         {errors.name && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
-      <label>
+      <label className="anim">
         <span className="label-text">E-mail</span>
         <input {...register("mail", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
         {errors.mail && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
-      <label>
+      <label className="anim">
         <span className="label-text">Temat</span>
         <input {...register("theme", { required: true, minLength: 3 })} />
         {errors.theme && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
-      <label>
+      <label className="anim">
         <span className="label-text">Opis</span>
         <textarea rows='6' {...register("description")} />
       </label>
-      <label className="check">
+      <label className="check anim">
         <input type='checkbox' {...register("check", { required: true })} />
         <span className="box">
           <svg className="left" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +67,7 @@ export default function Form({ subject }) {
         {errors.check && <span className="error">To pole jest obowiązkowe do uzupełnienia</span>}
       </label>
 
-      <ButtonOutlined className='button' as='button'>
+      <ButtonOutlined className='button anim' as='button'>
         <span>
           WYŚLIJ
         </span>

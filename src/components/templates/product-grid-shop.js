@@ -9,13 +9,13 @@ export default function ProductGrid({ data }) {
       <div className="container">
         {data.filter(el => el.products.nodes.length > 0).map((category, index) => (
           <div className="row" key={index}>
-            <h2>{category.name}</h2>
+            <h2 className="anim">{category.name}</h2>
             <div className="grid">
               {category.products.nodes.map((product, index) => (
                 <Card key={index} data={product} />
               ))}
             </div>
-            <Link className="show-more" href={`/sklep/${category.slug}`}>{'Zobacz więcej >'}</Link>
+            <Link className="show-more anim" href={`/sklep/${category.slug}`}>{'Zobacz więcej >'}</Link>
           </div>
         ))}
       </div>

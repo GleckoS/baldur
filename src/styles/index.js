@@ -146,6 +146,33 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
   }
 
+  .rune {
+    overflow: visible;
+    path {
+      fill: #ffffff10;
+      stroke: #ba7b31;
+      stroke-width: 1px;
+      filter: drop-shadow(0px 0px 8px #ba7b31);
+      animation: rune 3s infinite;
+    }
+    @keyframes rune {
+       0%, 100% {
+        opacity: .4;
+      }
+      25% {
+        opacity: 0.6;
+      }
+      
+      50%, 75% {
+        opacity: 1;
+      }
+      
+      37.5%, 62.5% {
+        opacity: 0.8;
+      }
+    }
+  }
+
   h1 {
     font-family: var(--title);
     font-size: clamp(32rem, ${40 / 768 * 100}vw, 60rem);
@@ -219,6 +246,28 @@ const GlobalStyle = createGlobalStyle`
       font-size: clamp(0rem, ${24 / 360 * 100}vw, 24rem);
     }
   }
+
+
+  @media not all and (prefers-reduced-motion: reduce) {
+    body.animate {
+      .anim {
+        opacity: 0;
+        transform-origin: left;
+        &.anim-active {
+          opacity: 1;
+          transition: transform .8s, opacity .8s;
+          transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        &:not(.animNotTransform) {
+          transform: translateX(-5px);
+          &.anim-active {
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+  }
+
 `
 
 export default GlobalStyle

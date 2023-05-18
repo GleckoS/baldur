@@ -8,27 +8,27 @@ export default function Portfolio({ data: { title, leftText, rightText, secondTi
   return (
     <Wrapper>
       <div className="container">
-        <h2>{title}</h2>
+        <h2 className="anim">{title}</h2>
         <div className="flex">
           <div>
-            <div>{HTMLReactParser(leftText)}</div>
+            <div className="anim">{HTMLReactParser(leftText)}</div>
           </div>
           <div>
-            <div>{HTMLReactParser(rightText)}</div>
+            <div className="anim">{HTMLReactParser(rightText)}</div>
           </div>
         </div>
       </div>
       <PortfolioPreview>
         <Image
-          className="image"
+          className="image anim animNotTransform"
           src={background.mediaItemUrl}
           alt={background.altText}
           width={background.mediaDetails.width}
           height={background.mediaDetails.height}
         />
-        <h2 className="title">{secondTitle}</h2>
+        <h2 className="title anim">{secondTitle}</h2>
       </PortfolioPreview>
-      <div className="container">
+      <div className="container anim">
         <Slider images={gallery} />
       </div>
     </Wrapper>

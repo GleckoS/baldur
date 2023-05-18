@@ -46,7 +46,7 @@ const links = [
   },
   {
     name: 'Polityka prywatności',
-    url: '/polity-prywatnosci'
+    url: '/polityka-prywatnosci'
   },
   {
     name: 'Regulamin',
@@ -67,7 +67,9 @@ export default function Footer() {
     <Wrapper>
       <div className="container">
         <div className="inform">
-          <Logo />
+          <Link href="/" aria-label="Strona główna">
+            <Logo />
+          </Link>
           <p>
             Jarasz się nożami tak samo jak my? Sprawdź, jakie <Link href='/sklep/'>produkty</Link> mamy dla Ciebie.
             Chcesz pogadać? <Link href='/kontakt'>Skontaktuj się</Link> z nami.
