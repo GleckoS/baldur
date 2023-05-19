@@ -68,8 +68,11 @@ const PortfolioPreview = styled.div`
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
     font-size: 48rem;
+    transform: translateX(-55%) !important;
+    &.anim-active{
+      transform: translateX(-50%) !important;
+    }
 
     @media (max-width: 480px) {
       margin-bottom: 0;

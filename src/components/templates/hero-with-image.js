@@ -74,10 +74,12 @@ const Background = styled.div`
   position: absolute;
   z-index: -1;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 0;
   overflow: hidden;
+  max-width: 1440px;
+  width: 100%;
 
   @media (max-width: 480px) {
     bottom: unset;
