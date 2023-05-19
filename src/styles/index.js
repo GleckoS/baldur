@@ -268,6 +268,23 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .Toastify__toast {
+    background-color: var(--primary-500) !important;
+  }
+
+  .Toastify__progress-bar{
+    background: var(--secondary-500) !important;
+  }
+
+  .Toastify__toast-body{
+    font-size: 16rem;
+    color: var(--dark-500);
+  }
+
+  .Toastify__toast-icon{
+    display: none;
+  }
+
 `
 
 export default GlobalStyle

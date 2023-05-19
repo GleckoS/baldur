@@ -41,6 +41,10 @@ const Wrapper = styled.section`
       text-transform: uppercase;
       clip-path: polygon(0 0,100% 0%,calc(100% - 24px) 100%,0% 100%);
 
+      &::after{
+        transform: rotateZ(25deg);
+      }
+
       @media (max-width: 360px) {
         font-size: clamp(0rem , ${20 / 360 * 100}vw,20rem);
       }

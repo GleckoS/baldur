@@ -20,14 +20,15 @@ export default function Card({ data: { slug, databaseId, name, image, price, reg
       toast(`Dodano ${name} do koszyka`)
 
     } else if (!isErrorShowed) {
-      toast.warn(`Ten przedmiot już jest w koszyku!`, { autoClose: 3000 })
+      toast.warn(`Ten przedmiot już jest w koszyku!`, { toastId: `already-in-cart-${slug}` })
 
       toast.onChange((e) => {
         if (e.status === "added") {
           setIsErrorShowed(e.id)
         }
-        if (e.status === "removed" && e.id === isErrorShowed)
+        if (e.status === "removed" && e.id === isErrorShowed) {
           setIsErrorShowed(false)
+        }
       })
 
     }

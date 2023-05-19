@@ -12,7 +12,7 @@ import { useCart } from "react-use-cart"
 import { toast } from "react-toastify"
 
 
-export default function Hero({ data: { stockQuantity = '1', image, galleryImages, name, id, price, regularPrice, salePrice, description = ' ', attributes, slug } }) {
+export default function Hero({ data: { stockQuantity = '1', image, galleryImages, name, id, price, regularPrice, salePrice, databaseId, description = ' ', attributes, slug } }) {
   const { getItem, updateItemQuantity, addItem, inCart } = useCart();
 
   const [quantity, setQuantity] = useState(1)
@@ -33,12 +33,12 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
   }
 
   const clickHandler = () => {
-    if (inCart(id)) {
-      if (getItem(id).quantity !== quantity) {
-        updateItemQuantity(id, quantity)
+    if (inCart(slug)) {
+      if (getItem(slug).quantity !== quantity) {
+        updateItemQuantity(slug, quantity)
         toast.warn(`${name} ilość w koszyku została zaktualizowana`)
       } else {
-        toast.warn(`${name} jest już w koszyku!`)
+        toast.warn(`${name} jest już w koszyku!`, { toastId: 'already-in-cart' })
       }
     } else {
       addItem({ databaseId: databaseId, id: slug, price }, quantity)
@@ -95,12 +95,12 @@ export default function Hero({ data: { stockQuantity = '1', image, galleryImages
             })}
           </div>
           <div className="counter">
-            <button onClick={() => { setQuantity(quantity >= stockQuantity ? stockQuantity : quantity + 1) }} className="up">
+            <button disabled={quantity >= stockQuantity} onClick={() => { setQuantity(quantity >= stockQuantity ? stockQuantity : quantity + 1) }} className="up">
               <svg width="30" height="16" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M1.06626 15.4487C1.82127 16.1838 3.04539 16.1838 3.80041 15.4487L15 4.5444L26.1996 15.4487C26.9546 16.1838 28.1787 16.1838 28.9337 15.4487C29.6888 14.7136 29.6888 13.5217 28.9337 12.7866L16.3671 0.551329C15.6121 -0.183775 14.3879 -0.183775 13.6329 0.551328L1.06626 12.7866C0.311247 13.5217 0.311247 14.7136 1.06626 15.4487Z" fill="#EDE2E2" />
               </svg>
             </button>
-            <button onClick={() => { setQuantity(quantity <= 1 ? 1 : quantity - 1) }} className="down">
+            <button disabled={quantity <= 1} onClick={() => { setQuantity(quantity <= 1 ? 1 : quantity - 1) }} className="down">
               <svg width="30" height="16" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M28.9337 0.551331C28.1787 -0.183774 26.9546 -0.183774 26.1996 0.55133L15 11.4556L3.80041 0.551328C3.04539 -0.183777 1.82127 -0.183777 1.06626 0.551327C0.311247 1.28643 0.311247 2.47827 1.06626 3.21338L13.6329 15.4487C14.3879 16.1838 15.6121 16.1838 16.3671 15.4487L28.9337 3.21338C29.6888 2.47828 29.6888 1.28643 28.9337 0.551331Z" fill="#EDE2E2" />
               </svg>
@@ -157,6 +157,19 @@ const Wrapper = styled.section`
       gap: 16px;
       margin-top: 80px;
       position: relative;
+
+      .up, .down{
+        cursor: pointer;
+        transition: opacity .2s ease-out;
+        opacity: 0.8;
+        &:hover{
+          opacity: 1;
+        }
+        &:disabled{
+          opacity: 0.2;
+          cursor: default;
+        }
+      }
 
       @media (max-width: 864px) {
         width: fit-content;

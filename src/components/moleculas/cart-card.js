@@ -1,9 +1,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
+import { toast } from "react-toastify"
 import styled from "styled-components"
 
 export default function Card({ removeItem, updateItemQuantity, data }) {
+
+  const removeHandler = () => {
+    removeItem(data.slug)
+    toast(`Usunięto ${data.name} z koszyka`)
+  }
+
   return (
     <Wrapper>
       <ImageBox href={data.uri}>
@@ -47,7 +54,7 @@ export default function Card({ removeItem, updateItemQuantity, data }) {
           </div>
         </div>
         <div>
-          <button className="remove" onClick={() => { removeItem(data.slug) }}>x usuń</button>
+          <button className="remove" onClick={removeHandler}>x usuń</button>
         </div>
       </div>
     </Wrapper>
@@ -145,6 +152,21 @@ const Wrapper = styled.section`
       grid-template-columns: 45px 50px 45px;
       align-items: center;
       text-align: center;
+
+      
+
+      button{
+        cursor: pointer;
+        transition: opacity .2s ease-out;
+        opacity: 0.8;
+        &:hover{
+          opacity: 1;
+        }
+        &:disabled{
+          opacity: 0.2;
+          cursor: default;
+        }
+      }
     }
   }
 

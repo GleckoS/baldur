@@ -49,6 +49,7 @@ export default function ProductGrid({ highlightedProducts, data }) {
               classNamePrefix="select"
               options={options}
               defaultValue={options[0]}
+              menuIsOpen={true}
             />
           </div>
           <Label className="flex anim">

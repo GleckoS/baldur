@@ -74,6 +74,7 @@ export default function Process() {
         setPaymentIntent(res.data.id)
       })
       .catch((err) => {
+        setIsPaymentPopUpOpen(false)
         toast.error('Problem pod czas tworzenia bramki płatności. Spróbuj ponownie. Jeśli problem będzie się powtarzał, skontaktuj się z nami.')
       })
   }
@@ -87,13 +88,13 @@ export default function Process() {
         createIntent(sum, form.paymentMethod, res.data.orderId)
       })
       .catch((err) => {
+        setIsPaymentPopUpOpen(false)
         toast.error('Nie udało się utworzyć zamówienia. Spróbuj ponownie. Jeśli problem będzie się powtarzał, skontaktuj się z nami.')
       })
   }
 
   const paymentHandler = async () => {
     setIsPaymentPopUpOpen(true)
-
     createOrder(items, form, totalSum)
   }
 

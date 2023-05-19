@@ -173,9 +173,16 @@ const Slides = styled.div`
     background: #0A0A0A;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+    cursor: grab;
+
+    :active{
+      cursor: grabbing;
+    }
+
     .text,.marks,.content{
       transition: opacity .3s ease-out;
       opacity: 0;
+      user-select: none;
     }
     &.active{
       .text,.marks,.content{

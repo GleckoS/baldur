@@ -13,9 +13,9 @@ export default function Search() {
   const [isLoaded, setIsLoaded] = useState(true)
 
   useEffect(() => {
-    if (search.length > 0) {
-      getData()
+    if (search.length > 2) {
       setIsLoaded(false)
+      getData()
     } else {
       setArr([])
     }
@@ -83,8 +83,11 @@ export default function Search() {
             </svg >
           </div>
           <Results className={isLoaded && search ? 'active' : ''}>
-            {arr.length === 0 && (
+            {(arr.length === 0 && search.length > 2 && isLoaded) && (
               <p>Niestety <b>nie znaleziono</b> tego, czego szukasz</p>
+            )}
+            {search.length < 3 && (
+              <p>Wpisz <b>co najmniej</b> 3 znaki</p>
             )}
             {arr.map((el, index) => (
               <Link key={el.name + index} className="item" href={el.uri}>
