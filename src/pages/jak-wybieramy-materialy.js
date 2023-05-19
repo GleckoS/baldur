@@ -32,8 +32,8 @@ export default function Home({ hero, posts, reviews, categories, proces, results
 
 const Wrapper = styled.main`
   overflow: hidden;
-  padding-bottom: 30px;
-  margin-bottom: -30px;
+  margin-bottom: calc(-1 * clamp(80px, ${220 / 1440 * 100}vw, 220px));
+  padding-bottom: clamp(80px, ${220 / 1440 * 100}vw, 220px);
 `
 
 export async function getStaticProps() {

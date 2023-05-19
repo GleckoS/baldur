@@ -2,11 +2,13 @@ import Image from "next/image"
 import React from "react"
 import styled from "styled-components"
 import HTMLReactParser from "html-react-parser"
+import { RunesY } from "../atoms/rune-y"
 
 export default function TwoColumnFlex({ data: { image, title, text } }) {
   return (
     <Wrapper>
       <div className="container">
+        <RunesY/>
         <Content>
           <h2 className="anim">{title}</h2>
           <div className="text anim">
@@ -36,8 +38,8 @@ const Wrapper = styled.section`
 
   .rune{
     position: absolute;
-    right: 0;
-    bottom: -70px;
+    left: -10px;
+    bottom: 40px;
 
     @media (max-width: 864px){
       bottom: 50%;

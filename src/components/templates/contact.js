@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import Form from "../organisms/form"
+import { RunesB } from "../atoms/rune-b"
+import { RunesT } from "../atoms/rune-t"
 
 export default function Contact({ data }) {
 
@@ -9,6 +11,8 @@ export default function Contact({ data }) {
   return (
     <Wrapper>
       <div className="container">
+        <RunesB className='first-rune' />
+        <RunesT className='second-rune' />
         <div className="methods">
           <button onClick={() => { setChosenMethod('Customowy nóż') }} className={chosenMethod === 'Customowy nóż' ? 'active' : ''}>
             <span className="anim">Customowy nóż</span>
@@ -36,13 +40,26 @@ export default function Contact({ data }) {
       </div>
     </Wrapper>
   )
-} 
+}
 
 const Wrapper = styled.section`
   margin-top: clamp(20px, ${60 / 864 * 100}vw , 100px);
 
+  .first-rune{
+    top: -30px;
+    right: -20px; 
+    position: absolute;
+  }
+
+  .second-rune{
+    bottom: -120px;
+    left: 0px; 
+    position: absolute;
+  }
+
   .container{
     display: grid;
+    position: relative;
     grid-template-columns: auto 1fr;
 
     @media (max-width: 864px) {
@@ -126,6 +143,7 @@ const Wrapper = styled.section`
     padding: 40px 60px;
     background: var(--dark-500);
     border: 2px solid #EDE2E2;
+    z-index: 2;
 
     p{
       font-size: clamp(18rem, ${32 / 1440 * 100}vw, 32rem);

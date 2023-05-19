@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Image from "next/image"
 import HTMLReactParser from "html-react-parser"
+import { RunesB } from "../atoms/rune-b"
 
 export default function Hero({ data: { title, text, background } }) {
   return (
@@ -20,6 +21,7 @@ export default function Hero({ data: { title, text, background } }) {
       <div className="container">
         <h1 className="anim">{title}</h1>
         <div className="text anim">{HTMLReactParser(text)}</div>
+        <RunesB />
       </div>
     </Wrapper>
   )
@@ -28,6 +30,12 @@ export default function Hero({ data: { title, text, background } }) {
 const Wrapper = styled.section`
   position: relative;
   height: clamp(300px, ${500 / 768 * 100}vw, 800px);
+
+  .rune{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
   
   h1{
     text-align: center;
