@@ -45,6 +45,12 @@ export default function Layout({ breadcrumbs, children }) {
     window.addEventListener('scroll', () => handleScroll(false));
     handleScroll(true);
 
+    const runeElements = document.querySelectorAll('.rune path');
+    runeElements.forEach((runeElement) => {
+      const randomDelay = Math.random() * 3000;
+      runeElement.style.animationDelay = `${randomDelay}ms`;
+    });
+
   }, [locationPath, orphansRegex]);
 
   return (

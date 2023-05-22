@@ -13,18 +13,18 @@ export default function Navigation({ headings }) {
 
   return (
     <Wrapper>
-      <p className="title">Spis treści</p>
+      <p className="title anim">Spis treści</p>
       <ul>
         {headings?.map((heading, index) => (
-          <li key={index}>
+          <li key={index} className="anim">
             <button onClick={e => { scroll(e) }}>
               {htmlDelete(heading)}
             </button>
           </li>
         ))}
       </ul>
-      <Link className="top" href='/sklep'>Sprawdź nasze produkty!</Link>
-      <Image src="/aside-decoration.png" alt="me" width="312" height="41" />
+      <Link className="top anim" href='/sklep'>Sprawdź nasze produkty!</Link>
+      <Image src="/aside-decoration.png" alt="me" width="312" height="41" className="anim" />
     </Wrapper>
   )
 }

@@ -124,6 +124,13 @@ const Wrapper = styled.div`
       height: 100%;
       width: 100%;
       max-width: none;
+      transition: transform .4s;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  }
+  &:hover {
+    img {
+      transform: scale(1.05);
     }
   }
 
@@ -190,6 +197,19 @@ const Wrapper = styled.div`
       border: none;
       background-color: var(--primary-500);
       clip-path: polygon(26px 0, 100% 0%, 100% 100%, 0% 100%);
+      @keyframes cart {
+        40% {
+          transform: translateX(-8px);
+        }
+        70% {
+          transform: translateX(5px);
+        }
+      }
+    }
+    &:hover {
+      svg {
+        animation: cart 1.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+      };
     }
   }
 

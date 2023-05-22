@@ -48,7 +48,7 @@ const Wrapper = styled.section`
       .card{
 
         &:nth-child(4){
-          display: block;
+          display: flex;
         }
       }
     }
@@ -62,8 +62,23 @@ const Wrapper = styled.section`
     display: block;
     margin-top: 20px;
     color: var(--primary-500);
-    text-decoration: underline;
     width: fit-content;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--primary-500);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    &:hover::before {
+      transform: scaleX(1);
+    }
   }
   
 `

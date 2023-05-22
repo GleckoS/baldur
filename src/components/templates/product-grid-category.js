@@ -33,6 +33,10 @@ export default function ProductGrid({ highlightedProducts, data }) {
 
   useEffect(() => {
     setItems(data.filter(el => el.name.toLowerCase().includes(search.toLowerCase())))
+    document.querySelectorAll('.grid .anim').forEach(elem => {
+      console.log(elem);
+      elem.classList.add('anim-active');
+    })
   }, [search, data])
 
   return (
@@ -49,7 +53,6 @@ export default function ProductGrid({ highlightedProducts, data }) {
               classNamePrefix="select"
               options={options}
               defaultValue={options[0]}
-              menuIsOpen={true}
             />
           </div>
           <Label className="flex anim">
@@ -94,7 +97,7 @@ export default function ProductGrid({ highlightedProducts, data }) {
         ) : (
           <div className="not-found">
             <p>Niestety <b>nie znaleziono</b> tego, czego szukasz</p>
-            {highlightedProducts.length > 0 && (
+            {highlightedProducts?.length > 0 && (
               <OtherProducts data={highlightedProducts} />
             )}
           </div>
@@ -208,12 +211,12 @@ const Filters = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 50px;
-
   .flex{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
+    z-index: 9;
 
     span{
       font-weight: 500;
