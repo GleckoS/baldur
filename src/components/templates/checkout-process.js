@@ -13,10 +13,35 @@ import Loader from "../organisms/loader"
 import { useCart } from "react-use-cart"
 import { useRouter } from "next/navigation"
 import { Elements } from "@stripe/react-stripe-js"
-import { useForm } from "react-hook-form"
+import { set, useForm } from "react-hook-form"
 import { InpostGeowidget } from "react-inpost-geowidget";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+const getItem = (name, altVal = '') => {
+
+  if (typeof window === 'undefined') return altVal
+
+  return localStorage.getItem(name) !== 'null' ? localStorage.getItem(name) : altVal
+}
+
+const setFormToLocalStorage = (form) => {
+  localStorage.setItem('name', form.name)
+  localStorage.setItem('surName', form.surName)
+  localStorage.setItem('phone', form.phone)
+  localStorage.setItem('email', form.email)
+
+  localStorage.setItem('postCode', form.postCode)
+  localStorage.setItem('street', form.street)
+  localStorage.setItem('country', form.country)
+  localStorage.setItem('city', form.city)
+
+  localStorage.setItem('customerNote', form.customerNote)
+
+  localStorage.setItem('forFirm', form.forFirm)
+  localStorage.setItem('firmName', form.firmName)
+  localStorage.setItem('firmNip', form.firmNip)
+}
 
 export default function Process() {
   const { register, reset, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur' });
@@ -32,25 +57,26 @@ export default function Process() {
   const [discount, setDiscount] = useState(null)
   const [sum, setSum] = useState(0)
   const [form, setForm] = useState({
-    name: 'Bogdan',
-    surName: 'Shevchenko',
-    phone: '+48 730 788 035',
-    email: 'bogdan@kryptonum.eu',
+    name: getItem('name'),
+    surName: getItem('surName'),
+    phone: getItem('phone'),
+    email: getItem('email'),
 
-    postCode: '30-061',
-    street: 'Plac Inwalidów',
-    country: 'PL',
-    city: 'Krakow',
+    postCode: getItem('postCode'),
+    street: getItem('street'),
+    country: getItem('country'),
+    city: getItem('city'),
 
-    customerNote: 'Nontatki do zamówienia',
+    customerNote: getItem('customerNote'),
 
-    forFirm: true,
-    firmName: 'Kryptonum',
-    firmNip: '9512465557',
+    forFirm: getItem('forFirm') === 'true' ? true : false,
+    firmName: getItem('firmName'),
+    firmNip: getItem('firmNip'),
 
     paymentMethod: 'p24',
     deliveryMethod: 'osobisty',
   })
+
   const totalSum = useMemo(() => {
     if (discount) {
       if (discount.discount_type === "percent") {
@@ -63,13 +89,13 @@ export default function Process() {
   }, [form.deliveryMethod, sum, discount])
 
   const createIntent = async (sum, paymentMethod, orderId) => {
+    d
     axios.post("/api/create-intent", {
       count: Number(sum) * 100,
       id: orderId,
       method: paymentMethod
     })
       .then((res) => {
-        debugger
         setClientSecret(res.data.clientSecret)
         setPaymentIntent(res.data.id)
       })
@@ -94,6 +120,7 @@ export default function Process() {
   }
 
   const paymentHandler = async () => {
+    setFormToLocalStorage(form)
     setIsPaymentPopUpOpen(true)
     createOrder(items, form, totalSum)
   }

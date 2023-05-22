@@ -18,7 +18,7 @@ export const generateOrderParams = (items, form) => {
       first_name: form.name,
       last_name: form.surName,
       address_1: form.street,
-      address_2: '',
+      address_2: form.country,
       city: form.city,
       postcode: form.postcode,
       country: 'PL', // form.country

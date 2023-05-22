@@ -16,11 +16,7 @@ const nextConfig = {
         pathname: '/wp-content/uploads/**',
       },
     ],
-  },
-  i18n: {
-    locales: ["pl"],
-    defaultLocale: "pl",
-  },
+  }
 }
 
 module.exports = nextConfig
