@@ -91,7 +91,7 @@ export default function ProductGrid({ highlightedProducts, data }) {
         {items.length > 0 ? (
           <div className="grid">
             {items.map((product, index) => (
-              <Card key={index} data={product} />
+              <Card key={index} data={product} className="anim-active" />
             ))}
           </div>
         ) : (

@@ -5,10 +5,10 @@ import Card from "../moleculas/product-card"
 export default function OtherProducts({ data }) {
   return (
     <Wrapper>
-      <h2 className="anim">Zamiast tego polecamy...</h2>
+      <h2>Zamiast tego polecamy...</h2>
       <Grid>
         {data.map((product, index) => (
-          <Card data={product} key={index} />
+          <Card data={product} key={index} className="anim-active" />
         ))}
       </Grid>
     </Wrapper>

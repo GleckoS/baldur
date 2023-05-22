@@ -7,7 +7,7 @@ import { useCart } from "react-use-cart";
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
-export default function Card({ data: { slug, databaseId, name, image, price, regularPrice, salePrice, acf, uri } }) {
+export default function Card({ data: { slug, databaseId, name, image, price, regularPrice, salePrice, acf, uri }, className }) {
   const { addItem, inCart } = useCart();
   const router = useRouter();
 
@@ -42,7 +42,7 @@ export default function Card({ data: { slug, databaseId, name, image, price, reg
   }
 
   return (
-    <Wrapper className="card anim">
+    <Wrapper className={`card anim ${className}`}>
       <Link href={uri} className="shop-link" />
       <div className="mobile-wrap">
         <div className="images">
