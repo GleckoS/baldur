@@ -104,7 +104,6 @@ export default function Process() {
     }
 
     setSum(cartTotal)
-    // TODO: clear discount on success payment
     const discount = JSON.parse(localStorage.getItem('discount'))
     if (discount) {
       axios.put('/api/coupon-validation', { code: discount.code })

@@ -1,8 +1,7 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
-import React, { useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import { toast } from "react-toastify"
-import axios from "axios"
 import ButtonFilled from "../atoms/button-filled"
 
 export default function PopUp({ setIsPaymentPopUpOpen, intent, orderNumber, clientSecret }) {
@@ -39,7 +38,7 @@ export default function PopUp({ setIsPaymentPopUpOpen, intent, orderNumber, clie
       <Overlay onClick={() => { setIsPaymentPopUpOpen(false) }} />
       <Content>
         <PaymentElement />
-        <ButtonFilled as='button' disabled={!stripe} ><span>PŁACĘ</span></ButtonFilled>
+        <ButtonFilled mode='secondary' as='button' disabled={!stripe} ><span>PŁACĘ</span></ButtonFilled>
       </Content>
     </Wrapper>
   )
@@ -63,8 +62,8 @@ const Content = styled.div`
     max-height: 90vh;
     overflow-y: auto;
     padding: clamp(32px, ${32 / 768 * 100}vw, 64px);
-    background: #FAF6EE;
-    border: 6px solid #23423D;
+    background: var(--primary-500);
+    border: 6px solid var(--dark-500);
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
 
