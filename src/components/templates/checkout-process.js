@@ -41,10 +41,13 @@ const setFormToLocalStorage = (form) => {
   localStorage.setItem('forFirm', form.forFirm)
   localStorage.setItem('firmName', form.firmName)
   localStorage.setItem('firmNip', form.firmNip)
+
+  localStorage.setItem('inpostNumber', form.inpostNumber)
 }
 
 export default function Process() {
-  const { register, reset, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur' });
+  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur' });
+  const forFirmChecked = watch('forFirm');
 
   const { items, cartTotal } = useCart();
   const router = useRouter();
@@ -75,6 +78,7 @@ export default function Process() {
 
     paymentMethod: 'p24',
     deliveryMethod: 'osobisty',
+    inpostNumber: getItem('inpostNumber')
   })
 
   const totalSum = useMemo(() => {
@@ -89,7 +93,6 @@ export default function Process() {
   }, [form.deliveryMethod, sum, discount])
 
   const createIntent = async (sum, paymentMethod, orderId) => {
-    d
     axios.post("/api/create-intent", {
       count: Number(sum) * 100,
       id: orderId,
@@ -222,7 +225,7 @@ export default function Process() {
           </fieldset>
           <fieldset>
             <label className="check box-wrap">
-              <input checked={form.forFirm} onChange={(e) => { setForm({ ...form, forFirm: e.currentTarget.checked }) }} type='checkbox' />
+              <input {...register("forFirm")} checked={form.forFirm} onChange={(e) => { setForm({ ...form, forFirm: e.currentTarget.checked }) }} type='checkbox' />
               <span className="box">
                 <svg className="left" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2.58417 9.83269e-06C3.7807 -0.0127349 14.0398 12.3682 14.0398 12.3682L35 34.9994C35 34.9994 24.9609 35.376 9.90287 16.9355L11.8313 14.8534C11.8313 14.8534 8.77502 13.4608 6.16089 9.8853C3.54676 6.30982 3.64012 6.48593 2.48974 5.42001C1.33935 4.35408 0.282323 3.78984 0.0269199 3.21169C-0.228483 2.6347 1.38764 0.0127546 2.58417 9.83269e-06V9.83269e-06Z" fill="#C38D8D" />
@@ -237,7 +240,7 @@ export default function Process() {
           <fieldset className={form.forFirm ? "firm active" : "firm"}>
             <label>
               <span>NIP:</span>
-              <Input maxLength='10' {...register("nip", { required: true, validate: () => { return isTrueNip || !form.forFirm ? true : 'Proszę wprowadzić poprawny NIP' } })} value={form.firmNip} onChange={(e) => { setForm({ ...form, firmNip: e.currentTarget.value }) }} />
+              <Input maxLength='10' {...register("nip", { validate: () => { return (isTrueNip || !forFirmChecked) ? true : 'Proszę wprowadzić poprawny NIP' } })} value={form.firmNip} onChange={(e) => { setForm({ ...form, firmNip: e.currentTarget.value }) }} />
               {errors.nip && <span className='error'>Proszę wprowadzić poprawny NIP</span>}
             </label>
             <label>
@@ -458,13 +461,16 @@ const Form = styled.form`
 
     &.firm{
       margin-top: 0px;
+      padding: 0px 5px;
       height: 0px;
       overflow: hidden;
       transition: all .2s ease-out;
+      padding-bottom: 0;
 
       &.active{
         margin-top: 40px;
-        height: 113px;
+        height: 143px;
+        padding-bottom: 30px;
 
         @media (max-width: 820px) {
           height: 261px;
