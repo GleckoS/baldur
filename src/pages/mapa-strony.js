@@ -10,22 +10,22 @@ export default function Kontakt({ posts, categories }) {
     <Layout breadcrumbs={[{page: 'Mapa strony', url: '/mapa-strony/'}]}>
       <Wrapper>
         <div className='container'>
-          <h1>Mapa strony</h1>
-          <Link href='/'>Strona główna</Link>
-          <Link href='/'>Sklep</Link>
+          <h1 className='anim'>Mapa strony</h1>
+          <Link href='/' className='anim'>Strona główna</Link>
+          <Link href='/' className='anim'>Sklep</Link>
           {categories.map(({ name, slug }) => (
-            <Link key={slug} className='sub' href={`/sklep/${slug}`}>{name}</Link>
+            <Link key={slug} className='sub anim' href={`/sklep/${slug}`}>{name}</Link>
           ))}
-          <Link href='/'>O Baldur</Link>
-          <Link href='/'>Jak wybieramy materiały</Link>
-          <Link href='/'>Blog</Link>
+          <Link href='/' className='anim'>O Baldur</Link>
+          <Link href='/' className='anim'>Jak wybieramy materiały</Link>
+          <Link href='/' className='anim'>Blog</Link>
           {posts.map(({ uri, title }) => (
-            <Link key={title} className='sub' href={`${uri}`}>{title}</Link>
+            <Link key={title} className='sub anim' href={`${uri}`}>{title}</Link>
           ))}
-          <Link href='/kontakt'>Kontakt</Link>
-          <Link href='/koszyk'>Koszyk</Link>
-          <Link href='/polityka-prywatnosci'>Polityka prywatności</Link>
-          <Link href='/regulamin'>Regulamin</Link>
+          <Link href='/kontakt' className='anim'>Kontakt</Link>
+          <Link href='/koszyk' className='anim'>Koszyk</Link>
+          <Link href='/polityka-prywatnosci' className='anim'>Polityka prywatności</Link>
+          <Link href='/regulamin' className='anim'>Regulamin</Link>
         </div>
       </Wrapper>
     </Layout>
@@ -51,6 +51,7 @@ const Wrapper = styled.main`
 
   a{
     display: block;
+    width: fit-content;
     margin-top: 80px;
     font-weight: 500;
     font-size: 40rem;
@@ -59,7 +60,23 @@ const Wrapper = styled.main`
     text-decoration-line: underline;
     font-feature-settings: 'pnum' on, 'onum' on;
     color: #EDE2E2;
-
+    text-decoration: none;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 1px;
+      background-color: var(--primary-500);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    &:hover::before {
+      transform: scaleX(1);
+    }
     @media (max-width: 360px) {
       font-size: clamp(0rem, ${40 / 360 * 100}vw, 40rem);
     }

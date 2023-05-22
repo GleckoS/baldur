@@ -21,7 +21,7 @@ export default function Slider({ posts }) {
             <button aria-label={`Przejdź do ${index + 1} artykułu`} key={index} onClick={() => { setTransform(index) }} className={index === transform ? 'active' : ''} />
           ))}
         </div>
-        <button disabled={transform >= 2} aria-label={`Następny artykuł`} onClick={() => { setTransform(transform >= 2 ? 2 : transform + 1) }} className="arrow">
+        <button disabled={transform >= 2} aria-label={`Następny artykuł`} onClick={() => { setTransform(transform >= 2 ? 2 : transform + 1) }} className="arrow arrow-next">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="41" fill="none" viewBox="0 0 22 41"><path fill="#EDE2E2" d="M.758 1.445a2.71 2.71 0 0 0 0 3.76l14.993 15.399-14.993 15.4a2.71 2.71 0 0 0 0 3.759 2.54 2.54 0 0 0 3.66 0l16.824-17.28a2.71 2.71 0 0 0 0-3.759L4.418 1.445a2.54 2.54 0 0 0-3.66 0Z"/></svg>
         </button>
       </Control>
@@ -45,10 +45,23 @@ const Control = styled.div`
     justify-content: space-between;
   }
 
-  .arrow{
+  .arrow {
     padding: 10px;
     border: none;
     background-color: transparent;
+    svg {
+      transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    &:hover {
+      svg {
+        transform: translateX(-5px);
+      }
+    }
+    &.arrow-next:hover {
+      svg {
+        transform: translateX(5px);
+      }
+    }
   }
 
   .dots{
@@ -56,16 +69,19 @@ const Control = styled.div`
     align-items: center;
     gap: 16px;
 
-    button{
+    button {
       width: 24px;
       height: 24px;
       border-radius: 50%;
       background-color: transparent;
       border: 1px solid var(--primary-500);
-      transition: background-color .2s ease-out;
-
+      transition: background-color .4s, transform .4s;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
       &.active{
         background-color: var(--primary-500);
+      }
+      &:not(.active):hover {
+        transform: scale(.95);
       }
     }
   }

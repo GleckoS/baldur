@@ -6,7 +6,7 @@ export default function SimilarProducts({ data, title = 'Podobne produkty' }) {
   return (
     <Wrapper>
       <div className="container">
-        <h2>{title}</h2>
+        <h2 className="anim">{title}</h2>
         <Grid>
           {data.map((product, index) => (
             <Card data={product} key={index} />

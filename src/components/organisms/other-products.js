@@ -8,7 +8,7 @@ export default function OtherProducts({ data }) {
       <h2>Zamiast tego polecamy...</h2>
       <Grid>
         {data.map((product, index) => (
-          <Card data={product} key={index} />
+          <Card data={product} key={index} className="anim-active" />
         ))}
       </Grid>
     </Wrapper>

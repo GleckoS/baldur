@@ -28,7 +28,7 @@ export default function Slider({ data }) {
         ))}
       </Slides>
       <Control>
-        <button disabled={chosenReview <= 0} aria-label={`poprzedna opinia`} onClick={() => { setChosenReview(chosenReview <= 0 ? 0 : chosenReview - 1) }} className="left">
+        <button disabled={chosenReview <= 0} aria-label={`poprzedna opinia`} onClick={() => { setChosenReview(chosenReview <= 0 ? 0 : chosenReview - 1) }} className="arrow left">
           <svg width="17" height="30" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M15.9487 28.9535C16.6838 28.1985 16.6838 26.9744 15.9487 26.2194L5.0444 15.0198L15.9487 3.82018C16.6838 3.06517 16.6838 1.84105 15.9487 1.08604C15.2136 0.331022 14.0217 0.331022 13.2866 1.08604L1.05133 13.6527C0.316224 14.4077 0.316224 15.6318 1.05133 16.3868L13.2866 28.9535C14.0217 29.7085 15.2136 29.7085 15.9487 28.9535Z" fill="#EDE2E2" />
           </svg>
@@ -38,7 +38,7 @@ export default function Slider({ data }) {
             <button onClick={() => {setChosenReview(index)}} key={index} className={chosenReview === index ? "dot active" : "dot"} />
           ))}
         </div>
-        <button disabled={chosenReview >= data.length - 1} aria-label={`następna opinia`} onClick={() => { setChosenReview(chosenReview >= data.length - 1 ? data.length - 1 : chosenReview + 1) }} className="right">
+        <button disabled={chosenReview >= data.length - 1} aria-label={`następna opinia`} onClick={() => { setChosenReview(chosenReview >= data.length - 1 ? data.length - 1 : chosenReview + 1) }} className="arrow right">
           <svg width="17" height="30" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M1.05133 1.08604C0.316226 1.84105 0.316226 3.06517 1.05133 3.82018L11.9556 15.0198L1.05133 26.2194C0.316224 26.9744 0.316224 28.1985 1.05133 28.9535C1.78643 29.7085 2.97827 29.7085 3.71338 28.9535L15.9487 16.3868C16.6838 15.6318 16.6838 14.4077 15.9487 13.6527L3.71338 1.08604C2.97828 0.331022 1.78643 0.331022 1.05133 1.08604Z" fill="#EDE2E2" />
           </svg>
@@ -83,8 +83,11 @@ const Control = styled.div`
       border-radius: 50%;
       background-color: transparent;
       border: 1px solid var(--primary-500);
-      transition: background-color .2s ease-out;
-
+      transition: background-color .4s, transform .4s;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      &:not(.active):hover {
+        transform: scale(.95);
+      }
       @media (max-width: 1024px) {
         border: 1px solid var(--dark-500);
       }
@@ -99,6 +102,21 @@ const Control = styled.div`
     }
   }
 
+  .arrow {
+    svg {
+      transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    &:hover {
+      svg {
+        transform: translateX(-5px);
+      }
+    }
+    &.right:hover {
+      svg {
+        transform: translateX(5px);
+      }
+    }
+  }
   .left{
     background-color: transparent;
     border: none;

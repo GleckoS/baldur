@@ -13,6 +13,11 @@ export default function Content({ data }) {
     document.getElementById('content').querySelectorAll('h2').forEach(el => {
       el.id = slugTransform(el.innerText)
     })
+
+    const contentEl = document.getElementById('content');
+    Array.from(contentEl.children).forEach(child => {
+      child.classList.add('anim');
+    });
   }, [])
 
 
