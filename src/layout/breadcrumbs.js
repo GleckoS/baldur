@@ -14,7 +14,7 @@ export default function Breadcrumbs({ data }) {
         {data.map((item, index) => (
           <React.Fragment key={index}>
             <li className="item" key={index}>
-              <Link href={item.url}>{item.page}</Link>
+              <Link tabIndex={index === data.length - 1 ? '-1' : '0'} className={index === data.length - 1 ? 'last' : ''} href={item.url}>{item.page}</Link>
 
             </li>
             <span>{'>'}</span>
@@ -28,6 +28,7 @@ export default function Breadcrumbs({ data }) {
 const Wrapper = styled.nav`
   margin-top: 30px !important;
   position: relative;
+  z-index: 40;
 
   @media (max-width: 864px) {
     display: none;
@@ -55,6 +56,10 @@ const Wrapper = styled.nav`
         color: #fff;
       }
     }
+  }
+
+  .last{
+    pointer-events: none;
   }
 
   span{
