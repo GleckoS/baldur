@@ -22,7 +22,7 @@ export default function Kontakt({ categories, posts, hero }) {
 const Wrapper = styled.main`
 `
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data: { categories, posts, page: { blog: page } } } = await client.query({
     query: gql`
       query Kontakt($count: Int) {

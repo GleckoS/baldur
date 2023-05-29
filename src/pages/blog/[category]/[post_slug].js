@@ -21,7 +21,37 @@ const Wrapper = styled.main`
 
 `
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+
+  const { data: { posts } } = await client.query({
+    query: gql`
+    query PostUrls {
+      posts {
+        nodes {
+          uri
+        }
+      }
+    }
+  `,
+    context: {
+      fetchOptions: {
+        next: { revalidate: 1 },
+      },
+    }
+  });
+
+  return {
+    paths: posts.nodes.map(post => ({
+      params: {
+        category: post.uri.split('/').filter(item => item)[1],
+        post_slug: post.uri.split('/').filter(item => item)[2]
+      }
+    })),
+    fallback: 'blocking',
+  }
+}
+
+export async function getStaticProps({ params }) {
   try {
     const { data: { page } } = await client.query({
       query: gql`
