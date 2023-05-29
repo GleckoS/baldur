@@ -179,7 +179,7 @@ export async function getServerSideProps() {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: .1 },
+        next: { revalidate: 1 },
       },
     }
   });

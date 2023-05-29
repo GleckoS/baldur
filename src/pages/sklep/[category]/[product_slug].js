@@ -41,7 +41,7 @@ export async function getServerSideProps({ params }) {
           slug
           name
         }
-        similarProducts : products(where: {category: $catSlug}, first: 4) {
+        similarProducts : products(where: {stockStatus: IN_STOCK, category: $catSlug}, first: 4){
           nodes {
             ... on SimpleProduct {
               acf : product{
@@ -55,6 +55,7 @@ export async function getServerSideProps({ params }) {
               slug
               uri
               stockQuantity
+              stockStatus
               price(format: RAW)
               regularPrice(format: RAW)
               salePrice(format: RAW)
@@ -91,6 +92,7 @@ export async function getServerSideProps({ params }) {
             databaseId
             slug
             stockQuantity
+            stockStatus
             price(format: RAW)
             regularPrice(format: RAW)
             salePrice(format: RAW)
@@ -154,7 +156,7 @@ export async function getServerSideProps({ params }) {
       },
       context: {
         fetchOptions: {
-          next: { revalidate: .1 },
+          next: { revalidate: 1 },
         },
       }
     })

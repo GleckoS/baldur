@@ -43,7 +43,7 @@ export async function getStaticPaths() {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: .1 },
+        next: { revalidate: 1 },
       },
     }
   });
@@ -85,6 +85,7 @@ export async function getStaticProps({ params }) {
                 name
                 slug
                 stockQuantity
+                stockStatus
                 regularPrice(format: RAW)
                 salePrice(format: RAW)
                 image {
@@ -99,7 +100,7 @@ export async function getStaticProps({ params }) {
             }
           }
         }
-        highlightedProducts : products(where: {featured: true}, first: 3) {
+        highlightedProducts : products(where: {stockStatus: IN_STOCK, featured: true}, first: 3) {
           nodes {
             uri
             ... on SimpleProduct {
@@ -113,6 +114,7 @@ export async function getStaticProps({ params }) {
               name
               slug
               stockQuantity
+              stockStatus
               price(format: RAW)
               regularPrice(format: RAW)
               salePrice(format: RAW)
@@ -169,7 +171,7 @@ export async function getStaticProps({ params }) {
       },
       context: {
         fetchOptions: {
-          next: { revalidate: .1 },
+          next: { revalidate: 1 },
         },
       }
     });

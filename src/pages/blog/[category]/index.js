@@ -33,7 +33,7 @@ export async function getStaticPaths() {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: .1 },
+        next: { revalidate: 1 },
       },
     }
   });
@@ -106,7 +106,7 @@ export async function getStaticProps({ params }) {
       },
       context: {
         fetchOptions: {
-          next: { revalidate: .1 },
+          next: { revalidate: 1 },
         },
       }
     });

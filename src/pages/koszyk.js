@@ -56,6 +56,7 @@ export async function getStaticProps(props) {
               name
               slug
               stockQuantity
+              stockStatus
               price(format: RAW)
               regularPrice(format: RAW)
               salePrice(format: RAW)
@@ -95,7 +96,7 @@ export async function getStaticProps(props) {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: .1 },
+        next: { revalidate: 1 },
       },
     }
   });

@@ -43,7 +43,7 @@ export async function getServerSideProps() {
             slug
             name
             count
-            products(first: 4) {
+            products(where: {stockStatus: IN_STOCK}, first: 4) {
               nodes {
                 uri
                 ... on SimpleProduct {
@@ -57,6 +57,7 @@ export async function getServerSideProps() {
                   name
                   slug
                   stockQuantity
+                  stockStatus
                   price(format: RAW)
                   regularPrice(format: RAW)
                   salePrice(format: RAW)
@@ -128,7 +129,7 @@ export async function getServerSideProps() {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: .1 },
+        next: { revalidate: 1 },
       },
     }
   });

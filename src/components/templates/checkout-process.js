@@ -13,7 +13,7 @@ import Loader from "../organisms/loader"
 import { useCart } from "react-use-cart"
 import { useRouter } from "next/navigation"
 import { Elements } from "@stripe/react-stripe-js"
-import { set, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { InpostGeowidget } from "react-inpost-geowidget";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
@@ -167,7 +167,7 @@ export default function Process() {
   }, [form.firmNip])
 
   const onPointCallback = (e) => {
-    // setInpostNumber(e.name)
+    setForm({ ...form, inpostNumber: e })
   }
 
   return (
@@ -302,12 +302,19 @@ export default function Process() {
               <Image src='/odbior.png' width={226} height={133} alt='ikona odbioru osobistego' />
             </label>
           </fieldset>
-          <div className={form.deliveryMethod === 'inpost' ? "active geo-widget" : "geo-widget"}>
+          <div className={form.deliveryMethod === 'inpost' && !form.inpostNumber ? "active geo-widget" : "geo-widget"}>
             <InpostGeowidget
               token={process.env.INPOST_GEO_KEY}
               config='parcelCollect'
               onPoint={onPointCallback}
             />
+          </div>
+          <div className={form.deliveryMethod === 'inpost' && form.inpostNumber ? "active inpost-data" : "inpost-data"}>
+            <h2>Paczkomat Inpost:</h2>
+            <p>{form.inpostNumber?.address?.line1}</p>
+            <p>{form.inpostNumber?.address?.line2}</p>
+            <p>{form.inpostNumber?.name}</p>
+            <button onClick={() => { setForm({ ...form, inpostNumber: false }) }}>Zmień paczkomat</button>
           </div>
           <div className="summary">
             <div className="flex">
@@ -428,6 +435,36 @@ const Wrapper = styled.section`
 `
 
 const Form = styled.form`
+
+  .inpost-data{
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    &.active{
+      opacity: 1;
+      pointer-events: all;
+      height: auto;
+    }
+
+    h2{
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 36rem;
+      font-family: var(--text);
+
+      @media (max-width: 360px) {
+        font-size: clamp(0rem, ${36 / 360 * 100}vw, 36rem);
+      }
+    }
+
+    button{
+      background-color: transparent;
+      border: none;
+      text-decoration: underline;
+      margin-top: 10px;
+    }
+  }
+
 
   .geo-widget{
     margin-top: 0;

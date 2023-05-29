@@ -29,11 +29,11 @@ export const generateOrderParams = (items, form) => {
     shipping: {
       first_name: form.name,
       last_name: form.surName,
-      address_1: form.street,
+      address_1: form.inpostNumber ? `${form.inpostNumber.address_details.street}, ${form.inpostNumber.address_details.building_number}` : form.street,
       address_2: '',
-      city: form.city,
-      postcode: form.postcode,
-      state: "",
+      city: form.inpostNumber ? form.inpostNumber.address_details.city : form.nameform.city,
+      postcode: form.inpostNumber ? form.inpostNumber.address_details.post_code : form.postcode,
+      state: form.inpostNumber ? form.inpostNumber.address_details.province : "",
       country: 'PL',
       phone: form.phone,
     },
@@ -44,14 +44,14 @@ export const generateOrderParams = (items, form) => {
       }
     ],
     shipping_lines: [
-      form.delivery?.type === 'inpost' ? {
+      form.deliveryMethod === 'inpost' ? {
         method_id: "easypack_parcel_machines",
         method_title: "InPost Paczkomat 24/7",
-        total: `${form.delivery.price}`,
+        total: `20`,
         meta_data: [
           {
             key: "Numer paczkomatu",
-            value: form.delivery.inpostNumber
+            value: form.inpostNumber.name
           }
         ]
       } : {

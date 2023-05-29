@@ -72,6 +72,7 @@ export default function Content({ }) {
                   id
                   uri
                   stockQuantity
+                  stockStatus
                   price(format: RAW)
                   regularPrice(format: RAW)
                   salePrice(format: RAW)
@@ -107,13 +108,19 @@ export default function Content({ }) {
         });
         let currentSum = 0
         setRenderedItems(products.nodes.map(el => {
+          if (el.stockStatus !== 'IN_STOCK') {
+            toast(`${el.name} nie jest dostępny`)
+            removeItem(el.slug)
+            return null
+          }
+          
           const item = items.find(item => item.id === el.slug)
           currentSum += (item?.quantity || 1) * el.price
           return {
             ...el,
             quantity: item?.quantity || 1
           }
-        }))
+        }).filter(el => el))
         setSum(currentSum)
         setLoading(false)
       } else {
