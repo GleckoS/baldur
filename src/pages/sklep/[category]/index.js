@@ -194,7 +194,7 @@ export async function getStaticProps({ params }) {
         highlightedProducts: highlightedProducts.nodes,
         seo: productCategory.seo
       },
-      notFound: productCategory.id
+      notFound: !productCategory.id
     }
   } catch (err) {
     return {
