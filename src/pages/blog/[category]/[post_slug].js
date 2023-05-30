@@ -57,6 +57,14 @@ export async function getStaticProps({ params }) {
       query: gql`
       query Post($slug: String) {
         page : postBy(slug: $slug) {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           slug
           title
           excerpt
@@ -92,7 +100,8 @@ export async function getStaticProps({ params }) {
 
     return {
       props: {
-        page: page
+        page: page,
+        seo: page.seo
       }
     }
   }

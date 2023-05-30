@@ -2,12 +2,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react"
 
-export default function Seo({
+export default function Seo({ seo: {
   title = 'Baldur',
-  opengraphSiteName = '',
+  opengraphSiteName = 'Baldur',
   metaDesc = '',
   ogImage = '/social.jpg'
-}) {
+} }) {
   const { pathname } = useRouter();
   const canonical = pathname
   return (

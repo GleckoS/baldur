@@ -35,7 +35,7 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticProps() {
-  const { data: { posts, global, page: { aboutBaldur: page } } } = await client.query({
+  const { data: { posts, global, page: { aboutBaldur: page, seo } } } = await client.query({
     query: gql`
       query Kontakt {
         global : page(id: "cG9zdDoyOQ==") {
@@ -65,6 +65,14 @@ export async function getStaticProps() {
           }
         }
         page(id: "cG9zdDoyMDc=") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           aboutBaldur {
             heroAbout {
               title
@@ -149,6 +157,7 @@ export async function getStaticProps() {
       portfolio: page.portfolio,
       posts: posts.nodes,
       cta: global.callToAction,
+      seo: seo
     }
   };
 }

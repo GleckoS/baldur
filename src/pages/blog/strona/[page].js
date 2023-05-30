@@ -77,7 +77,7 @@ export async function getStaticProps({ params }) {
   }
 
   try {
-    const { data: { categories, posts, page: { blog: page } } } = await client.query({
+    const { data: { categories, posts, page: { blog: page, seo } } } = await client.query({
       query: gql`
       query Kontakt($count: Int, $offset: Int) {
         categories {
@@ -110,6 +110,14 @@ export async function getStaticProps({ params }) {
           }
         }
         page(id: "cG9zdDo2Mg==") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           blog {
             heroBlog {
               title
@@ -143,7 +151,8 @@ export async function getStaticProps({ params }) {
         posts: posts,
         hero: page.heroBlog,
         categories: categories.nodes,
-        currPage: params.page
+        currPage: params.page,
+        seo: seo
       },
       notFound: posts.nodes.length <= 0
     };

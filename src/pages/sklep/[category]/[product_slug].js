@@ -71,6 +71,14 @@ export async function getServerSideProps({ params }) {
           }
         }
         product(idType: SLUG, id: $slug){
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           attributes {
             nodes {
               ... on GlobalProductAttribute {
@@ -166,7 +174,8 @@ export async function getServerSideProps({ params }) {
         cta: global.callToAction,
         reviews: global.reviews,
         productCategory: productCategory,
-        similarProducts: similarProducts.nodes.filter(el => el.id !== product.id)
+        similarProducts: similarProducts.nodes.filter(el => el.id !== product.id),
+        seo: product.seo
       }
     }
   }

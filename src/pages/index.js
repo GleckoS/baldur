@@ -31,7 +31,7 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticProps() {
-  const { data: { productCategories, posts, page: { homepage: page } } } = await client.query({
+  const { data: { productCategories, posts, page } } = await client.query({
     query: gql`
       query Homepage {
         productCategories {
@@ -66,6 +66,14 @@ export async function getStaticProps() {
           }
         }
         page(id: "cG9zdDo1") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           homepage{
             hero{
               title
@@ -134,12 +142,13 @@ export async function getStaticProps() {
 
   return {
     props: {
-      hero: page.hero,
-      aboutShop: page.aboutShop,
-      materials: page.materials,
+      hero: page.homepage.hero,
+      aboutShop: page.homepage.aboutShop,
+      materials: page.homepage.materials,
       categories: productCategories.nodes,
-      baldur: page.baldur,
-      posts: posts.nodes
+      baldur: page.homepage.baldur,
+      posts: posts.nodes,
+      seo: page.seo
     }
   };
 }

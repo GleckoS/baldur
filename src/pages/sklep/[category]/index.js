@@ -66,6 +66,14 @@ export async function getStaticProps({ params }) {
       query: gql`
       query Category($catID: ID!) {
         productCategory(id: $catID, idType: SLUG) {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           slug
           name
           description
@@ -182,7 +190,8 @@ export async function getStaticProps({ params }) {
         cta: global.callToAction,
         posts: posts,
         category: productCategory,
-        highlightedProducts: highlightedProducts.nodes
+        highlightedProducts: highlightedProducts.nodes,
+        seo: productCategory.seo
       }
     }
   } catch (error) {

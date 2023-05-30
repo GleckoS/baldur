@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
     <React.Fragment>
       <GlobalStyle />
       <ToastContainer />
-      <Seo />
+      <Seo seo={pageProps.seo || {}}/>
       <CartProvider>
         <Component {...pageProps} />
       </CartProvider>

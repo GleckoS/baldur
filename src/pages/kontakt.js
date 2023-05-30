@@ -27,7 +27,7 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticProps() {
-  const { data: { posts, page: { contact: page } } } = await client.query({
+  const { data: { posts, page: { contact: page, seo } } } = await client.query({
     query: gql`
       query Kontakt {
         posts(first: 3) {
@@ -48,6 +48,14 @@ export async function getStaticProps() {
           }
         }
         page(id: "cG9zdDoxODM=") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           contact{
             faq{
               title
@@ -70,7 +78,8 @@ export async function getStaticProps() {
   return {
     props: {
       posts: posts,
-      faq: page.faq
+      faq: page.faq,
+      seo: seo
     }
   };
 }

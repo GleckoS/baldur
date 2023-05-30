@@ -37,7 +37,7 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticProps() {
-  const { data: { productCategories, posts, global, page: { howWeChoiseMaterials: page } } } = await client.query({
+  const { data: { productCategories, posts, global, page: { howWeChoiseMaterials: page, seo } } } = await client.query({
     query: gql`
       query Homepage {
         productCategories {
@@ -83,6 +83,14 @@ export async function getStaticProps() {
           }
         }
         page(id: "cG9zdDoyNTk=") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           howWeChoiseMaterials {
             heroHow {
               title
@@ -166,7 +174,8 @@ export async function getStaticProps() {
       cooperation: page.cooperationHow,
       knifes: page.knifesSlider,
       proces: page.processHow,
-      results: page.resultsHow
+      results: page.resultsHow,
+      seo: seo
     }
   };
 }

@@ -23,7 +23,7 @@ const Wrapper = styled.main`
 `
 
 export async function getStaticProps() {
-  const { data: { categories, posts, page: { blog: page } } } = await client.query({
+  const { data: { categories, posts, page: { blog: page, seo } } } = await client.query({
     query: gql`
       query Kontakt($count: Int) {
         categories {
@@ -56,6 +56,14 @@ export async function getStaticProps() {
           }
         }
         page(id: "cG9zdDo2Mg==") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           blog {
             heroBlog {
               title
@@ -87,7 +95,8 @@ export async function getStaticProps() {
     props: {
       posts: posts,
       hero: page.heroBlog,
-      categories: categories.nodes
+      categories: categories.nodes,
+      seo: seo
     }
   };
 }

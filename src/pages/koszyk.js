@@ -71,8 +71,16 @@ export async function getStaticProps(props) {
             }
           }
         }
-        page(id: "cG9zdDoxMDU=") {
+        page(id: "cG9zdDoxMDc=") {
           id
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
         }
         global : page(id: "cG9zdDoyOQ==") {
           reviews {
@@ -106,6 +114,7 @@ export async function getStaticProps(props) {
     props: {
       cta: global.callToAction,
       highlightedProducts: highlightedProducts.nodes,
+      seo: page.seo
     }
   };
 }

@@ -9,9 +9,9 @@ import client from "../apollo/apollo-client"
 
 export default function Sklep({ cta, categories, posts, hero, reviews }) {
   return (
-    <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep' }, { page: 'Koszyk', url: '/koszyk' }, {page: 'Zamówienie', url: '/zamowienie'}]}>
+    <Layout breadcrumbs={[{ page: 'Sklep', url: '/sklep' }, { page: 'Koszyk', url: '/koszyk' }, { page: 'Zamówienie', url: '/zamowienie' }]}>
       <Wrapper>
-        <Hero step='2'/>
+        <Hero step='2' />
         <Process />
       </Wrapper>
     </Layout>
@@ -40,7 +40,10 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      id: ''
+      id: '',
+      seo: {
+        title: 'Twoje zamówienie | Baldur'
+      }
     }
   };
 }

@@ -145,10 +145,18 @@ const Background = styled.div`
 `
 
 export async function getServerSideProps() {
-  const { data: { posts, page: { regulamin: page } } } = await client.query({
+  const { data: { posts, page: { regulamin: page, seo } } } = await client.query({
     query: gql`
       query Kontakt {
         page(id: "cG9zdDozMDg=") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           regulamin {
             heroReg {
               title
@@ -189,7 +197,8 @@ export async function getServerSideProps() {
     props: {
       posts: posts.nodes,
       hero: page.heroReg,
-      content: page.contntReg
+      content: page.contntReg,
+      seo: seo
     }
   };
 }

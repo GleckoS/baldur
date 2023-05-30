@@ -81,6 +81,14 @@ export async function getStaticProps({ params }) {
       query Category($category: String, $cat: [String], $count: Int) {
         categories(where: {name: $cat}) {
           nodes {
+            seo {
+              title
+              metaDesc
+              opengraphSiteName
+              opengraphImage {
+                mediaItemUrl
+              }
+            }
             name
             count
           }
@@ -141,7 +149,8 @@ export async function getStaticProps({ params }) {
         category: categories.nodes[0],
         catSlug: params.category,
         background: page.blog.heroBlog.background,
-        currPage: params.page
+        currPage: params.page,
+        seo: categories.nodes[0].seo
       }
     }
   }

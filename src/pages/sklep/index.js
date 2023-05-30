@@ -35,7 +35,7 @@ const Wrapper = styled.main`
 `
 
 export async function getServerSideProps() {
-  const { data: { productCategories, posts, global, page: { shop: page } } } = await client.query({
+  const { data: { productCategories, posts, global, page: { shop: page, seo} } } = await client.query({
     query: gql`
       query Sklep {
         productCategories {
@@ -110,6 +110,14 @@ export async function getServerSideProps() {
           }
         }
         page(id: "cG9zdDoxMDU=") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           shop {
             heroShop {
               title
@@ -140,7 +148,8 @@ export async function getServerSideProps() {
       posts: posts.nodes,
       categories: productCategories.nodes,
       reviews: global.reviews,
-      cta: global.callToAction
+      cta: global.callToAction,
+      seo: seo
     }
   };
 }

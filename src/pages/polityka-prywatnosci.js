@@ -194,6 +194,14 @@ export async function getServerSideProps() {
     query: gql`
       query Kontakt {
         page(id: "cG9zdDozMDY=") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
           title
           content
         }
@@ -210,7 +218,8 @@ export async function getServerSideProps() {
   return {
     props: {
       title: page.title,
-      content: page.content
+      content: page.content,
+      seo: page.seo
     }
   };
 }

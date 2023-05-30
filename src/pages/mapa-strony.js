@@ -99,9 +99,19 @@ const Wrapper = styled.main`
 `
 
 export async function getServerSideProps() {
-  const { data: { productCategories, posts } } = await client.query({
+  const { data: { productCategories, posts, page } } = await client.query({
     query: gql`
       query Kontakt {
+        page(id: "cG9zdDo1MTY=") {
+          seo {
+            title
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              mediaItemUrl
+            }
+          }
+        }
         productCategories {
           nodes {
             slug
@@ -127,6 +137,7 @@ export async function getServerSideProps() {
     props: {
       posts: posts.nodes,
       categories: productCategories.nodes,
+      seo: page.seo
     }
   };
 }
