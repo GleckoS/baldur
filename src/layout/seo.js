@@ -8,8 +8,8 @@ export default function Seo({ seo: {
   metaDesc = '',
   ogImage = '/social.jpg'
 } }) {
-  const { pathname } = useRouter();
-  const canonical = pathname
+  const router = useRouter();
+  const canonical = router.asPath
   return (
     <Head>
       <meta charSet="utf-8" />

@@ -66,6 +66,7 @@ export async function getStaticProps({ params }) {
       query: gql`
       query Category($catID: ID!) {
         productCategory(id: $catID, idType: SLUG) {
+          id
           seo {
             title
             metaDesc
@@ -192,10 +193,10 @@ export async function getStaticProps({ params }) {
         category: productCategory,
         highlightedProducts: highlightedProducts.nodes,
         seo: productCategory.seo
-      }
+      },
+      notFound: productCategory.id
     }
-  } catch (error) {
-    console.log(err)
+  } catch (err) {
     return {
       notFound: true,
     }

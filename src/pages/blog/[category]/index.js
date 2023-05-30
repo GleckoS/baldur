@@ -130,7 +130,6 @@ export async function getStaticProps({ params }) {
     }
   }
   catch (err) {
-    console.log(err)
     return {
       notFound: true,
     }

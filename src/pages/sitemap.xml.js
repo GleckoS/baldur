@@ -11,62 +11,62 @@ function uriTransform(uri) {
 
 function generateSiteMap({ categories, productCategories, products, blogPages, posts }) {
   return `<?xml version="1.0" encoding="UTF-8"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
      <url>
-       <loc>http://baldur.shop</loc>
+       <loc>https://baldur.shop</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/kontakt</loc>
+       <loc>https://baldur.shop/kontakt</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/jak-wybieramy-materialy</loc>
+       <loc>https://baldur.shop/jak-wybieramy-materialy</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/koszyk</loc>
+       <loc>https://baldur.shop/koszyk</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/mapa-strony</loc>
+       <loc>https://baldur.shop/mapa-strony</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/o-nas</loc>
+       <loc>https://baldur.shop/o-nas</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/polityka-prywatnosci</loc>
+       <loc>https://baldur.shop/polityka-prywatnosci</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/regulamin</loc>
+       <loc>https://baldur.shop/regulamin</loc>
      </url>
      <url>
-       <loc>http://baldur.shop/sklep</loc>
+       <loc>https://baldur.shop/sklep</loc>
      </url>
      ${productCategories.map(({ slug }) => {
     return `
        <url>
-           <loc>${`http://baldur.shop/sklep/${slug}`}</loc>
+           <loc>${`https://baldur.shop/sklep/${slug}`}</loc>
        </url>
      `;
   }).join('')}
   ${products.map(({ uri }) => {
     return `
     <url>
-        <loc>${`http://baldur.shop${uriTransform(uri)}`}</loc>
+        <loc>${`https://baldur.shop${uriTransform(uri)}`}</loc>
     </url>
   `;
   }).join('')}
      <url>
-       <loc>http://baldur.shop/blog</loc>
+       <loc>https://baldur.shop/blog</loc>
      </url>
      ${blogPages.map(({ page }) => {
     return `
        <url>
-           <loc>${`http://baldur.shop/blog/strona/${page}`}</loc>
+           <loc>${`https://baldur.shop/blog/strona/${page}`}</loc>
        </url>
      `;
   }).join('')}
      ${posts.map(({ uri }) => {
     return `
        <url>
-           <loc>${`http://baldur.shop${uriTransform(uri)}`}</loc>
+           <loc>${`https://baldur.shop${uriTransform(uri)}`}</loc>
        </url>
      `;
   }).join('')}
@@ -74,7 +74,7 @@ function generateSiteMap({ categories, productCategories, products, blogPages, p
    ${categories.map(({ slug }) => {
     return `
      <url>
-         <loc>${`http://baldur.shop/blog/${slug}`}</loc>
+         <loc>${`https://baldur.shop/blog/${slug}`}</loc>
      </url>
    `;
   }).join('')}
@@ -82,7 +82,7 @@ function generateSiteMap({ categories, productCategories, products, blogPages, p
     return pages?.map(({ page }) => {
       return `
       <url>
-          <loc>${`http://baldur.shop/blog/${slug}/strona/${page}`}</loc>
+          <loc>${`https://baldur.shop/blog/${slug}/strona/${page}`}</loc>
       </url>
     `;
     }).join('')

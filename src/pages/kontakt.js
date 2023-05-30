@@ -10,7 +10,7 @@ import Contact from '@/components/templates/contact'
 
 export default function Kontakt({ posts, faq }) {
   return (
-    <Layout breadcrumbs={[{page: 'Kontakt', url: '/kontakt/'}]}>
+    <Layout breadcrumbs={[{page: 'Kontakt', url: '/kontakt'}]}>
       <Wrapper>
         <Contact/>
         <Faq data={faq}/>

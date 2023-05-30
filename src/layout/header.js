@@ -44,7 +44,7 @@ export default function Header() {
             <Logo />
           </Link>
           <Link className="desctop" href='/blog/'>Blog</Link>
-          <Link className="desctop" href='/kontakt/'>Kontakt</Link>
+          <Link className="desctop" href='/kontakt'>Kontakt</Link>
         </Navigation>
         <Link href='/koszyk' aria-label='Koszyk' className="cart">
           <svg xmlns="http://www.w3.org/2000/svg" width="34" height="39" viewBox="0 0 38.2 43.7">
