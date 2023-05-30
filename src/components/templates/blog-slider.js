@@ -4,6 +4,8 @@ import Slider from "../organisms/posts-slider"
 import { RunesXM } from "../atoms/runes-xm"
 
 export default function Blog({ posts }) {
+  if (posts.length < 3) return null
+
   return (
     <Wrapper>
       <div className="container">
