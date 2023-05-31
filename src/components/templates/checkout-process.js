@@ -347,7 +347,7 @@ export default function Process() {
             <p>Przeczytałem/am <Link href='/regulamin'>regulamin</Link> i rozumiem <Link href='/polityka-prywatnosci'>politykę prywatności</Link> i cookies</p>
             {errors.checkbox && <span className='error'>Proszę zaakceptować regulamin i politykę prywatności </span>}
           </label>
-          <ButtonFilled className='button' as='button'>
+          <ButtonFilled disabled={form.deliveryMethod === 'inpost' && !form.inpostNumber} className='button' as='button'>
             <span>
               PŁATNOŚĆ
             </span>
