@@ -31,7 +31,7 @@ export const generateOrderParams = (items, form) => {
       last_name: form.surName,
       address_1: form.inpostNumber ? `${form.inpostNumber.address_details.street}, ${form.inpostNumber.address_details.building_number}` : form.street,
       address_2: '',
-      city: form.inpostNumber ? form.inpostNumber.address_details.city : form.nameform.city,
+      city: form.inpostNumber ? form.inpostNumber.address_details.city : form.city,
       postcode: form.inpostNumber ? form.inpostNumber.address_details.post_code : form.postcode,
       state: form.inpostNumber ? form.inpostNumber.address_details.province : "",
       country: 'PL',
