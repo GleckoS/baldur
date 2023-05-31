@@ -111,6 +111,7 @@ export default function Process() {
       params: generateOrderParams(items, form)
     })
       .then((res) => {
+        console.log(res.data.orderId)
         setOrderNumber(res.data.orderId)
         createIntent(sum, form.paymentMethod, res.data.orderId)
       })
