@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   WooCommerce.post("orders", req.body.params)
     .then((response) => {
       res.send({
-        orderId: response.data.id,
+        orderId: response,
       });
     })
     .catch((err) => {
