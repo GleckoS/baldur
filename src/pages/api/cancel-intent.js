@@ -2,7 +2,7 @@ const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const api = new WooCommerceRestApi({
-    url: `${process.env.WP_URL}/`,
+    url: `${process.env.NEXT_PUBLIC_WP_URL}/`,
     consumerKey: process.env.WC_KEY,
     consumerSecret: process.env.WC_SECRET,
     version: 'wc/v3'

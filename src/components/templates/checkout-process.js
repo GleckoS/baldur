@@ -304,7 +304,7 @@ export default function Process() {
           </fieldset>
           <div className={form.deliveryMethod === 'inpost' && !form.inpostNumber ? "active geo-widget" : "geo-widget"}>
             <InpostGeowidget
-              token={process.env.INPOST_GEO_KEY}
+              token={process.env.NEXT_PUBLIC_INPOST_GEO_KEY}
               config='parcelCollect'
               onPoint={onPointCallback}
             />

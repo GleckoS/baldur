@@ -11,7 +11,7 @@ export default function Form({ subject }) {
   const onSubmit = data => {
     setIsSended(true)
 
-    let url = `${process.env.WP_URL}/wp-json/contact-form-7/v1/contact-forms/34241/feedback`
+    let url = `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/contact-form-7/v1/contact-forms/34241/feedback`
 
     let body = new FormData()
 
