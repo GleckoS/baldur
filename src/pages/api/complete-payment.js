@@ -15,7 +15,6 @@ export default async function handler(req, res) {
     }).catch(err => {
         res.status(500).send('Błąd podczas aktualizacji zamówienia, napisz do nas, twój numer zamówienia to: ' + req.query.id + ', twój numer płatności to: ' + req.query.payment_intent);
     }).then(res => {
-        res.send(res.data);
-        // res.redirect(`/podziekowanie?status=${req.query.redirect_status}&order=${req.query.id}`)
+        res.status(201).redirect(`/podziekowanie?status=${req.query.redirect_status}&order=${req.query.id}`)
     })
 };

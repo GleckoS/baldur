@@ -10,7 +10,7 @@ const WooCommerce = new WooCommerceRestApi({
 export default async function handler(req, res) {
   WooCommerce.post("orders", req.body.params)
     .then((response) => {
-      res.send(response.data);
+      res.status(201).send(response.data);
     })
     .catch((err) => {
       res.status(400).send(err)
