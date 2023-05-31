@@ -2,8 +2,8 @@ const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const api = new WooCommerceRestApi({
     url: `${process.env.NEXT_PUBLIC_WP_URL}/`,
-    consumerKey: process.env.NEXT_PUBLIC_WC_KEY,
-    consumerSecret: process.env.NEXT_PUBLIC_WC_SECRET,
+    consumerKey: process.env.WC_KEY,
+    consumerSecret: process.env.WC_SECRET,
     version: 'wc/v3'
 });
 

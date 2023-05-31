@@ -16,15 +16,6 @@ import { Elements } from "@stripe/react-stripe-js"
 import { useForm } from "react-hook-form"
 import { InpostGeowidget } from "react-inpost-geowidget";
 
-const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
-
-const WooCommerce = new WooCommerceRestApi({
-  url: `${process.env.NEXT_PUBLIC_WP_URL}/`,
-  consumerKey: process.env.NEXT_PUBLIC_WC_KEY,
-  consumerSecret: process.env.NEXT_PUBLIC_WC_SECRET,
-  version: 'wc/v3'
-});
-
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const getItem = (name, altVal = '') => {
@@ -116,8 +107,9 @@ export default function Process() {
   }
 
   const createOrder = async (items, form, sum) => {
-
-    WooCommerce.post("orders", generateOrderParams(items, form))
+    axios.post("/api/create-order", {
+      params: generateOrderParams(items, form)
+    })
       .then((res) => {
         console.log(res.data)
         setOrderNumber(res.data.id)
