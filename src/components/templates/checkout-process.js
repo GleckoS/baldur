@@ -41,8 +41,6 @@ const setFormToLocalStorage = (form) => {
   localStorage.setItem('forFirm', form.forFirm)
   localStorage.setItem('firmName', form.firmName)
   localStorage.setItem('firmNip', form.firmNip)
-
-  localStorage.setItem('inpostNumber', form.inpostNumber)
 }
 
 export default function Process() {
@@ -76,9 +74,9 @@ export default function Process() {
     firmName: getItem('firmName'),
     firmNip: getItem('firmNip'),
 
-    paymentMethod: 'p24',
-    deliveryMethod: 'osobisty',
-    inpostNumber: getItem('inpostNumber')
+    paymentMethod: 'blik',
+    deliveryMethod: 'inpost',
+    inpostNumber: null
   })
 
   const totalSum = useMemo(() => {
