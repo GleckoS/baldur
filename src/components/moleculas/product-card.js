@@ -35,9 +35,10 @@ export default function Card({ data: { stockStatus, slug, databaseId, name, imag
   }
 
   const fastBuyHandler = () => {
-    // TODO: check if item is in cart
-    addItem({ id: slug, price }, 1)
-    toast(`Dodano ${name} do koszyka`)
+    if (!inCart(slug)) {
+      addItem({ databaseId: databaseId, id: slug, price }, 1)
+      toast(`Dodano ${name} do koszyka`)
+    }
     router.push('/koszyk')
   }
 
