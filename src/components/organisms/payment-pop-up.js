@@ -16,7 +16,7 @@ export default function PopUp({ setIsPaymentPopUpOpen, intent, orderNumber, clie
       elements,
       redirect: 'if_required',
       confirmParams: {
-        return_url: `http://localhost:8000/api/complete-payment?id=${orderNumber}`
+        return_url: `https://baldur.shop/api/complete-payment?id=${orderNumber}`
       }
     })
 
@@ -25,7 +25,7 @@ export default function PopUp({ setIsPaymentPopUpOpen, intent, orderNumber, clie
     }
 
     if (paymentIntent?.status === 'succeeded' && typeof window !== 'undefined') {
-      window.location.href = `http://localhost:8000/api/complete-payment?id=${orderNumber}&redirect_status=${paymentIntent.status}&payment_intent=${paymentIntent.id}&payment_intent_client_secret=${clientSecret}`
+      window.location.href = `https://baldur.shop/api/complete-payment?id=${orderNumber}&redirect_status=${paymentIntent.status}&payment_intent=${paymentIntent.id}&payment_intent_client_secret=${clientSecret}`
     }
 
     if (paymentIntent?.last_payment_error) {
