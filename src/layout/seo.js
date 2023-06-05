@@ -9,7 +9,7 @@ export default function Seo({ seo: {
   ogImage = '/social.jpg'
 } }) {
   const router = useRouter();
-  const canonical = router.asPath
+  const canonical = 'https://baldur.shop' + router.asPath
   return (
     <Head>
       <meta charSet="utf-8" />

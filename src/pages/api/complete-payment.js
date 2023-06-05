@@ -10,7 +10,6 @@ const api = new WooCommerceRestApi({
 export default async function handler(req, res) {
     let status = req.query.redirect_status === 'succeeded' ? 'processing' : 'cancelled'
 
-    // ?id=528&redirect_status=succeeded&payment_intent=pi_3NDowYI9MWE3PvcY0TE4MiGt&payment_intent_client_secret=pi_3NDowYI9MWE3PvcY0TE4MiGt_secret_hrrVOUdPQ8EqkVrJBfX55cOkB
     api.put(`orders/${req.query.id}`, {
         status: status,
         transaction_id: req.query.payment_intent
