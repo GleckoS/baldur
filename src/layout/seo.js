@@ -20,8 +20,6 @@ export default function Seo({ seo: {
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
       <link rel="manifest" href="/favicon/site.webmanifest" />
 
-      <meta name="robots" content="noindex" />
-
       <meta property="og:site_name" content={opengraphSiteName || title} />
       <meta property="og:type" content='website' />
       <meta property="og:locale" content="pl_PL" />
