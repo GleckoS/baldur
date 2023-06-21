@@ -8,12 +8,14 @@ export default function Card({ data }) {
   return (
     <Wrapper className="anim">
       <Link href={`/sklep/${data.slug}/`}>
-        <Image
-          src={data.image.mediaItemUrl}
-          alt={`kategoria - ${data.name}`}
-          width={'360'}
-          height={'270'}
-        />
+        <div className="image-wrap">
+          <Image
+            src={data.image.mediaItemUrl}
+            alt={`kategoria - ${data.name}`}
+            width={'360'}
+            height={'270'}
+          />
+        </div>
         <ButtonFilled className='button' as='div'>
           <span>
             {data.name}
@@ -27,8 +29,35 @@ export default function Card({ data }) {
 const Wrapper = styled.div`
   width: 360px;
 
+
+  &:hover{
+    img{
+      transform: scale(1.07);
+    }
+
+    span {
+        color: var(--primary-500);
+      &::before {
+        transform: scaleX(0)
+      }
+    }
+  }
+
+  img{
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-wrap{
+    overflow: hidden;
+    position: relative;
+    width: 360px;
+    height: 270px;
+    margin-bottom: 20px;
+  }
+
   a{
     display: block;
+
     span{
       text-transform: uppercase;
     }
@@ -43,6 +72,8 @@ const Wrapper = styled.div`
 
     .image, img{
       width: 100%;
+      aspect-ratio: 360/270;
+      height: auto;
     }
 
     .button{

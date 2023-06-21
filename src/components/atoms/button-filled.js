@@ -7,7 +7,7 @@ const Button = ({ children, href, className, as, mode = 'primary' }) => (
     <span>
       {children}
     </span>
-  </Link >
+  </Link>
 )
 
 export default styled(Button)`

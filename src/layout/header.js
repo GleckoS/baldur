@@ -1,5 +1,6 @@
 import Logo from "@/components/atoms/logo"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { useCart } from "react-use-cart"
 import styled from "styled-components"
@@ -8,6 +9,8 @@ export default function Header() {
   const { totalItems } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [renderedItemsCount, setRenderedItemsCount] = useState(0)
+
+  const router = useRouter();
 
   useEffect(() => {
     setRenderedItemsCount(totalItems)
@@ -24,13 +27,13 @@ export default function Header() {
           <div />
         </button>
         <MobileMenu className={isMobileMenuOpen ? 'active' : ''}>
-          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/sklep'>Sklep</Link>
-          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/o-nas'>O baldur</Link>
-          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/jak-wybieramy-materialy'>Jak wybieramy materiały</Link>
-          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/blog'>Blog</Link>
-          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/kontakt'>Kontakt</Link>
-          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/polityka-prywatnosci'>Polityka prywatności</Link>
-          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} href='/regulamin'>Regulamin</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} className={router.asPath.startsWith("/sklep") ? "active" : ""} href='/sklep'>Sklep</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} className={router.asPath.startsWith("/o-nas") ? "active" : ""} href='/o-nas'>O baldur</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} className={router.asPath.startsWith("/jak-wybieramy-materialy") ? "active" : ""} href='/jak-wybieramy-materialy'>Jak wybieramy materiały</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} className={router.asPath.startsWith("/blog") ? "active" : ""} href='/blog'>Blog</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} className={router.asPath.startsWith("/kontakt") ? "active" : ""} href='/kontakt'>Kontakt</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} className={router.asPath.startsWith("/politykwa-prywatnosci") ? "active" : ""} href='/polityka-prywatnosci'>Polityka prywatności</Link>
+          <Link tabIndex={isMobileMenuOpen ? '0' : '-1'} className={router.asPath.startsWith("/regulamin") ? "active" : ""} href='/regulamin'>Regulamin</Link>
           <button aria-label='zamknij mobilne meni' tabIndex={isMobileMenuOpen ? '0' : '-1'} className="close" onClick={() => { setIsMobileMenuOpen(false) }}>
             <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M15.4998 12.0688L27.5686 0L31 3.47012L18.9703 15.4998L31 27.5686L27.5686 31L15.4998 18.9703L3.47012 31L0 27.5686L12.0688 15.4998L0 3.47012L3.47012 0L15.4998 12.0688Z" fill="#EDE2E2" />
@@ -38,13 +41,13 @@ export default function Header() {
           </button>
         </MobileMenu>
         <Navigation>
-          <Link className="desctop" href='/sklep/'>Sklep</Link>
-          <Link className="desctop" href='/o-nas/'>O baldur</Link>
+          <Link className={router.asPath.startsWith("/sklep") ? "active desctop" : "desctop"} href='/sklep'>Sklep</Link>
+          <Link className={router.asPath.startsWith("/o-nas") ? "active desctop" : "desctop"} href='/o-nas'>O baldur</Link>
           <Link aria-label='logo' className="logo" href='/'>
             <Logo />
           </Link>
-          <Link className="desctop" href='/blog/'>Blog</Link>
-          <Link className="desctop" href='/kontakt'>Kontakt</Link>
+          <Link className={router.asPath.startsWith("/blog") ? "active desctop" : "desctop"} href='/blog'>Blog</Link>
+          <Link className={router.asPath.startsWith("/kontakt") ? "active desctop" : "desctop"} href='/kontakt'>Kontakt</Link>
         </Navigation>
         <Link href='/koszyk' aria-label='Koszyk' className="cart">
           <svg xmlns="http://www.w3.org/2000/svg" width="34" height="39" viewBox="0 0 38.2 43.7">
@@ -117,7 +120,7 @@ const MobileMenu = styled.div`
       transition: transform .3s ease-out;
     }
 
-    &:hover{
+    &.active, &:hover{
       color: #000;
 
       &::before{
@@ -305,9 +308,12 @@ const Navigation = styled.nav`
     color: var(--primary-500);
     transition: color var(--transition);
 
-    text-decoration: underline 2px transparent;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: transparent;
     transition: text-decoration-color 0.2s ease-out;
-    &:hover{
+
+    &:hover, &.active{
       text-decoration-color: currentColor;
     }
 
