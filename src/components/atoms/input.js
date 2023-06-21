@@ -5,7 +5,7 @@ export const Input = styled.input`
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 20px;
-  line-height: 24rem;
+  line-height: 24px;
   color: var(--dark-500);
 
   @media (max-width: 360px) {

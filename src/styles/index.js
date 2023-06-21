@@ -230,7 +230,7 @@ const GlobalStyle = createGlobalStyle`
   .error{
     color: var(--error-500);
     font-size: 14rem;
-    line-height: 16rem;
+    line-height: 1.2;
 
     @media (max-width: 360px) {
       font-size: clamp(0rem, ${14 / 360 * 100}vw, 14rem);

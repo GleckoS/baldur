@@ -4,14 +4,13 @@ import { useForm } from "react-hook-form"
 import ButtonOutlined from "../atoms/button-outlined"
 import Link from "next/link"
 import axios from "axios"
+import { toast } from "react-toastify"
 
 export default function Form({ subject }) {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    setIsSended(true)
-
-    let url = `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/contact-form-7/v1/contact-forms/34241/feedback`
+    let url = `https://baldur.headlesshub.com/wp-json/contact-form-7/v1/contact-forms/14/feedback`
 
     let body = new FormData()
 
@@ -24,10 +23,10 @@ export default function Form({ subject }) {
     axios.post(url, body)
       .then((res) => {
         if (res.status === 200) {
-          setIsSended(true)
+          toast('Wiadomość została wysłana pomyślnie.')
           reset()
         } else {
-          // toast('There was some problem with contact form, try later')
+          toast('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później.')
         }
       })
   };
@@ -105,7 +104,7 @@ const Wrapper = styled.form`
       background: #FFFFFF;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       padding: 20px;
-      line-height: 24rem;
+      line-height: 24px;
       color: var(--dark-500);
 
       @media (max-width: 360px) {
@@ -121,7 +120,7 @@ const Wrapper = styled.form`
     .error{
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -3px;
       transform: translateY(100%);
     }
 
@@ -196,6 +195,12 @@ const Wrapper = styled.form`
         a{
           color: var(--secondary-500);
           text-decoration: underline;
+          text-decoration-color: transparent;
+          transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+          &:hover{
+            text-decoration-color: var(--secondary-500);
+          }
         }
       }
     }

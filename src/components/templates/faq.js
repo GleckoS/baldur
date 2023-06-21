@@ -45,9 +45,21 @@ const Grid = styled.div`
     gap: 60px;
   }
 
+  details:hover{
+    svg{
+      transform: translateY(-3px);
+    }
+  }
+
   details[open]{
     svg{
       transform: rotateZ(180deg);
+    }
+  }
+
+  details[open]:hover{
+    svg{
+      transform: rotateZ(180deg) translateY(3px);
     }
   }
 
