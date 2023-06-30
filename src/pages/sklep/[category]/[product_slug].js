@@ -32,7 +32,7 @@ const Wrapper = styled.main`
 
 `
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   try {
     const { data: { similarProducts, productCategory, product, global } } = await client.query({
       query: gql`
@@ -176,12 +176,42 @@ export async function getServerSideProps({ params }) {
         productCategory: productCategory,
         similarProducts: similarProducts.nodes.filter(el => el.id !== product.id),
         seo: product.seo
-      }
+      },
+      revalidate: 60
     }
   }
   catch (err) {
     return {
       notFound: true,
     }
+  }
+}
+
+export async function getStaticPaths() {
+  const { data: { products } } = await client.query({
+    query: gql`
+    query ProductUrls {
+      products(first: 100) {
+        nodes {
+          uri
+        }
+      }
+    }
+  `,
+    context: {
+      fetchOptions: {
+        next: { revalidate: 60 },
+      },
+    }
+  });
+
+  return {
+    paths: products.nodes.map(post => ({
+      params: {
+        category: post.uri.split('/').filter(item => item)[1],
+        product_slug: post.uri.split('/').filter(item => item)[2]
+      }
+    })),
+    fallback: 'blocking',
   }
 }
