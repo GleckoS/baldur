@@ -164,7 +164,7 @@ export async function getServerSideProps({ params }) {
       },
       context: {
         fetchOptions: {
-          next: { revalidate: 1 },
+          next: { revalidate: 60 },
         },
       }
     })

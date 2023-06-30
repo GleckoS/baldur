@@ -43,7 +43,7 @@ export async function getStaticPaths() {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: 1 },
+        next: { revalidate: 60 },
       },
     }
   });
@@ -180,7 +180,7 @@ export async function getStaticProps({ params }) {
       },
       context: {
         fetchOptions: {
-          next: { revalidate: 1 },
+          next: { revalidate: 60 },
         },
       }
     });
@@ -194,7 +194,8 @@ export async function getStaticProps({ params }) {
         highlightedProducts: highlightedProducts.nodes,
         seo: productCategory.seo
       },
-      notFound: !productCategory.id
+      notFound: !productCategory.id,
+      revalidate: 60
     }
   } catch (err) {
     return {

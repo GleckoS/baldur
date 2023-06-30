@@ -7,10 +7,10 @@ import ProductGrid from '@/components/templates/product-grid-shop'
 import CallToAction from '@/components/templates/call-to-action'
 import Reviews from '@/components/templates/reviews'
 import Blog from '@/components/templates/blog-slider'
+import Search from '@/components/templates/product-search'
 
 import { gql } from "@apollo/client"
 import client from "../../apollo/apollo-client"
-import Search from '@/components/templates/product-search'
 
 export default function Sklep({ cta, categories, posts, hero, reviews }) {
   return (
@@ -18,7 +18,7 @@ export default function Sklep({ cta, categories, posts, hero, reviews }) {
       <Wrapper>
         <Hero data={hero} />
         <Categories data={categories} />
-        <Search/>
+        <Search />
         <ProductGrid data={categories} />
         <CallToAction data={cta} />
         <Reviews data={reviews} />
@@ -34,8 +34,8 @@ const Wrapper = styled.main`
   padding-bottom: clamp(80px, ${220 / 1440 * 100}vw, 220px);
 `
 
-export async function getServerSideProps() {
-  const { data: { productCategories, posts, global, page: { shop: page, seo} } } = await client.query({
+export async function getStaticProps() {
+  const { data: { productCategories, posts, global, page: { shop: page, seo } } } = await client.query({
     query: gql`
       query Sklep {
         productCategories {
@@ -137,7 +137,7 @@ export async function getServerSideProps() {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: 1 },
+        next: { revalidate: 60 },
       },
     }
   });
@@ -150,6 +150,7 @@ export async function getServerSideProps() {
       reviews: global.reviews,
       cta: global.callToAction,
       seo: seo
-    }
+    },
+    revalidate: 60
   };
 }

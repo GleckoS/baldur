@@ -9,7 +9,7 @@ const options = [
   { value: '1', label: 'Najnowsze' },
   { value: '2', label: 'Najstarsze' },
   { value: '3', label: 'Cena: od najwyższej' },
-  { value: '4', label: 'Cena: on najniższej' }
+  { value: '4', label: 'Cena: od najniższej' }
 ]
 
 export default function ProductGrid({ highlightedProducts, data }) {

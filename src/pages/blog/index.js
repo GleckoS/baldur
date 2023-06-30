@@ -86,7 +86,7 @@ export async function getStaticProps() {
     },
     context: {
       fetchOptions: {
-        next: { revalidate: 1 },
+        next: { revalidate: 60 },
       },
     }
   });

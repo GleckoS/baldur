@@ -104,7 +104,7 @@ export async function getStaticProps(props) {
     `,
     context: {
       fetchOptions: {
-        next: { revalidate: 1 },
+        next: { revalidate: 60 },
       },
     }
   });
@@ -115,6 +115,7 @@ export async function getStaticProps(props) {
       cta: global.callToAction,
       highlightedProducts: highlightedProducts.nodes,
       seo: page.seo
-    }
+    },
+    revalidate: 60
   };
 }
