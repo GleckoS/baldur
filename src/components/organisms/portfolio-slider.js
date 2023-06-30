@@ -44,7 +44,7 @@ export default function Slider({ images }) {
       </SmallImages>
       <Buttons>
         {images.map((image, index) => (
-          <button className={current === index ? "active dot" : "dot"} key={index} onClick={() => { setCurrent(index) }}></button>
+          <button aria-label={`przejdź do ${index+1} elementu slidera`} className={current === index ? "active dot" : "dot"} key={index} onClick={() => { setCurrent(index) }}></button>
         ))}
       </Buttons>
     </Wrapper>

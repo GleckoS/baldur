@@ -6,21 +6,20 @@ export default function Breadcrumbs({ data }) {
   if (!data) return null
   return (
     <Wrapper className="container anim">
-      <ul>
-        <li className="item">
+      <div className="ul">
+        <div className="item">
           <Link href="/">Strona główna</Link>
-        </li>
+        </div>
         <span>{'>'}</span>
         {data.map((item, index) => (
           <React.Fragment key={index}>
-            <li className="item" key={index}>
+            <div className="item" key={index}>
               <Link tabIndex={index === data.length - 1 ? '-1' : '0'} className={index === data.length - 1 ? 'last' : ''} href={item.url}>{item.page}</Link>
-
-            </li>
+            </div>
             <span>{'>'}</span>
           </React.Fragment>
         ))}
-      </ul>
+      </div>
     </Wrapper>
   )
 }
@@ -34,14 +33,14 @@ const Wrapper = styled.nav`
     display: none;
   }
 
-  ul{
+  .ul{
     top: 0;
     display: flex;
     gap: 8px;
     position: absolute;
   }
 
-  li{
+  div{
     list-style: none;
 
     a{

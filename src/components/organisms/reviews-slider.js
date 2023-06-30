@@ -35,7 +35,7 @@ export default function Slider({ data }) {
         </button>
         <div className="dots">
           {data.map((item, index) => (
-            <button onClick={() => {setChosenReview(index)}} key={index} className={chosenReview === index ? "dot active" : "dot"} />
+            <button aria-label={`przejdź do ${index+1} elementu slidera`} onClick={() => {setChosenReview(index)}} key={index} className={chosenReview === index ? "dot active" : "dot"} />
           ))}
         </div>
         <button disabled={chosenReview >= data.length - 1} aria-label={`następna opinia`} onClick={() => { setChosenReview(chosenReview >= data.length - 1 ? data.length - 1 : chosenReview + 1) }} className="arrow right">
